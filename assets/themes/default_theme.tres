@@ -1,0 +1,25 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://d18cpgia7nf2j"]
+
+[ext_resource type="FontFile" uid="uid://o6iltpv0mnpf" path="res://assets/fonts/exo/Exo-SemiBold.ttf" id="1_sfy2j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ru5bj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2ag7u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n6e8m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4uv0n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_80bba"]
+
+[resource]
+default_font = ExtResource("1_sfy2j")
+default_font_size = 16
+Button/colors/font_focus_color = Color(0, 1, 0, 1)
+Button/colors/font_hover_color = Color(0, 1, 0, 1)
+Button/colors/font_pressed_color = Color(0, 0.8, 0, 1)
+Button/styles/disabled = SubResource("StyleBoxEmpty_ru5bj")
+Button/styles/focus = SubResource("StyleBoxEmpty_2ag7u")
+Button/styles/hover = SubResource("StyleBoxEmpty_n6e8m")
+Button/styles/normal = SubResource("StyleBoxEmpty_4uv0n")
+Button/styles/pressed = SubResource("StyleBoxEmpty_80bba")

@@ -1,14 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://dooo2c7g3j2pl"]
+[gd_scene load_steps=3 format=3 uid="uid://dooo2c7g3j2pl"]
 
-[ext_resource type="FontFile" uid="uid://o6iltpv0mnpf" path="res://assets/fonts/exo/Exo-SemiBold.ttf" id="1_1y07h"]
+[ext_resource type="Theme" uid="uid://d18cpgia7nf2j" path="res://assets/themes/default_theme.tres" id="1_xyxts"]
+[ext_resource type="Script" path="res://scenes/main_menu/main_menu.gd" id="2_tylyp"]
 
 [node name="main_menu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_xyxts")
+script = ExtResource("2_tylyp")
 
 [node name="bg_color" type="ColorRect" parent="."]
 layout_mode = 1
@@ -38,13 +43,13 @@ alignment = 1
 [node name="title" type="Label" parent="margin/vbox"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_fonts/font = ExtResource("1_1y07h")
 theme_override_font_sizes/font_size = 64
 text = "summon spree"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="vbox_buttons" type="VBoxContainer" parent="margin/vbox"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 10
 
@@ -52,7 +57,9 @@ size_flags_vertical = 10
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_fonts/font = ExtResource("1_1y07h")
+focus_neighbor_top = NodePath("../exit_button")
+focus_neighbor_bottom = NodePath("../exit_button")
+focus_next = NodePath("../exit_button")
 theme_override_font_sizes/font_size = 32
 text = "start"
 
@@ -60,6 +67,13 @@ text = "start"
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_fonts/font = ExtResource("1_1y07h")
+focus_neighbor_top = NodePath("../start_button")
+focus_neighbor_bottom = NodePath("../start_button")
+focus_next = NodePath("../start_button")
+focus_previous = NodePath("../start_button")
 theme_override_font_sizes/font_size = 32
 text = "exit"
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="margin/vbox/vbox_buttons/start_button" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="margin/vbox/vbox_buttons/exit_button" to="." method="_on_exit_button_pressed"]
