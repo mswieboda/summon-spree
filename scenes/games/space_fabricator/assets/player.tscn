@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://cihoflsc34mdj"]
+[gd_scene load_steps=4 format=3 uid="uid://cihoflsc34mdj"]
 
 [ext_resource type="PackedScene" uid="uid://dynxbouhs30hw" path="res://scenes/games/space_fabricator/assets/player.blend" id="1_g6f2w"]
+[ext_resource type="Script" path="res://scenes/games/space_fabricator/assets/player.gd" id="1_y83eo"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xsdub"]
 size = Vector3(1.6, 2, 0.4)
 
 [node name="player" type="CharacterBody3D"]
+script = ExtResource("1_y83eo")
 
 [node name="player_model" parent="." instance=ExtResource("1_g6f2w")]
 

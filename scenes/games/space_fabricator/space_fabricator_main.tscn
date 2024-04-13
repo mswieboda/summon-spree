@@ -41,10 +41,10 @@ mesh = SubResource("SphereMesh_eadn5")
 shape = SubResource("SphereShape3D_321ig")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, -0.020571, 18.6779, 31.3329)
-projection = 1
-fov = 18.3708
-size = 1.61524
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 5.16916, 18.6779, 31.3329)
+fov = 13.1968
+size = 9.1825
+
+[node name="ShootTarget" type="RayCast3D" parent="Camera3D"]
 
 [node name="player" parent="." instance=ExtResource("2_dhlxs")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
