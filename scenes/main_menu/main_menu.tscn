@@ -1,0 +1,65 @@
+[gd_scene load_steps=2 format=3 uid="uid://dooo2c7g3j2pl"]
+
+[ext_resource type="FontFile" uid="uid://o6iltpv0mnpf" path="res://assets/fonts/exo/Exo-SemiBold.ttf" id="1_1y07h"]
+
+[node name="main_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="bg_color" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="vbox" type="VBoxContainer" parent="margin"]
+layout_mode = 2
+alignment = 1
+
+[node name="title" type="Label" parent="margin/vbox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_1y07h")
+theme_override_font_sizes/font_size = 64
+text = "summon spree"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="vbox_buttons" type="VBoxContainer" parent="margin/vbox"]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="start_button" type="Button" parent="margin/vbox/vbox_buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_1y07h")
+theme_override_font_sizes/font_size = 32
+text = "start"
+
+[node name="exit_button" type="Button" parent="margin/vbox/vbox_buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_1y07h")
+theme_override_font_sizes/font_size = 32
+text = "exit"
