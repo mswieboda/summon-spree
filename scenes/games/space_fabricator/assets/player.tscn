@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cihoflsc34mdj"]
+
+[ext_resource type="PackedScene" uid="uid://dynxbouhs30hw" path="res://scenes/games/space_fabricator/assets/player.blend" id="1_g6f2w"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xsdub"]
+size = Vector3(1.6, 2, 0.4)
+
+[node name="player" type="CharacterBody3D"]
+
+[node name="player_model" parent="." instance=ExtResource("1_g6f2w")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_xsdub")
