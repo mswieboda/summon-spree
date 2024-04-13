@@ -48,22 +48,26 @@ func _physics_process(delta):
   move_and_slide()
 
 func point_character(direction:Vector3):
+  #try to get the mouse collision position
 
-  if (isFiring):
-    var space_state = get_world_3d().direct_space_state
-    var from = camera.project_ray_origin(get_viewport().get_mouse_position())
-    var to = from + camera.project_ray_normal(get_viewport().get_mouse_position()) * RAY_LENGTH
+  var isMousePoint
+  var space_state = get_world_3d().direct_space_state
+  var from = camera.project_ray_origin(get_viewport().get_mouse_position())
+  var to = from + camera.project_ray_normal(get_viewport().get_mouse_position()) * RAY_LENGTH
+  var query = PhysicsRayQueryParameters3D.create(from, to)
+  query.collide_with_areas = true
 
-    var query = PhysicsRayQueryParameters3D.create(from, to)
-    query.collide_with_areas = true
+  var result = space_state.intersect_ray(query)
 
-    var result = space_state.intersect_ray(query)
-    if (result.is_empty()):
-      print("returning")
-      return
+  #if it doesn't collide, point via WASD otherwise look at mouse
+  if (result.is_empty() or !isFiring):
+    isMousePoint = false
+  else:
+    isMousePoint = true
 
+  if (isMousePoint):
     get_parent().get_node("MeshInstance3D").global_transform.origin = result.position
-    playerDir.transform.basis = basis.looking_at(result.position)
-
+    var planar_point = Vector3(result.position.x,0,result.position.z)
+    playerDir.global_transform = playerDir.global_transform.looking_at(planar_point)
   elif (direction.length() != 0):
     playerDir.transform.basis = basis.looking_at(direction)
