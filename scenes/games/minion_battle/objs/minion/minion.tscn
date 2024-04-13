@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://nxt5kjrh1wot"]
+
+[ext_resource type="PackedScene" uid="uid://b1x8r6dire6vt" path="res://scenes/games/minion_battle/assets/3d/minion.blend" id="1_umdlp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1j44v"]
+size = Vector3(1, 1.25, 0.75)
+
+[node name="minon" type="CharacterBody3D"]
+
+[node name="model" parent="." instance=ExtResource("1_umdlp")]
+
+[node name="collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.625, -0.125)
+shape = SubResource("BoxShape3D_1j44v")
