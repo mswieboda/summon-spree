@@ -19,7 +19,12 @@ func _physics_process(delta):
 func movement(delta):
   var target_position = target.global_position
   var direction = global_transform.origin.direction_to(target_position)
+  var displacement = target_position - global_transform.origin
 
-  velocity = -direction * SPEED * delta
-
-  move_and_slide()
+  if displacement.is_zero_approx():
+    # stop
+    # TODO: attack castle
+    pass
+  else:
+    velocity = -direction * SPEED * delta
+    move_and_slide()

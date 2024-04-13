@@ -52,9 +52,6 @@ func _on_play_button_pressed():
   var game_list: ItemList = $games_page.get_node("vbox/vbox_buttons/game_list")
   var selected_game_indexes: PackedInt32Array = game_list.get_selected_items()
   var selected_game = game_list.get_item_text(selected_game_indexes[0])
-
-  print('>>> play game:', selected_game)
-
   var scene = null
 
   if selected_game == "Minion Battle":
