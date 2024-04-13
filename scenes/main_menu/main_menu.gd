@@ -1,7 +1,6 @@
 extends Control
 
-# TODO: add a game name param to start signal
-#signal play_game()
+
 var is_ready = false
 
 func _ready():
@@ -53,5 +52,17 @@ func _on_play_button_pressed():
   var game_list: ItemList = $games_page.get_node("vbox/vbox_buttons/game_list")
   var selected_game_indexes: PackedInt32Array = game_list.get_selected_items()
   var selected_game = game_list.get_item_text(selected_game_indexes[0])
-  #play_game.emit()
+
   print('>>> play game:', selected_game)
+
+  var scene = null
+
+  if selected_game == "Minion Battle":
+    scene = "res://scenes/games/minion_battle/minion_battle.tscn"
+  elif selected_game == "Space Fabricator":
+    scene = "res://scenes/games/space_fabricator/space_fabricator_main.tscn"
+  elif selected_game == "Jury Summons":
+    scene = "res://scenes/games/jury_summons/jury_sum_main.tscn"
+
+  if scene:
+    get_tree().change_scene_to_file(scene)
