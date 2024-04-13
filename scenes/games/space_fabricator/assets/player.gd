@@ -5,7 +5,7 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 var playerDir
 var isFiring
-var RAY_LENGTH = 40
+var RAY_LENGTH = 1000
 var camera
 var rayObj
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -58,6 +58,7 @@ func point_character(direction:Vector3):
   query.collide_with_areas = true
 
   var result = space_state.intersect_ray(query)
+
 
   #if it doesn't collide, point via WASD otherwise look at mouse
   if (result.is_empty() or !isFiring):

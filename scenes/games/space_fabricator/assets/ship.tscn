@@ -1,12 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://dvgybi3qjnyb7"]
+[gd_scene load_steps=3 format=3 uid="uid://dvgybi3qjnyb7"]
 
 [ext_resource type="PackedScene" uid="uid://dplphwelv7lnw" path="res://scenes/games/space_fabricator/assets/ship.blend" id="1_g72cs"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gkujv"]
+size = Vector3(100, 1, 100)
 
 [node name="Node3D" type="StaticBody3D"]
 
 [node name="ship" parent="." instance=ExtResource("1_g72cs")]
 
-[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
-depth = 0.0
-polygon = PackedVector2Array(-5, 3, -17, 3, -19.0032, 0.932246, -19, -1, -17, -3, -5, -3, -5, -5, -1, -5, -1, -7, 15, -7, 15, 7, -1, 7, -1, 5, -4.93776, 4.93776)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_gkujv")
