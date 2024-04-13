@@ -100,13 +100,17 @@ text = "game selector"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="game_list" type="ItemList" parent="games_page/vbox"]
+[node name="vbox_buttons" type="VBoxContainer" parent="games_page/vbox"]
+layout_mode = 2
+size_flags_vertical = 2
+
+[node name="game_list" type="ItemList" parent="games_page/vbox/vbox_buttons"]
 layout_mode = 2
 size_flags_vertical = 6
-focus_neighbor_top = NodePath("../vbox_buttons/back_button")
-focus_neighbor_bottom = NodePath("../vbox_buttons/play_button")
-focus_next = NodePath("../vbox_buttons/play_button")
-focus_previous = NodePath("../vbox_buttons/back_button")
+focus_neighbor_top = NodePath("../back_button")
+focus_neighbor_bottom = NodePath("../play_button")
+focus_next = NodePath("../play_button")
+focus_previous = NodePath("../back_button")
 theme_override_font_sizes/font_size = 18
 auto_height = true
 item_count = 3
@@ -114,18 +118,14 @@ item_0/text = "Minion Battle"
 item_1/text = "Space Fabricator"
 item_2/text = "Jury Summons"
 
-[node name="vbox_buttons" type="VBoxContainer" parent="games_page/vbox"]
-layout_mode = 2
-size_flags_vertical = 2
-
 [node name="play_button" type="Button" parent="games_page/vbox/vbox_buttons"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-focus_neighbor_top = NodePath("../../game_list")
+focus_neighbor_top = NodePath("../game_list")
 focus_neighbor_bottom = NodePath("../back_button")
 focus_next = NodePath("../back_button")
-focus_previous = NodePath("../../game_list")
+focus_previous = NodePath("../game_list")
 theme_override_font_sizes/font_size = 32
 text = "play"
 
@@ -134,8 +134,8 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 focus_neighbor_top = NodePath("../play_button")
-focus_neighbor_bottom = NodePath("../../game_list")
-focus_next = NodePath("../../game_list")
+focus_neighbor_bottom = NodePath("../game_list")
+focus_next = NodePath("../game_list")
 focus_previous = NodePath("../play_button")
 theme_override_font_sizes/font_size = 32
 text = "back"

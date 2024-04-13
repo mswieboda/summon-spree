@@ -29,18 +29,18 @@ func _on_visibility_changed():
 
 
 func focus_button(page: MarginContainer):
-  if page == $games_page:
-    page.get_node("vbox/game_list").select(0)
-
   var vbox_buttons = page.get_node("vbox/vbox_buttons")
 
   if not vbox_buttons:
     return
 
-  var button: Button = vbox_buttons.get_child(0)
+  if page == $games_page:
+    vbox_buttons.get_node("game_list").select(0)
 
-  if button is Button:
-    button.grab_focus()
+  var control: Control = vbox_buttons.get_child(0)
+
+  if control is Control:
+    control.grab_focus()
 
 
 func _on_back_button_pressed():
@@ -50,7 +50,7 @@ func _on_back_button_pressed():
 
 
 func _on_play_button_pressed():
-  var game_list: ItemList = $games_page.get_node("vbox/game_list")
+  var game_list: ItemList = $games_page.get_node("vbox/vbox_buttons/game_list")
   var selected_game_indexes: PackedInt32Array = game_list.get_selected_items()
   var selected_game = game_list.get_item_text(selected_game_indexes[0])
   #play_game.emit()
