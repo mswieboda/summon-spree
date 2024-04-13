@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-const SPEED = 100
+const SPEED = 150
 
 var target: Node3D = null
 
@@ -19,7 +19,6 @@ func _physics_process(delta):
 func movement(delta):
   var target_position = target.global_position
   var direction = global_transform.origin.direction_to(target_position)
-  var distance = global_transform.origin.distance_to(target_position)
 
   velocity = -direction * SPEED * delta
 

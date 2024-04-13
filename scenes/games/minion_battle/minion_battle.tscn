@@ -42,6 +42,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0.5, 0)
 transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -18.2953, 0, 0)
 
 [node name="timer" type="Timer" parent="player"]
+wait_time = 1.5
 autostart = true
 
 [node name="cpu" type="Node3D" parent="."]
@@ -53,6 +54,7 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 20, 0.
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 17.7718, 0, 0)
 
 [node name="timer" type="Timer" parent="cpu"]
+wait_time = 1.5
 autostart = true
 
 [connection signal="timeout" from="player/timer" to="." method="_on_player_timer_timeout"]

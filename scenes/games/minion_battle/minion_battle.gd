@@ -7,7 +7,7 @@ var minion_scene = preload("res://scenes/games/minion_battle/objs/minion/minion.
 
 func summon_minion(color : String, player_node : Node3D):
   var minion = minion_scene.instantiate()
-  print(">>> summon_minion ", color)
+
   minion.change_color(color)
   minion.target = player_node.get_node("castle")
   player_node.get_node("minions").add_child(minion)
