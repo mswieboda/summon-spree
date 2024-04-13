@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://j5q16owaknmj"]
+
+[ext_resource type="PackedScene" uid="uid://orxa8aq3b0ii" path="res://scenes/games/space_fabricator/assets/blend_files/fabricator.blend" id="1_d6xgr"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_er5u0"]
+height = 1.2
+radius = 1.0
+
+[node name="fabricator" type="StaticBody3D"]
+
+[node name="fabricator" parent="." instance=ExtResource("1_d6xgr")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.401425, 0)
+shape = SubResource("CylinderShape3D_er5u0")
