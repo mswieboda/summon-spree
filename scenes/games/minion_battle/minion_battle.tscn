@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bdb4c5tld3yn7"]
 
+[ext_resource type="Script" path="res://scenes/games/minion_battle/minion_battle.gd" id="1_6di21"]
 [ext_resource type="PackedScene" uid="uid://cwaeu50psqsf3" path="res://scenes/games/minion_battle/objs/castle/castle.tscn" id="1_mldg5"]
-[ext_resource type="PackedScene" uid="uid://nxt5kjrh1wot" path="res://scenes/games/minion_battle/objs/minion/minion.tscn" id="2_nq728"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sje1m"]
 
@@ -12,6 +12,7 @@ albedo_color = Color(0, 0.270588, 0, 1)
 material = SubResource("StandardMaterial3D_p4o0w")
 
 [node name="minion_battle" type="Node3D"]
+script = ExtResource("1_6di21")
 
 [node name="camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 7.5, 15)
@@ -32,13 +33,27 @@ transform = Transform3D(1, 0, 0, 0, 0.347312, 0.93775, 0, -0.93775, 0.347312, 0,
 
 [node name="castles" type="Node3D" parent="."]
 
-[node name="castle_player" parent="castles" instance=ExtResource("1_mldg5")]
+[node name="player" type="Node3D" parent="."]
+
+[node name="castle" parent="player" instance=ExtResource("1_mldg5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0.5, 0)
 
-[node name="castle_cpu" parent="castles" instance=ExtResource("1_mldg5")]
+[node name="minions" type="Node3D" parent="player"]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -18.2953, 0, 0)
+
+[node name="timer" type="Timer" parent="player"]
+autostart = true
+
+[node name="cpu" type="Node3D" parent="."]
+
+[node name="castle" parent="cpu" instance=ExtResource("1_mldg5")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 20, 0.5, 0)
 
-[node name="minions" type="Node3D" parent="."]
+[node name="minions" type="Node3D" parent="cpu"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 17.7718, 0, 0)
 
-[node name="minon" parent="minions" instance=ExtResource("2_nq728")]
-transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -18, 0, 0)
+[node name="timer" type="Timer" parent="cpu"]
+autostart = true
+
+[connection signal="timeout" from="player/timer" to="." method="_on_player_timer_timeout"]
+[connection signal="timeout" from="cpu/timer" to="." method="_on_cpu_timer_timeout"]

@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://nxt5kjrh1wot"]
+[gd_scene load_steps=4 format=3 uid="uid://nxt5kjrh1wot"]
 
+[ext_resource type="Script" path="res://scenes/games/minion_battle/objs/minion/minion.gd" id="1_bkjpl"]
 [ext_resource type="PackedScene" uid="uid://b1x8r6dire6vt" path="res://scenes/games/minion_battle/assets/3d/minion.blend" id="1_umdlp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1j44v"]
 size = Vector3(1, 1.25, 0.75)
 
 [node name="minon" type="CharacterBody3D"]
+script = ExtResource("1_bkjpl")
 
 [node name="model" parent="." instance=ExtResource("1_umdlp")]
 
