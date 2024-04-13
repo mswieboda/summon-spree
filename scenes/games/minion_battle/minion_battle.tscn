@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bdb4c5tld3yn7"]
+[gd_scene load_steps=9 format=3 uid="uid://bdb4c5tld3yn7"]
 
 [ext_resource type="Script" path="res://scenes/games/minion_battle/minion_battle.gd" id="1_6di21"]
 [ext_resource type="PackedScene" uid="uid://cwaeu50psqsf3" path="res://scenes/games/minion_battle/objs/castle/castle.tscn" id="1_mldg5"]
 [ext_resource type="Script" path="res://scenes/games/minion_battle/free_look_camera.gd" id="2_4b5nw"]
 [ext_resource type="Theme" uid="uid://d18cpgia7nf2j" path="res://assets/themes/default_theme.tres" id="4_d3cm0"]
+[ext_resource type="Script" path="res://scenes/games/minion_battle/hud.gd" id="5_hfi4d"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sje1m"]
 
@@ -64,11 +65,8 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 17.771
 one_shot = true
 autostart = true
 
-[node name="timer_game_over" type="Timer" parent="."]
-wait_time = 1.5
-one_shot = true
-
 [node name="hud" type="Control" parent="."]
+process_mode = 3
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -77,6 +75,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4_d3cm0")
+script = ExtResource("5_hfi4d")
 
 [node name="bg" type="MarginContainer" parent="hud"]
 layout_mode = 1
@@ -134,7 +133,12 @@ layout_mode = 2
 size_flags_vertical = 4
 text = "exit"
 
+[node name="timer_game_over" type="Timer" parent="hud"]
+wait_time = 1.5
+one_shot = true
+
 [connection signal="timeout" from="player/timer" to="." method="_on_player_timer_timeout"]
 [connection signal="timeout" from="cpu/timer" to="." method="_on_cpu_timer_timeout"]
-[connection signal="timeout" from="timer_game_over" to="." method="_on_timer_game_over_timeout"]
-[connection signal="pressed" from="hud/bg/margin/vbox/vbox_buttons/exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="hud/bg/margin/vbox/vbox_buttons/continue" to="hud" method="_on_continue_pressed"]
+[connection signal="pressed" from="hud/bg/margin/vbox/vbox_buttons/exit" to="hud" method="_on_exit_pressed"]
+[connection signal="timeout" from="hud/timer_game_over" to="hud" method="_on_timer_game_over_timeout"]

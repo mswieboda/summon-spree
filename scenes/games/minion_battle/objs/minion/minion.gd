@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-const SPEED = 250
+const SPEED = 500
 const COLOR_PLAYER = "#ff0000"
 const COLOR_CPU = "#0000ff"
 
@@ -38,15 +38,15 @@ func _physics_process(delta):
 
 func movement_and_attack(delta):
   if target_minions.is_empty() and target_castle:
-    if movement(delta, target_castle):
+    if movement(delta, target_castle, 3):
       is_game_over = true
   elif not target_minions.is_empty():
-    if movement(delta, target_minions[0]):
+    if movement(delta, target_minions[0], 1):
       if not attack_node:
         start_attacking(target_minions[0])
 
 
-func movement(delta, target: Node3D) -> bool:
+func movement(delta, target: Node3D, reached_distance: int) -> bool:
   var target_position = target.global_position
 
   # ignore the y
@@ -55,9 +55,7 @@ func movement(delta, target: Node3D) -> bool:
   var direction = global_transform.origin.direction_to(target_position)
   var displacement = target_position - global_transform.origin
 
-  # TODO: value of `1` works for minions, prob won't for castle
-  #       needs to be like half of target's collision size + half of minions collision size + some padding
-  if displacement.length() <= 1:
+  if displacement.length() <= reached_distance:
     return true
   else:
     velocity = direction * SPEED * delta
