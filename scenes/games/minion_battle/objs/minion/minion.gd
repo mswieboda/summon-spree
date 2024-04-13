@@ -6,6 +6,7 @@ const COLOR_CPU = "#0000ff"
 
 var is_player = false
 var is_dead = false
+var is_game_over = false
 var target_castle: Node3D = null
 var target_minions = []
 var attack_node: Node3D = null
@@ -29,7 +30,7 @@ func change_color(color: String):
 
 
 func _physics_process(delta):
-  if is_dead:
+  if is_dead or is_game_over:
     return
 
   movement_and_attack(delta)
@@ -38,8 +39,7 @@ func _physics_process(delta):
 func movement_and_attack(delta):
   if target_minions.is_empty() and target_castle:
     if movement(delta, target_castle):
-      if not attack_node:
-        start_attacking(target_castle)
+      is_game_over = true
   elif not target_minions.is_empty():
     if movement(delta, target_minions[0]):
       if not attack_node:
@@ -122,7 +122,7 @@ func _on_area_attack_body_exited(body):
 
 
 func _on_timer_attack_timeout():
-  if is_dead:
+  if is_dead or is_game_over:
     return
 
   attack()

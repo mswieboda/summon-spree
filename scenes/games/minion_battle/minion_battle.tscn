@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bdb4c5tld3yn7"]
+[gd_scene load_steps=8 format=3 uid="uid://bdb4c5tld3yn7"]
 
 [ext_resource type="Script" path="res://scenes/games/minion_battle/minion_battle.gd" id="1_6di21"]
 [ext_resource type="PackedScene" uid="uid://cwaeu50psqsf3" path="res://scenes/games/minion_battle/objs/castle/castle.tscn" id="1_mldg5"]
 [ext_resource type="Script" path="res://scenes/games/minion_battle/free_look_camera.gd" id="2_4b5nw"]
+[ext_resource type="Theme" uid="uid://d18cpgia7nf2j" path="res://assets/themes/default_theme.tres" id="4_d3cm0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sje1m"]
 
@@ -63,5 +64,77 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 17.771
 one_shot = true
 autostart = true
 
+[node name="timer_game_over" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="hud" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_d3cm0")
+
+[node name="bg" type="MarginContainer" parent="hud"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -169.0
+offset_top = -157.0
+offset_right = 169.0
+offset_bottom = 157.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="color" type="ColorRect" parent="hud/bg"]
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="margin" type="MarginContainer" parent="hud/bg"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="vbox" type="VBoxContainer" parent="hud/bg/margin"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="title" type="Label" parent="hud/bg/margin/vbox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="description" type="Label" parent="hud/bg/margin/vbox"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="vbox_buttons" type="VBoxContainer" parent="hud/bg/margin/vbox"]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="continue" type="Button" parent="hud/bg/margin/vbox/vbox_buttons"]
+layout_mode = 2
+text = "continue"
+
+[node name="exit" type="Button" parent="hud/bg/margin/vbox/vbox_buttons"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "exit"
+
 [connection signal="timeout" from="player/timer" to="." method="_on_player_timer_timeout"]
 [connection signal="timeout" from="cpu/timer" to="." method="_on_cpu_timer_timeout"]
+[connection signal="timeout" from="timer_game_over" to="." method="_on_timer_game_over_timeout"]
+[connection signal="pressed" from="hud/bg/margin/vbox/vbox_buttons/exit" to="." method="_on_exit_pressed"]
