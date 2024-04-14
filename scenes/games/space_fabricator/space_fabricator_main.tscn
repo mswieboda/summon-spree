@@ -3,20 +3,18 @@
 [ext_resource type="PackedScene" uid="uid://dvgybi3qjnyb7" path="res://scenes/games/space_fabricator/assets/ship.tscn" id="1_a7e6m"]
 [ext_resource type="PackedScene" uid="uid://cihoflsc34mdj" path="res://scenes/games/space_fabricator/assets/player.tscn" id="2_dhlxs"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hseax"]
-sky_top_color = Color(0.298039, 0.356863, 0.439216, 1)
-sky_horizon_color = Color(0.57451, 0.589216, 0.609804, 1)
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_878lx"]
+sky_top_color = Color(0.646029, 0.646029, 0.646029, 1)
+sky_horizon_color = Color(0.661507, 0.661507, 0.661507, 1)
 ground_bottom_color = Color(0, 0, 0, 1)
-ground_horizon_color = Color(0.57451, 0.589216, 0.609804, 1)
+ground_horizon_color = Color(0.661507, 0.661507, 0.661507, 1)
 
-[sub_resource type="Sky" id="Sky_gw2r2"]
-sky_material = SubResource("ProceduralSkyMaterial_hseax")
+[sub_resource type="Sky" id="Sky_mrgry"]
+sky_material = SubResource("ProceduralSkyMaterial_878lx")
 
-[sub_resource type="Environment" id="Environment_ehxj6"]
+[sub_resource type="Environment" id="Environment_31wgs"]
 background_mode = 2
-sky = SubResource("Sky_gw2r2")
-tonemap_mode = 2
-glow_enabled = true
+sky = SubResource("Sky_mrgry")
 
 [sub_resource type="SphereMesh" id="SphereMesh_eadn5"]
 
@@ -27,7 +25,7 @@ glow_enabled = true
 [node name="SpaceFabricatorMain" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_ehxj6")
+environment = SubResource("Environment_31wgs")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
@@ -49,6 +47,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.83046, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="player"]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 16.9898, 14.2491)
+fov = 40.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_2mk8c")

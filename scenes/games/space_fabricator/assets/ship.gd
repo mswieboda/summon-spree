@@ -17,8 +17,6 @@ func _process(_delta):
   pass
 
 func bullet_spawn(position, direction):
-  print(position)
-  print(direction)
   var newBul = bulletRes.instantiate()
   $bullet_manager.add_child(newBul)
   newBul.global_transform.origin = position
