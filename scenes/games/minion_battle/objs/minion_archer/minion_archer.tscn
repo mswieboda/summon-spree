@@ -5,32 +5,32 @@
 [ext_resource type="AudioStream" uid="uid://5kl18jvihuif" path="res://scenes/games/minion_battle/assets/audio/swords.mp3" id="3_danu0"]
 [ext_resource type="AudioStream" uid="uid://bapgxv31wyunc" path="res://scenes/games/minion_battle/assets/audio/die.mp3" id="4_14abm"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_nv13d"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_5uaxx"]
 radius = 0.025
 height = 0.5
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6q8bs"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3cbf2"]
 albedo_color = Color(0, 0, 0, 1)
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_5g400"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_vmvbb"]
 radius = 0.025
 height = 0.35
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h5svn"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_odppk"]
 albedo_color = Color(0, 0, 0, 1)
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_1uyve"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_hqeds"]
 radius = 0.025
 height = 0.35
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mf1cf"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_elucp"]
 albedo_color = Color(0, 0, 0, 1)
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_fjj0l"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_msehb"]
 radius = 0.005
 height = 1.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e3jwd"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3bcrs"]
 albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_asbly"]
@@ -57,23 +57,23 @@ transform = Transform3D(1, 0, 0, 0, 0.996195, -0.0871557, 0, 0.0871557, 0.996195
 
 [node name="handle" type="MeshInstance3D" parent="model/bow"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0407126)
-mesh = SubResource("CapsuleMesh_nv13d")
-surface_material_override/0 = SubResource("StandardMaterial3D_6q8bs")
+mesh = SubResource("CapsuleMesh_5uaxx")
+surface_material_override/0 = SubResource("StandardMaterial3D_3cbf2")
 
 [node name="top" type="MeshInstance3D" parent="model/bow"]
 transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0.375, 0.0392874)
-mesh = SubResource("CapsuleMesh_5g400")
-surface_material_override/0 = SubResource("StandardMaterial3D_h5svn")
+mesh = SubResource("CapsuleMesh_vmvbb")
+surface_material_override/0 = SubResource("StandardMaterial3D_odppk")
 
 [node name="bottom" type="MeshInstance3D" parent="model/bow"]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, -0.375, 0.0392874)
-mesh = SubResource("CapsuleMesh_1uyve")
-surface_material_override/0 = SubResource("StandardMaterial3D_mf1cf")
+mesh = SubResource("CapsuleMesh_hqeds")
+surface_material_override/0 = SubResource("StandardMaterial3D_elucp")
 
 [node name="draw_string" type="MeshInstance3D" parent="model/bow"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.119658)
-mesh = SubResource("CapsuleMesh_fjj0l")
-surface_material_override/0 = SubResource("StandardMaterial3D_e3jwd")
+mesh = SubResource("CapsuleMesh_msehb")
+surface_material_override/0 = SubResource("StandardMaterial3D_3bcrs")
 
 [node name="collision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)

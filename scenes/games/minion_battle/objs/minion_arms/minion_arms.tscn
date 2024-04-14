@@ -1,30 +1,33 @@
-[gd_scene load_steps=15 format=3 uid="uid://nxt5kjrh1wot"]
+[gd_scene load_steps=16 format=3 uid="uid://nxt5kjrh1wot"]
 
 [ext_resource type="Script" path="res://scenes/games/minion_battle/objs/minion_arms/minion_arms.gd" id="1_nvpxi"]
 [ext_resource type="PackedScene" uid="uid://mrl823siduvy" path="res://scenes/games/minion_battle/assets/3d/minion_shield.blend" id="2_dcqjc"]
 [ext_resource type="AudioStream" uid="uid://5kl18jvihuif" path="res://scenes/games/minion_battle/assets/audio/swords.mp3" id="3_y5ede"]
 [ext_resource type="AudioStream" uid="uid://bapgxv31wyunc" path="res://scenes/games/minion_battle/assets/audio/die.mp3" id="4_aaqbc"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_pri4r"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_skg38"]
 radius = 0.025
 height = 0.3
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sc64c"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eaxrt"]
 albedo_color = Color(0.2, 0.2, 0.2, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_r8ep5"]
+[sub_resource type="BoxMesh" id="BoxMesh_b7q7i"]
 size = Vector3(0.3, 0.05, 0.05)
 
-[sub_resource type="BoxMesh" id="BoxMesh_evie5"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1xvng"]
+albedo_color = Color(0.2, 0.2, 0.2, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yj3g6"]
 size = Vector3(0.05, 0.5, 0.03)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mbwx8"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5lqsq"]
 albedo_color = Color(0.4, 0.4, 0.4, 1)
 
-[sub_resource type="PrismMesh" id="PrismMesh_xgs7y"]
+[sub_resource type="PrismMesh" id="PrismMesh_53pw1"]
 size = Vector3(0.05, 0.25, 0.03)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ji228"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8u0yt"]
 albedo_color = Color(0.4, 0.4, 0.4, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_asbly"]
@@ -51,27 +54,27 @@ transform = Transform3D(-0.224951, 0, 0.97437, 0, 1, 0, -0.97437, 0, -0.224951, 
 
 [node name="handle" type="MeshInstance3D" parent="model/sword"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0574018, 0)
-mesh = SubResource("CapsuleMesh_pri4r")
-surface_material_override/0 = SubResource("StandardMaterial3D_sc64c")
+mesh = SubResource("CapsuleMesh_skg38")
+surface_material_override/0 = SubResource("StandardMaterial3D_eaxrt")
 
 [node name="hilt" type="MeshInstance3D" parent="model/sword"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0914035, 0)
-mesh = SubResource("BoxMesh_r8ep5")
-surface_material_override/0 = SubResource("StandardMaterial3D_sc64c")
+mesh = SubResource("BoxMesh_b7q7i")
+surface_material_override/0 = SubResource("StandardMaterial3D_1xvng")
 
 [node name="blade" type="Node3D" parent="model/sword"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0947327, 0)
 
 [node name="main" type="MeshInstance3D" parent="model/sword/blade"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.452609, 0)
-mesh = SubResource("BoxMesh_evie5")
-surface_material_override/0 = SubResource("StandardMaterial3D_mbwx8")
+mesh = SubResource("BoxMesh_yj3g6")
+surface_material_override/0 = SubResource("StandardMaterial3D_5lqsq")
 
 [node name="point" type="MeshInstance3D" parent="model/sword/blade"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.825976, 0)
-mesh = SubResource("PrismMesh_xgs7y")
+mesh = SubResource("PrismMesh_53pw1")
 skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_ji228")
+surface_material_override/0 = SubResource("StandardMaterial3D_8u0yt")
 
 [node name="collision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)

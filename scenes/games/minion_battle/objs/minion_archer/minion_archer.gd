@@ -191,6 +191,9 @@ func _on_area_pathing_body_exited(body):
 
 
 func sort_by_distance(a, b):
+  if not is_valid_attack_node(a) or not is_valid_attack_node(b):
+    return true
+
   var distance_to_a = a.global_position - global_position
   var distance_to_b = b.global_position - global_position
   return distance_to_a > distance_to_b
