@@ -1,10 +1,37 @@
-[gd_scene load_steps=11 format=3 uid="uid://bdb4c5tld3yn7"]
+[gd_scene load_steps=14 format=3 uid="uid://bdb4c5tld3yn7"]
 
 [ext_resource type="Script" path="res://scenes/games/minion_battle/minion_battle.gd" id="1_6di21"]
 [ext_resource type="PackedScene" uid="uid://cwaeu50psqsf3" path="res://scenes/games/minion_battle/objs/castle/castle.tscn" id="1_mldg5"]
 [ext_resource type="Script" path="res://scenes/games/minion_battle/camera.gd" id="2_4b5nw"]
 [ext_resource type="Theme" uid="uid://d18cpgia7nf2j" path="res://assets/themes/default_theme.tres" id="4_d3cm0"]
 [ext_resource type="Script" path="res://scenes/games/minion_battle/hud.gd" id="5_hfi4d"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rboq8"]
+sky_top_color = Color(0.784314, 0.905882, 1, 1)
+sky_horizon_color = Color(0.696078, 0.794118, 0.75, 1)
+ground_bottom_color = Color(0, 0.270588, 0, 1)
+ground_horizon_color = Color(0.696078, 0.794118, 0.75, 1)
+
+[sub_resource type="Sky" id="Sky_jnitd"]
+sky_material = SubResource("ProceduralSkyMaterial_rboq8")
+
+[sub_resource type="Environment" id="Environment_627gy"]
+background_mode = 2
+sky = SubResource("Sky_jnitd")
+ambient_light_sky_contribution = 0.7
+ambient_light_energy = 0.7
+glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.0509804, 0.0509804, 0.0509804, 1)
+fog_light_energy = 5.0
+fog_sky_affect = 0.5
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.03
+volumetric_fog_albedo = Color(0.129412, 0.129412, 0.129412, 1)
+volumetric_fog_sky_affect = 0.95
+adjustment_enabled = true
+adjustment_brightness = 0.75
+adjustment_contrast = 1.13
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sje1m"]
 
@@ -22,6 +49,9 @@ radius = 1.0
 
 [node name="minion_battle" type="Node3D"]
 script = ExtResource("1_6di21")
+
+[node name="world_environment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_627gy")
 
 [node name="camera" type="Camera3D" parent="."]
 transform = Transform3D(0.707107, 0.353553, -0.612372, 0, 0.866025, 0.5, 0.707107, -0.353553, 0.612372, -18.699, 7.5, 7.24258)
@@ -41,7 +71,7 @@ shape = SubResource("BoxShape3D_sje1m")
 mesh = SubResource("BoxMesh_0xi1a")
 
 [node name="sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.347312, 0.93775, 0, -0.93775, 0.347312, 0, 13.2794, 5.8049)
+transform = Transform3D(1, 0, 0, 0, 0.347312, 0.93775, 0, -0.93775, 0.347312, 0, 37.6384, 12.1394)
 
 [node name="castles" type="Node3D" parent="."]
 
