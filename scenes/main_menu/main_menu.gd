@@ -15,7 +15,7 @@ func _process(_delta):
   if not DEBUG:
     return
 
-  if Input.is_action_just_pressed("menu_debug_next"):
+  if $games_page.visible and Input.is_action_just_pressed("menu_debug_next"):
     select_next_game()
 
 

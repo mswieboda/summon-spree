@@ -1,6 +1,5 @@
-extends Node2D
+extends Control
 
-var rng = RandomNumberGenerator.new()
 var jurorRemain #how many Jurors left to select
 var jurors = [] #array of Juror Objects
 var candidate #candidate object

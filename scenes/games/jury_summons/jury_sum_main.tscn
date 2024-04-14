@@ -1,9 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://cxor8pm68ukjr"]
+[gd_scene load_steps=4 format=3 uid="uid://cxor8pm68ukjr"]
 
 [ext_resource type="Script" path="res://scenes/games/jury_summons/jury_sum_main.gd" id="1_be56k"]
 [ext_resource type="PackedScene" uid="uid://elmf3ex78n08" path="res://scenes/games/jury_summons/assets/clipBoard.tscn" id="2_itdwf"]
+[ext_resource type="PackedScene" uid="uid://bgfucy8qr1a5a" path="res://scenes/game_menu/game_menu.tscn" id="3_0hld0"]
 
-[node name="JurySumMain" type="Node2D"]
+[node name="JurySumMain" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_be56k")
 
 [node name="JuryList" type="Node2D" parent="."]
@@ -140,6 +147,9 @@ horizontal_alignment = 2
 
 [node name="NextTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="game_menu" parent="." instance=ExtResource("3_0hld0")]
+layout_mode = 1
 
 [connection signal="pressed" from="YesButton" to="." method="_on_yes_button_pressed"]
 [connection signal="pressed" from="NoButton" to="." method="_on_no_button_pressed"]
