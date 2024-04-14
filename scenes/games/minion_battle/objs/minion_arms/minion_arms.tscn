@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://nxt5kjrh1wot"]
 
-[ext_resource type="Script" path="res://scenes/games/minion_battle/objs/minion/minion.gd" id="1_bkjpl"]
-[ext_resource type="PackedScene" uid="uid://b1x8r6dire6vt" path="res://scenes/games/minion_battle/assets/3d/minion.blend" id="1_umdlp"]
-[ext_resource type="AudioStream" uid="uid://5kl18jvihuif" path="res://scenes/games/minion_battle/assets/audio/swords.mp3" id="3_pvo07"]
-[ext_resource type="AudioStream" uid="uid://bapgxv31wyunc" path="res://scenes/games/minion_battle/assets/audio/die.mp3" id="4_u4luk"]
+[ext_resource type="Script" path="res://scenes/games/minion_battle/objs/minion_arms/minion_arms.gd" id="1_nvpxi"]
+[ext_resource type="PackedScene" uid="uid://b1x8r6dire6vt" path="res://scenes/games/minion_battle/assets/3d/minion.blend" id="2_xi5a7"]
+[ext_resource type="AudioStream" uid="uid://5kl18jvihuif" path="res://scenes/games/minion_battle/assets/audio/swords.mp3" id="3_y5ede"]
+[ext_resource type="AudioStream" uid="uid://bapgxv31wyunc" path="res://scenes/games/minion_battle/assets/audio/die.mp3" id="4_aaqbc"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_asbly"]
 radius = 0.35
@@ -17,12 +17,12 @@ radius = 3.0
 height = 1.0
 radius = 1.5
 
-[node name="minon" type="CharacterBody3D"]
+[node name="minon_arms" type="CharacterBody3D"]
 collision_layer = 2
 collision_mask = 3
-script = ExtResource("1_bkjpl")
+script = ExtResource("1_nvpxi")
 
-[node name="model" parent="." instance=ExtResource("1_umdlp")]
+[node name="model" parent="." instance=ExtResource("2_xi5a7")]
 
 [node name="collision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
@@ -41,10 +41,10 @@ shape = SubResource("CylinderShape3D_u48xn")
 wait_time = 0.5
 
 [node name="audio_attack" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("3_pvo07")
+stream = ExtResource("3_y5ede")
 
 [node name="audio_die" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("4_u4luk")
+stream = ExtResource("4_aaqbc")
 
 [node name="area_pathing" type="Area3D" parent="."]
 collision_layer = 0

@@ -2,7 +2,7 @@ extends Node3D
 
 const MAX_MINIONS = 10
 
-var minion_scene = preload("res://scenes/games/minion_battle/objs/minion/minion.tscn")
+var minion_arms_scene = preload("res://scenes/games/minion_battle/objs/minion_arms/minion_arms.tscn")
 var is_game_over = false
 var is_win = false
 
@@ -39,7 +39,7 @@ func summon_minion(player_node : Node3D):
   if player_node.get_node("castle/spawn/area").get_overlapping_bodies().size() > 0:
     return
 
-  var minion = minion_scene.instantiate()
+  var minion = minion_arms_scene.instantiate()
   minion.is_player = player_node == $player
   player_node.get_node("minions").add_child(minion)
   minion.global_position = player_node.get_node("castle/spawn").global_position

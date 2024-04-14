@@ -138,7 +138,8 @@ func die():
   var minion_dead = minion_dead_scene.instantiate()
   minion_dead.is_player = is_player
   get_parent().get_parent().get_node("dead_minions").add_child(minion_dead)
-  minion_dead.global_position = global_position
+  minion_dead.global_position.x = global_position.x
+  minion_dead.global_position.z = global_position.z
   queue_free()
 
 

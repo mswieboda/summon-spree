@@ -6,12 +6,20 @@
 [node name="minon_dead" type="Node3D"]
 script = ExtResource("1_qw4fm")
 
-[node name="model" parent="." instance=ExtResource("2_p5j7c")]
+[node name="rotation" type="Node3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="model" parent="rotation" instance=ExtResource("2_p5j7c")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.5)
 
 [node name="timer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 15.0
 one_shot = true
 autostart = true
 
+[node name="timer_decay" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
 [connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="timer_decay" to="." method="_on_timer_decay_timeout"]
