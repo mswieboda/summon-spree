@@ -17,6 +17,7 @@ func _ready():
 func _process(delta):
   if(Input.is_action_pressed("LMB")):
     isFiring = true
+    fire_gun()
   else:
     isFiring = false
 
@@ -74,4 +75,11 @@ func point_character(direction:Vector3):
 func _on_bullet_timer_timeout():
   var bul_spawn_point = $player_model/pew_spawn.global_transform
   get_parent().get_node("ship").bullet_spawn(bul_spawn_point.origin, $player_model.global_transform.basis.z)
+
   pass # Replace with function body.
+
+func fire_gun():
+  if $bullet_timer.is_stopped():
+    $bullet_timer.start()
+
+    pass
