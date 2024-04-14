@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/games/minion_battle/minion_battle.gd" id="1_6di21"]
 [ext_resource type="PackedScene" uid="uid://cwaeu50psqsf3" path="res://scenes/games/minion_battle/objs/castle/castle.tscn" id="1_mldg5"]
-[ext_resource type="Script" path="res://scenes/games/minion_battle/free_look_camera.gd" id="2_4b5nw"]
+[ext_resource type="Script" path="res://scenes/games/minion_battle/camera.gd" id="2_4b5nw"]
 [ext_resource type="Theme" uid="uid://d18cpgia7nf2j" path="res://assets/themes/default_theme.tres" id="4_d3cm0"]
 [ext_resource type="Script" path="res://scenes/games/minion_battle/hud.gd" id="5_hfi4d"]
 
@@ -24,7 +24,9 @@ radius = 1.0
 script = ExtResource("1_6di21")
 
 [node name="camera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 7.5, 15)
+transform = Transform3D(0.707107, 0.353553, -0.612372, 0, 0.866025, 0.5, 0.707107, -0.353553, 0.612372, -18.699, 7.5, 7.24258)
+current = true
+far = 2500.0
 script = ExtResource("2_4b5nw")
 
 [node name="floor" type="Node3D" parent="."]
@@ -145,6 +147,14 @@ alignment = 2
 [node name="instructions" type="Label" parent="hud/margin/vbox/hbox/buttons/hbox"]
 layout_mode = 2
 text = "protect your castle, get a minion to enemy castle to win"
+
+[node name="hbox2" type="HBoxContainer" parent="hud/margin/vbox"]
+layout_mode = 2
+alignment = 2
+
+[node name="camera_instructions" type="Label" parent="hud/margin/vbox/hbox2"]
+layout_mode = 2
+text = "WASD for camera, SHIFT for speed boost"
 
 [node name="menu" type="Control" parent="."]
 process_mode = 3
