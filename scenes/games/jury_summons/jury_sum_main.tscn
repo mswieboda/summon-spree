@@ -1,3 +1,39 @@
-[gd_scene format=3 uid="uid://cxor8pm68ukjr"]
+[gd_scene load_steps=3 format=3 uid="uid://cxor8pm68ukjr"]
+
+[ext_resource type="Script" path="res://scenes/games/jury_summons/jury_sum_main.gd" id="1_be56k"]
+[ext_resource type="PackedScene" uid="uid://elmf3ex78n08" path="res://scenes/games/jury_summons/assets/clipBoard.tscn" id="2_itdwf"]
 
 [node name="JurySumMain" type="Node2D"]
+script = ExtResource("1_be56k")
+
+[node name="ClipBoard" parent="." instance=ExtResource("2_itdwf")]
+
+[node name="JuryList" type="Node2D" parent="."]
+
+[node name="JSeat1" type="Node2D" parent="JuryList"]
+position = Vector2(80, 100)
+scale = Vector2(0.75, 0.75)
+
+[node name="JSeat2" type="Node2D" parent="JuryList"]
+position = Vector2(160, 100)
+scale = Vector2(0.75, 0.75)
+
+[node name="JSeat3" type="Node2D" parent="JuryList"]
+position = Vector2(240, 100)
+scale = Vector2(0.75, 0.75)
+
+[node name="JSeat4" type="Node2D" parent="JuryList"]
+position = Vector2(320, 100)
+scale = Vector2(0.75, 0.75)
+
+[node name="JSeat5" type="Node2D" parent="JuryList"]
+position = Vector2(400, 100)
+scale = Vector2(0.75, 0.75)
+
+[node name="JSeat6" type="Node2D" parent="JuryList"]
+position = Vector2(480, 100)
+scale = Vector2(0.75, 0.75)
+
+[node name="Candidate" type="Node2D" parent="."]
+position = Vector2(137, 481)
+scale = Vector2(1.5, 1.5)

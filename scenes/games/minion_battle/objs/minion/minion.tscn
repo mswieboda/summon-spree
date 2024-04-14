@@ -5,8 +5,9 @@
 [ext_resource type="AudioStream" uid="uid://5kl18jvihuif" path="res://scenes/games/minion_battle/assets/audio/swords.mp3" id="3_pvo07"]
 [ext_resource type="AudioStream" uid="uid://bapgxv31wyunc" path="res://scenes/games/minion_battle/assets/audio/die.mp3" id="4_u4luk"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_1j44v"]
-size = Vector3(1, 1.25, 0.75)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_asbly"]
+radius = 0.35
+height = 1.5
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_u48xn"]
 height = 1.0
@@ -20,8 +21,8 @@ script = ExtResource("1_bkjpl")
 [node name="model" parent="." instance=ExtResource("1_umdlp")]
 
 [node name="collision" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.625, -0.125)
-shape = SubResource("BoxShape3D_1j44v")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+shape = SubResource("CapsuleShape3D_asbly")
 
 [node name="area_attack" type="Area3D" parent="."]
 collision_layer = 2
