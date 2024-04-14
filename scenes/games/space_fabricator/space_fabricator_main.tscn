@@ -46,6 +46,7 @@ mesh = SubResource("SphereMesh_eadn5")
 shape = SubResource("SphereShape3D_321ig")
 
 [node name="player" parent="." instance=ExtResource("2_dhlxs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.83046, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="player"]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 16.9898, 14.2491)

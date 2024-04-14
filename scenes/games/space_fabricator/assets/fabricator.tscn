@@ -9,6 +9,7 @@ height = 1.2
 radius = 1.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_tw1tw"]
+radius = 0.05
 
 [sub_resource type="SphereMesh" id="SphereMesh_2vvt8"]
 
@@ -28,10 +29,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.688597, 0)
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
 autostart = true
 
 [node name="spawnPoint" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0.5, 0)
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="spawnPoint"]
 shape = SubResource("SphereShape3D_tw1tw")

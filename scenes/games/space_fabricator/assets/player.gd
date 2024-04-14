@@ -7,14 +7,12 @@ var playerDir
 var isFiring
 var RAY_LENGTH = 1000
 var camera
-var rayObj
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
   playerDir = get_node("player_model")
   camera = get_node("Camera3D")
-  rayObj = get_parent().get_node("ShootTarget")
 
 func _process(delta):
   if(Input.is_action_pressed("LMB")):
@@ -54,7 +52,7 @@ func point_character(direction:Vector3):
   var space_state = get_world_3d().direct_space_state
   var from = camera.project_ray_origin(get_viewport().get_mouse_position())
   var to = from + camera.project_ray_normal(get_viewport().get_mouse_position()) * RAY_LENGTH
-  var query = PhysicsRayQueryParameters3D.create(from, to)
+  var query = PhysicsRayQueryParameters3D.create(from, to,1)
   query.collide_with_areas = true
 
   var result = space_state.intersect_ray(query)
