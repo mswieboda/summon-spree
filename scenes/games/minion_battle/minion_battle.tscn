@@ -15,8 +15,10 @@ albedo_color = Color(0, 0.270588, 0, 1)
 material = SubResource("StandardMaterial3D_p4o0w")
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_j15q4"]
+radius = 1.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_uxcef"]
+radius = 1.0
 
 [node name="minion_battle" type="Node3D"]
 script = ExtResource("1_6di21")
@@ -88,6 +90,50 @@ shape = SubResource("CylinderShape3D_uxcef")
 autostart = true
 
 [node name="hud" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="margin" type="MarginContainer" parent="hud"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="vbox" type="VBoxContainer" parent="hud/margin"]
+layout_mode = 2
+
+[node name="hbox" type="HBoxContainer" parent="hud/margin/vbox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="hud/margin/vbox/hbox"]
+layout_mode = 2
+text = "summon:"
+
+[node name="buttons" type="HBoxContainer" parent="hud/margin/vbox/hbox"]
+layout_mode = 2
+
+[node name="arms_button" type="Button" parent="hud/margin/vbox/hbox/buttons"]
+layout_mode = 2
+toggle_mode = true
+button_pressed = true
+text = "arms"
+
+[node name="archer_button" type="Button" parent="hud/margin/vbox/hbox/buttons"]
+layout_mode = 2
+toggle_mode = true
+text = "archer"
+
+[node name="menu" type="Control" parent="."]
 process_mode = 3
 visible = false
 layout_mode = 3
@@ -99,7 +145,7 @@ grow_vertical = 2
 theme = ExtResource("4_d3cm0")
 script = ExtResource("5_hfi4d")
 
-[node name="bg" type="MarginContainer" parent="hud"]
+[node name="bg" type="MarginContainer" parent="menu"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -113,54 +159,56 @@ offset_bottom = 157.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="color" type="ColorRect" parent="hud/bg"]
+[node name="color" type="ColorRect" parent="menu/bg"]
 layout_mode = 2
 color = Color(0, 0, 0, 1)
 
-[node name="margin" type="MarginContainer" parent="hud/bg"]
+[node name="margin" type="MarginContainer" parent="menu/bg"]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="vbox" type="VBoxContainer" parent="hud/bg/margin"]
+[node name="vbox" type="VBoxContainer" parent="menu/bg/margin"]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="title" type="Label" parent="hud/bg/margin/vbox"]
+[node name="title" type="Label" parent="menu/bg/margin/vbox"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 32
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="description" type="Label" parent="hud/bg/margin/vbox"]
+[node name="description" type="Label" parent="menu/bg/margin/vbox"]
 custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_alignment = 1
 autowrap_mode = 1
 
-[node name="vbox_buttons" type="VBoxContainer" parent="hud/bg/margin/vbox"]
+[node name="vbox_buttons" type="VBoxContainer" parent="menu/bg/margin/vbox"]
 layout_mode = 2
 size_flags_vertical = 10
 
-[node name="continue" type="Button" parent="hud/bg/margin/vbox/vbox_buttons"]
+[node name="continue" type="Button" parent="menu/bg/margin/vbox/vbox_buttons"]
 layout_mode = 2
 text = "continue"
 
-[node name="exit" type="Button" parent="hud/bg/margin/vbox/vbox_buttons"]
+[node name="exit" type="Button" parent="menu/bg/margin/vbox/vbox_buttons"]
 layout_mode = 2
 size_flags_vertical = 4
 text = "exit"
 
-[node name="timer_game_over" type="Timer" parent="hud"]
+[node name="timer_game_over" type="Timer" parent="menu"]
 wait_time = 1.5
 one_shot = true
 
 [connection signal="timeout" from="player/timer" to="." method="_on_player_timer_timeout"]
 [connection signal="timeout" from="cpu/timer" to="." method="_on_cpu_timer_timeout"]
-[connection signal="pressed" from="hud/bg/margin/vbox/vbox_buttons/continue" to="hud" method="_on_continue_pressed"]
-[connection signal="pressed" from="hud/bg/margin/vbox/vbox_buttons/exit" to="hud" method="_on_exit_pressed"]
-[connection signal="timeout" from="hud/timer_game_over" to="hud" method="_on_timer_game_over_timeout"]
+[connection signal="toggled" from="hud/margin/vbox/hbox/buttons/arms_button" to="." method="_on_arms_button_toggled"]
+[connection signal="toggled" from="hud/margin/vbox/hbox/buttons/archer_button" to="." method="_on_archer_button_toggled"]
+[connection signal="pressed" from="menu/bg/margin/vbox/vbox_buttons/continue" to="menu" method="_on_continue_pressed"]
+[connection signal="pressed" from="menu/bg/margin/vbox/vbox_buttons/exit" to="menu" method="_on_exit_pressed"]
+[connection signal="timeout" from="menu/timer_game_over" to="menu" method="_on_timer_game_over_timeout"]

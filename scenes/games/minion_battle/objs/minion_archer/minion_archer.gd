@@ -17,7 +17,7 @@ var health = 100
 var pathing_node: Node3D = null
 var pathing_dir = 0
 var minion_dead_scene = preload("res://scenes/games/minion_battle/objs/minion_dead/minion_dead.tscn")
-@onready var battle = get_parent().get_parent().get_parent()
+
 
 func _ready():
   $timer_attack.wait_time = randf_range(0.5, 1)
@@ -34,7 +34,7 @@ func change_color(color: String):
 
 
 func _physics_process(delta):
-  if is_dead or is_game_over or battle.is_game_over:
+  if is_dead or is_game_over:
     return
 
   check_for_freed_minions()
@@ -42,8 +42,7 @@ func _physics_process(delta):
 
 
 func is_valid_minion(node):
-  return node and is_instance_valid(node) \
-    and not node.is_queued_for_deletion() and node.is_inside_tree() \
+  return node and is_instance_valid(node) and not node.is_queued_for_deletion() \
     and "is_dead" in node and not node.is_dead
 
 
@@ -66,7 +65,7 @@ func movement_and_attack(delta):
     if movement(delta, target_castle, 3):
       is_game_over = true
   elif target_minion:
-    if movement(delta, target_minion, 1):
+    if movement(delta, target_minion, 10):
       if not attack_node:
         start_attacking(target_minion)
 
@@ -145,7 +144,7 @@ func die():
 
 
 func is_valid_attack_node(node):
-  return is_valid_minion(node) and node != self and "is_player" in node and node.is_player != is_player
+  return node != self and "is_player" in node and node.is_player != is_player
 
 
 func _on_area_attack_body_entered(body: Node3D):
@@ -163,14 +162,14 @@ func _on_area_attack_body_exited(body):
 
 
 func _on_timer_attack_timeout():
-  if is_dead or is_game_over or battle.is_game_over:
+  if is_dead or is_game_over:
     return
 
   attack()
 
 
 func is_valid_pathing_node(node):
-  return is_valid_minion(node) and node != self and target_minion != node and target_castle != node
+  return node != self and target_minion != node and target_castle != node
 
 
 func _on_area_pathing_body_entered(body):

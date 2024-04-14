@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://c6r6oytmentx1"
-path="res://.godot/imported/player_shield.blend-2bca5d84e0ac73f246871f154339711f.scn"
+uid="uid://mrl823siduvy"
+path="res://.godot/imported/minion_shield.blend-08f29809392bf9e8c2f87865ec5a282c.scn"
 
 [deps]
 
-source_file="res://scenes/games/minion_battle/assets/blend_files/player_shield.blend"
-dest_files=["res://.godot/imported/player_shield.blend-2bca5d84e0ac73f246871f154339711f.scn"]
+source_file="res://scenes/games/minion_battle/assets/3d/minion_shield.blend"
+dest_files=["res://.godot/imported/minion_shield.blend-08f29809392bf9e8c2f87865ec5a282c.scn"]
 
 [params]
 

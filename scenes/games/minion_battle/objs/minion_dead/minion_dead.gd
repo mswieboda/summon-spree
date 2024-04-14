@@ -24,9 +24,9 @@ func _on_timer_timeout():
 
 
 func _on_timer_decay_timeout():
-  change_opacity(1 - $timer.time_left / $timer.wait_time)
+  change_opacity()
 
-func change_opacity(percent: float):
+func change_opacity():
   var color = $rotation/model/Cube.get_surface_override_material(0).albedo_color
   var material = StandardMaterial3D.new()
   material.albedo_color = color.darkened(0.3)
