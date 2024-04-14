@@ -1,3 +1,8 @@
-[gd_scene format=3 uid="uid://elmf3ex78n08"]
+[gd_scene load_steps=2 format=3 uid="uid://elmf3ex78n08"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ii1jg"]
 
 [node name="ClipBoard" type="Node2D"]
+
+[node name="clipboardmesh" type="MeshInstance2D" parent="."]
+mesh = SubResource("PlaneMesh_ii1jg")

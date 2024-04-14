@@ -1,3 +1,16 @@
-[gd_scene format=3 uid="uid://dkytqtjqfkrwo"]
+[gd_scene load_steps=4 format=3 uid="uid://dkytqtjqfkrwo"]
+
+[ext_resource type="Script" path="res://scenes/games/jury_summons/assets/juror.gd" id="1_gmq72"]
+[ext_resource type="Texture2D" uid="uid://bmbnyc50lfnru" path="res://scenes/games/jury_summons/assets/maleHooman.png" id="2_f1yh6"]
+[ext_resource type="Texture2D" uid="uid://bw4idgildc4tb" path="res://scenes/games/jury_summons/assets/femaleHooman.png" id="3_plm5q"]
 
 [node name="Juror" type="Node2D"]
+script = ExtResource("1_gmq72")
+
+[node name="maleSprite" type="Sprite2D" parent="."]
+scale = Vector2(0.0763365, 0.0763365)
+texture = ExtResource("2_f1yh6")
+
+[node name="femaleSprite" type="Sprite2D" parent="."]
+scale = Vector2(0.0700879, 0.0700879)
+texture = ExtResource("3_plm5q")
