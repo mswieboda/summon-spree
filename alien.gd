@@ -43,4 +43,5 @@ func set_target(aimAt:Node3D):
 
 func _on_timer_timeout():
   isReady = true
+  $black_hole.visible = false
   pass # Replace with function body.
