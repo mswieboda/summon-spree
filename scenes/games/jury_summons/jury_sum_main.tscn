@@ -52,5 +52,10 @@ offset_right = 1010.0
 offset_bottom = 570.0
 text = "NO"
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
 [connection signal="pressed" from="YesButton" to="." method="_on_yes_button_pressed"]
 [connection signal="pressed" from="NoButton" to="." method="_on_no_button_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

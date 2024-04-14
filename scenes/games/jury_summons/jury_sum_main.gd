@@ -28,7 +28,8 @@ func _ready():
 func _process(delta):
   if playerTurn == true:
     playerAction()
-    #moveJuror()
+
+
 
 
 
@@ -41,10 +42,6 @@ func newJuror():
     #pass #add new juror
   pass
 
-func aiSelection():
-  #simple AI to select Yes or No
-
-  pass
 
 func createJurorsList():
   jurors = $JuryList.get_children()
@@ -73,8 +70,15 @@ func playerAction():
 func aiAction():
 
   indJuror()
-  playerTurn = true
-  aiTurn = false
+  if randi_range(-1, 1) > 0: #1 = yes, 0 = no
+    moveJuror()
+    playerTurn = true
+    aiTurn = false
+    print("AI Selected Yes")
+  else:
+    candidate.get_child(0).queue_free()
+    $Timer.start(1)
+    print("AI Selected N0")
 
 func _on_yes_button_pressed():
   if buttonAction == false:
@@ -82,6 +86,7 @@ func _on_yes_button_pressed():
   moveJuror()
   buttonAction = false
   aiTurn = true
+  $Timer.start(1)
   pass # Replace with function body.
 
 
@@ -92,3 +97,8 @@ func _on_no_button_pressed():
   candidate.get_child(0).queue_free()
 
  # Replace with function body.
+
+
+func _on_timer_timeout():
+  aiAction()
+  pass # Replace with function body.
