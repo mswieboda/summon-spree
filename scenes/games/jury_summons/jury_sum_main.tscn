@@ -94,28 +94,36 @@ text = "0
 horizontal_alignment = 1
 
 [node name="GenderLabel" type="Label" parent="."]
-offset_left = 822.0
-offset_top = 228.0
-offset_right = 862.0
-offset_bottom = 251.0
+offset_left = 818.0
+offset_top = 230.0
+offset_right = 858.0
+offset_bottom = 253.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "m/f"
 
 [node name="HeightLabel" type="Label" parent="."]
-offset_left = 825.0
-offset_top = 258.0
-offset_right = 865.0
-offset_bottom = 281.0
+offset_left = 818.0
+offset_top = 261.0
+offset_right = 884.0
+offset_bottom = 284.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "bananas"
 
 [node name="WeightLabel" type="Label" parent="."]
-offset_left = 820.0
-offset_top = 290.0
-offset_right = 860.0
-offset_bottom = 313.0
+offset_left = 818.0
+offset_top = 293.0
+offset_right = 862.0
+offset_bottom = 316.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "stone"
 
 [node name="HairColorLabel" type="Label" parent="."]
 offset_left = 818.0
 offset_top = 326.0
 offset_right = 858.0
 offset_bottom = 349.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "HC label"
 
 [node name="TrialType" type="Label" parent="."]
 offset_left = 599.0
@@ -130,6 +138,10 @@ offset_right = 980.0
 offset_bottom = 46.0
 horizontal_alignment = 2
 
+[node name="NextTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="pressed" from="YesButton" to="." method="_on_yes_button_pressed"]
 [connection signal="pressed" from="NoButton" to="." method="_on_no_button_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="NextTimer" to="." method="_on_next_timer_timeout"]

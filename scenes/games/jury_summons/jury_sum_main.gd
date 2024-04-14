@@ -41,7 +41,13 @@ func createJurorsList():
 func indJuror():
   if jurIndex >= 0 and jurIndex < 6:
     candidate.add_child(newJuror())
-    #$BiasValue.set_text(str(candidate.Bias))
+
+    $BiasValue.set_text(str(candidate.get_child(0).bias))
+    $HonestyValue.set_text(str(candidate.get_child(0).honesty))
+    $GenderLabel.set_text("Gender:   " + str(candidate.get_child(0).genText))
+    $HairColorLabel.set_text("Hair:         " + str(candidate.get_child(0).candHairColor))
+    $HeightLabel.set_text("Height:     " + str(round(candidate.get_child(0).candHeight)) + " Bananas")
+    $WeightLabel.set_text("Weight:    " + str(round(candidate.get_child(0).candWeight)) + " Stone")
     #need to pull variables form instance to populate clipboard
 
 
@@ -50,8 +56,8 @@ func moveJuror():
   candidate.get_child(0).reparent(jurors[jurIndex],false)
   if buttonAction == true:
     pass
-    #bTotal += jurors[jurIndex].bias
-    #hTotal += jurors[jurIndex].honesty
+    #bTotal += candidate.get_child(0).bias
+    #hTotal += candidate.get_child(0).honesty)
   else:
     #bTotal -= jurors[jurIndex].bias
     #hTotal -= jurors[jurIndex].honesty
@@ -111,12 +117,23 @@ func _on_yes_button_pressed():
 func _on_no_button_pressed():
   if buttonAction == false:
     return
-  indJuror()
   candidate.get_child(0).queue_free()
+  $BiasValue.set_text("")
+  $HonestyValue.set_text("")
+  $NextTimer.start(1)
+
+
+
 
  # Replace with function body.
 
 
 func _on_timer_timeout():
   aiAction()
+  pass # Replace with function body.
+
+
+func _on_next_timer_timeout():
+  #play sound clip
+  playerTurn = true
   pass # Replace with function body.
