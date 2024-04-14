@@ -1,20 +1,49 @@
 extends Node3D
 
-const COLOR_PLAYER = "#ff0000"
-const COLOR_CPU = "#0000ff"
+const MAX_MINIONS = 10
+
 var minion_scene = preload("res://scenes/games/minion_battle/objs/minion/minion.tscn")
+var is_game_over = false
+var is_win = false
+
+func _process(_delta):
+  if is_game_over:
+    return
+
+  check_for_game_over()
 
 
-func summon_minion(color : String, player_node : Node3D):
+func minion_is_game_over(node: Node3D):
+  return "is_game_over" in node and node.is_game_over
+
+
+func check_for_game_over():
+  var is_player_game_over = $player/minions.get_children().any(minion_is_game_over)
+
+  if is_player_game_over:
+    is_game_over = true
+    $hud.game_over(true)
+    return
+
+  var is_cpu_game_over = $cpu/minions.get_children().any(minion_is_game_over)
+
+  if is_cpu_game_over:
+    is_game_over = true
+    $hud.game_over(false)
+
+
+func summon_minion(player_node : Node3D):
+  if player_node.get_node("minions").get_child_count() >= MAX_MINIONS:
+    return
+
   var minion = minion_scene.instantiate()
-  print(">>> summon_minion ", color)
-  minion.change_color(color)
-  minion.target = player_node.get_node("castle")
+  minion.is_player = player_node == $player
   player_node.get_node("minions").add_child(minion)
 
+
 func _on_player_timer_timeout():
-  summon_minion(COLOR_PLAYER, $player)
+  summon_minion($player)
 
 
 func _on_cpu_timer_timeout():
-  summon_minion(COLOR_CPU, $cpu)
+  summon_minion($cpu)

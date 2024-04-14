@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dxtsurc6d1ywl"]
+[gd_scene load_steps=9 format=3 uid="uid://dxtsurc6d1ywl"]
 
 [ext_resource type="PackedScene" path="res://scenes/games/space_fabricator/assets/ship.tscn" id="1_a7e6m"]
 [ext_resource type="PackedScene" path="res://scenes/games/space_fabricator/assets/player.tscn" id="2_dhlxs"]
@@ -20,6 +20,8 @@ glow_enabled = true
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_321ig"]
 
+[sub_resource type="SphereMesh" id="SphereMesh_66f85"]
+
 [node name="SpaceFabricatorMain" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -30,9 +32,10 @@ shadow_enabled = true
 environment = SubResource("Environment_7nuo8")
 
 [node name="Node3D" parent="." instance=ExtResource("1_a7e6m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.194618, 0, 0.0119019)
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 3.22161, -48.8441)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
 mesh = SubResource("SphereMesh_eadn5")
@@ -40,11 +43,15 @@ mesh = SubResource("SphereMesh_eadn5")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
 shape = SubResource("SphereShape3D_321ig")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 5.16916, 18.6779, 31.3329)
-fov = 13.1968
-size = 9.1825
-
-[node name="ShootTarget" type="RayCast3D" parent="Camera3D"]
-
 [node name="player" parent="." instance=ExtResource("2_dhlxs")]
+
+[node name="Camera3D" type="Camera3D" parent="player"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 16.9898, 14.2491)
+
+[node name="ShootTarget" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 5.85077, 18, 30)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 5.56753, 0.657078, -42.7681)
+mesh = SubResource("SphereMesh_66f85")
+skeleton = NodePath("../ShootTarget")

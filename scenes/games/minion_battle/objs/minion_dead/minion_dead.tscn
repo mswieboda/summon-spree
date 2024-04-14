@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://uqsfhlmhh8kq"]
+
+[ext_resource type="Script" path="res://scenes/games/minion_battle/objs/minion_dead/minion_dead.gd" id="1_qw4fm"]
+[ext_resource type="PackedScene" uid="uid://b1x8r6dire6vt" path="res://scenes/games/minion_battle/assets/3d/minion.blend" id="2_p5j7c"]
+
+[node name="minon_dead" type="Node3D"]
+script = ExtResource("1_qw4fm")
+
+[node name="model" parent="." instance=ExtResource("2_p5j7c")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.5)
+
+[node name="timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]

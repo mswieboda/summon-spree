@@ -5,7 +5,7 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 var playerDir
 var isFiring
-var RAY_LENGTH = 1
+var RAY_LENGTH = 1000
 var camera
 var rayObj
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -13,9 +13,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
   playerDir = get_node("player_model")
-  camera = get_parent().get_node("Camera3D")
-  rayObj = camera.get_node("ShootTarget")
-  print(rayObj)
+  camera = get_node("Camera3D")
+  rayObj = get_parent().get_node("ShootTarget")
 
 func _process(delta):
   if(Input.is_action_pressed("LMB")):
@@ -49,9 +48,27 @@ func _physics_process(delta):
   move_and_slide()
 
 func point_character(direction:Vector3):
-  if (isFiring):
-    var space_state = get_world_3d().direct_space_state
-    var from = camera.project_ray_origin(get_viewport().get_mouse_position())
-    var to = from + camera.project_ray_normal(get_viewport().get_mouse_position())
-  elif(direction.length() != 0):
+  #try to get the mouse collision position
+
+  var isMousePoint
+  var space_state = get_world_3d().direct_space_state
+  var from = camera.project_ray_origin(get_viewport().get_mouse_position())
+  var to = from + camera.project_ray_normal(get_viewport().get_mouse_position()) * RAY_LENGTH
+  var query = PhysicsRayQueryParameters3D.create(from, to)
+  query.collide_with_areas = true
+
+  var result = space_state.intersect_ray(query)
+
+
+  #if it doesn't collide, point via WASD otherwise look at mouse
+  if (result.is_empty() or !isFiring):
+    isMousePoint = false
+  else:
+    isMousePoint = true
+
+  if (isMousePoint):
+    get_parent().get_node("MeshInstance3D").global_transform.origin = result.position
+    var planar_point = Vector3(result.position.x,0,result.position.z)
+    playerDir.global_transform = playerDir.global_transform.looking_at(planar_point)
+  elif (direction.length() != 0):
     playerDir.transform.basis = basis.looking_at(direction)

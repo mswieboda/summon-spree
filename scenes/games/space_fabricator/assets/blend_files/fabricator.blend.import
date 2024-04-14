@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dplphwelv7lnw"
-path="res://.godot/imported/ship.blend-20a7babd6d4b803a53d6e6b6553e3d17.scn"
+uid="uid://orxa8aq3b0ii"
+path="res://.godot/imported/fabricator.blend-8320ea524977b3c185327a02be987607.scn"
 
 [deps]
 
-source_file="res://scenes/games/space_fabricator/assets/ship.blend"
-dest_files=["res://.godot/imported/ship.blend-20a7babd6d4b803a53d6e6b6553e3d17.scn"]
+source_file="res://scenes/games/space_fabricator/assets/blend_files/fabricator.blend"
+dest_files=["res://.godot/imported/fabricator.blend-8320ea524977b3c185327a02be987607.scn"]
 
 [params]
 

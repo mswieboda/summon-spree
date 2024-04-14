@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dynxbouhs30hw"
-path="res://.godot/imported/player.blend-45cd2d8eaceed1345d11f60b372294c8.scn"
+uid="uid://dplphwelv7lnw"
+path="res://.godot/imported/ship.blend-502a674eb497362bb4b9dd31b60b21d5.scn"
 
 [deps]
 
-source_file="res://scenes/games/space_fabricator/assets/player.blend"
-dest_files=["res://.godot/imported/player.blend-45cd2d8eaceed1345d11f60b372294c8.scn"]
+source_file="res://scenes/games/space_fabricator/assets/blend_files/ship.blend"
+dest_files=["res://.godot/imported/ship.blend-502a674eb497362bb4b9dd31b60b21d5.scn"]
 
 [params]
 
@@ -37,7 +37,7 @@ blender/nodes/punctual_lights=true
 blender/nodes/cameras=true
 blender/nodes/custom_properties=true
 blender/nodes/modifiers=1
-blender/meshes/colors=true
+blender/meshes/colors=false
 blender/meshes/uvs=true
 blender/meshes/normals=true
 blender/meshes/tangents=true
