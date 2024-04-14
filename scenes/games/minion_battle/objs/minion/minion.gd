@@ -38,10 +38,16 @@ func _physics_process(delta):
 
 
 func is_valid_minion(node: Node3D):
-  return node and "is_dead" in node and not node.is_dead and not node.is_queued_for_deletion()
+  return node and not node.is_queued_for_deletion() and "is_dead" in node and not node.is_dead
 
 
 func check_for_freed_minions():
+  # TODO: fix error:
+  # E 0:00:18:0770   minion.gd:45 @ check_for_freed_minions(): Error calling method from 'filter': 'CharacterBody3D(minion.gd)::is_valid_minion': Cannot convert argument 1 from Object to Object
+  # <C++ Error>    Method/function failed. Returning: Array()
+  # <C++ Source>   core/variant/array.cpp:498 @ filter()
+  # <Stack Trace>  minion.gd:45 @ check_for_freed_minions()
+  #                minion.gd:36 @ _physics_process()
   target_minions = target_minions.filter(is_valid_minion)
 
 
