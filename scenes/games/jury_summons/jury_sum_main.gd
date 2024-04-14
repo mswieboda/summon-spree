@@ -1,22 +1,24 @@
 extends Node2D
 
 var rng = RandomNumberGenerator.new()
-var jurorRemain
-var jurors = []
-var candidate
-var playerTurn = true
-var aiTurn = false
-var trialType
-var decisionType
-var jurIndex = 0
-var buttonAction = true
+var jurorRemain #how many Jurors left to select
+var jurors = [] #array of Juror Objects
+var candidate #candidate object
+var playerTurn = true #used to determine player's turn
+var aiTurn = false #used to determine AI's turn
+var trialCat #determines type of trial
+var decisionType #used to determine Bias vs Honesty for victory
+var jurIndex = 0 #index through jurors[]
+var buttonAction = true #used to enable/disable buttons
 var jurClass = preload("res://scenes/games/jury_summons/assets/juror.tscn")
+var bTotal #total value of Bias across jurors[]
+var hTotal #total value of Honesty across jurors[]
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 
-  jurorRemain = 6
+  jurorRemain = 6 #set remaining juror's to 6
   determineTrial()
   biasVsHonesty()
   $TrialValue.set_text("Expected " + decisionType + ": " + str(randi_range(5,10)))
@@ -27,12 +29,10 @@ func _process(delta):
   if playerTurn == true:
     playerAction()
 
-
 func newJuror():
   var j1 = jurClass.instantiate()
+
   return j1
-
-
 
 func createJurorsList():
   jurors = $JuryList.get_children()
@@ -40,15 +40,22 @@ func createJurorsList():
 
 func indJuror():
   if jurIndex >= 0 and jurIndex < 6:
-    #jurors[jurIndex].add_child(newJuror())
     candidate.add_child(newJuror())
-    #print_debug(candidate.get_child(0))
-
+    #$BiasValue.set_text(str(candidate.Bias))
+    #need to pull variables form instance to populate clipboard
 
 
 func moveJuror():
   #print_debug(candidate.get_child(0))
   candidate.get_child(0).reparent(jurors[jurIndex],false)
+  if buttonAction == true:
+    pass
+    #bTotal += jurors[jurIndex].bias
+    #hTotal += jurors[jurIndex].honesty
+  else:
+    #bTotal -= jurors[jurIndex].bias
+    #hTotal -= jurors[jurIndex].honesty
+    pass
   jurIndex+=1
   jurorRemain-=1
 
@@ -56,7 +63,6 @@ func playerAction():
   indJuror()
   playerTurn = false
   buttonAction = true
-
 
 func aiAction():
   indJuror()
@@ -79,9 +85,9 @@ func biasVsHonesty():
     decisionType = "Honesty"
 
 func determineTrial():
-  trialType = randi_range(1,3)
+  trialCat = randi_range(1,3)
 
-  match trialType:
+  match trialCat:
     1:
       $TrialType.set_text("Trial: Petty Theft")
     2:

@@ -14,3 +14,16 @@ texture = ExtResource("2_f1yh6")
 [node name="femaleSprite" type="Sprite2D" parent="."]
 scale = Vector2(0.0700879, 0.0700879)
 texture = ExtResource("3_plm5q")
+
+[node name="Bias" type="Label" parent="."]
+offset_left = -50.0
+offset_top = 114.0
+offset_right = -10.0
+offset_bottom = 139.0
+horizontal_alignment = 2
+
+[node name="Honest" type="Label" parent="."]
+offset_left = 10.0
+offset_top = 114.0
+offset_right = 50.0
+offset_bottom = 139.0

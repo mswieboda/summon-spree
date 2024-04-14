@@ -15,6 +15,8 @@ func _ready():
   candHeight = randf_range(7,12) #in Bananas
   candWeight = randf_range(6,20) #in Stone
 
+  $Bias.set_text("B: " + str(bias))
+  $Honest.set_text("H: " + str(honesty))
 
   if randf_range(-1, 1) > 0:
     gender = 1
