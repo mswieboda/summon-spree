@@ -1,14 +1,22 @@
 extends Control
 
+@export var DEBUG = true
 
 var is_ready = false
-var is_summoning = false
 @onready var game_list = $games_page/vbox/vbox_buttons/game_list
 
 
 func _ready():
   is_ready = true
   focus_button($title_page)
+
+
+func _process(_delta):
+  if not DEBUG:
+    return
+
+  if Input.is_action_just_pressed("menu_debug_next"):
+    select_next_game()
 
 
 func _on_start_button_pressed():
@@ -72,11 +80,14 @@ func start_game():
 
 
 func _on_summon_button_pressed():
-  is_summoning = true
   $audio_snap.play()
   toggle_disabled()
-  $summon_timer.start(randf_range(3, 5))
-  $selection_change_timer.start()
+
+  if DEBUG:
+    start_game()
+  else:
+    $summon_timer.start(randf_range(3, 5))
+    $selection_change_timer.start()
 
 
 func toggle_disabled():
@@ -101,6 +112,12 @@ func get_games_selected_index():
 
 
 func _on_selection_change_timer_timeout():
+  select_next_game()
+  $selection_change_timer.wait_time += 0.025
+  $selection_change_timer.start()
+
+
+func select_next_game():
   var games = game_list.get_children()
   var selected_index = get_games_selected_index()
 
@@ -114,8 +131,6 @@ func _on_selection_change_timer_timeout():
   games[selected_index].toggle_select()
 
   $audio_snap.play()
-  $selection_change_timer.wait_time += 0.025
-  $selection_change_timer.start()
 
 
 func _on_summon_timer_timeout():

@@ -8,6 +8,7 @@ var is_game_over = false
 var is_win = false
 var player_spawn_type = "arms"
 
+
 func _process(_delta):
   if is_game_over:
     return
@@ -63,7 +64,6 @@ func _on_cpu_timer_timeout():
   summon_minion($cpu)
 
 
-
 func _on_arms_button_toggled(toggled_on):
   if toggled_on:
     $hud/margin/vbox/hbox/buttons/archer_button.button_pressed = false
@@ -71,6 +71,7 @@ func _on_arms_button_toggled(toggled_on):
     $player/timer.wait_time = 1
   else:
     $hud/margin/vbox/hbox/buttons/archer_button.button_pressed = true
+
 
 func _on_archer_button_toggled(toggled_on):
   if toggled_on:
