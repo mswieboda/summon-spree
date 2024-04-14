@@ -3,12 +3,12 @@
 [ext_resource type="Script" path="res://scenes/games/space_fabricator/assets/pew_beam.gd" id="1_kfspk"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_12itu"]
-radius = 0.05
+radius = 0.1
 height = 0.4
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mxnsn"]
-radius = 0.0506534
-height = 0.3
+radius = 0.1
+height = 0.399481
 
 [node name="pew_beam" type="Area3D"]
 script = ExtResource("1_kfspk")

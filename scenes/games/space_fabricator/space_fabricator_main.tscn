@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dxtsurc6d1ywl"]
+[gd_scene load_steps=7 format=3 uid="uid://dxtsurc6d1ywl"]
 
 [ext_resource type="PackedScene" uid="uid://dvgybi3qjnyb7" path="res://scenes/games/space_fabricator/assets/ship.tscn" id="1_a7e6m"]
 [ext_resource type="PackedScene" uid="uid://cihoflsc34mdj" path="res://scenes/games/space_fabricator/assets/player.tscn" id="2_dhlxs"]
@@ -16,10 +16,6 @@ sky_material = SubResource("ProceduralSkyMaterial_878lx")
 background_mode = 2
 sky = SubResource("Sky_mrgry")
 
-[sub_resource type="SphereMesh" id="SphereMesh_eadn5"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_321ig"]
-
 [sub_resource type="SphereMesh" id="SphereMesh_2mk8c"]
 
 [node name="SpaceFabricatorMain" type="Node3D"]
@@ -33,15 +29,6 @@ shadow_enabled = true
 
 [node name="ship" parent="." instance=ExtResource("1_a7e6m")]
 
-[node name="RigidBody3D" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 3.22161, -48.8441)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
-mesh = SubResource("SphereMesh_eadn5")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
-shape = SubResource("SphereShape3D_321ig")
-
 [node name="player" parent="." instance=ExtResource("2_dhlxs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.83046, 0, 0)
 
@@ -50,5 +37,6 @@ transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 
 fov = 40.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("SphereMesh_2mk8c")
 skeleton = NodePath("")

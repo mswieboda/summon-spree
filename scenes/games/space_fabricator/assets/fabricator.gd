@@ -3,6 +3,7 @@ extends StaticBody3D
 var spawnX
 var spawnZ
 var spawnY
+var health = 100
 
 var spawnPoint
 
@@ -23,3 +24,6 @@ func _on_timer_timeout():
   spawnY = 0.5
   spawnPoint.transform.origin = Vector3(spawnX,spawnY,spawnZ)
   pass # Replace with function body.
+
+func take_damate():
+  health -= 3

@@ -4,6 +4,7 @@ var isReady = false
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 var target
+var health = 3
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -45,3 +46,8 @@ func _on_timer_timeout():
   isReady = true
   $black_hole.visible = false
   pass # Replace with function body.
+
+func do_damage():
+  health -= 1
+  if (health == 0 ):
+    get_parent().get_parent().despawn(self)

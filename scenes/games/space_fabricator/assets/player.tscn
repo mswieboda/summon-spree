@@ -20,6 +20,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.600304, 0)
 shape = SubResource("CapsuleShape3D_by5gk")
 
 [node name="bullet_timer" type="Timer" parent="."]
+wait_time = 0.25
 autostart = true
 
 [connection signal="timeout" from="bullet_timer" to="." method="_on_bullet_timer_timeout"]

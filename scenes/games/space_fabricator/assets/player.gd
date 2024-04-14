@@ -65,7 +65,7 @@ func point_character(direction:Vector3):
     isMousePoint = true
 
   if (isMousePoint):
-    get_parent().get_node("MeshInstance3D").global_transform.origin = result.position
+    #get_parent().get_node("MeshInstance3D").global_transform.origin = result.position
     var planar_point = Vector3(result.position.x,0,result.position.z)
     playerDir.global_transform = playerDir.global_transform.looking_at(planar_point)
   elif (direction.length() != 0):

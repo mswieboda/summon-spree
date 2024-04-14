@@ -30,4 +30,8 @@ func _on_area_3d_area_entered(area):
   enemy.global_transform.origin = spawnPoint.global_transform.origin
   enemy.set_target(enemyTarget)
   spawnPoint.transform.origin.y = 2
+  enemy.name = "enemy"
   pass # Replace with function body.
+
+func despawn(body):
+  body.queue_free()
