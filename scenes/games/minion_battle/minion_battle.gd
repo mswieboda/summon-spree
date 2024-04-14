@@ -36,9 +36,13 @@ func summon_minion(player_node : Node3D):
   if player_node.get_node("minions").get_child_count() >= MAX_MINIONS:
     return
 
+  if player_node.get_node("castle/spawn/area").get_overlapping_bodies().size() > 0:
+    return
+
   var minion = minion_scene.instantiate()
   minion.is_player = player_node == $player
   player_node.get_node("minions").add_child(minion)
+  minion.global_position = player_node.get_node("castle/spawn").global_position
 
 
 func _on_player_timer_timeout():

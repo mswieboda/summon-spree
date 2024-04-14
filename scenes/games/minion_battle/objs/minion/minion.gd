@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 const SPEED = 250
+const PATH_X_SPEED = 250
 const COLOR_PLAYER = "#ff0000"
 const COLOR_CPU = "#0000ff"
 
@@ -8,10 +9,13 @@ var is_player = false
 var is_dead = false
 var is_game_over = false
 var target_castle: Node3D = null
-var target_minions = []
+var target_minion: Node3D = null
 var attack_node: Node3D = null
+var last_attacked_by_node: Node3D = null
 var attack_damage = 30
 var health = 100
+var pathing_node: Node3D = null
+var pathing_dir = 0
 var minion_dead_scene = preload("res://scenes/games/minion_battle/objs/minion_dead/minion_dead.tscn")
 
 
@@ -43,18 +47,27 @@ func is_valid_minion(node):
 
 
 func check_for_freed_minions():
-  target_minions = target_minions.filter(is_valid_minion)
+  if not is_valid_minion(attack_node):
+    attack_node = null
+
+  if not is_valid_minion(target_minion):
+    target_minion = null
+    check_for_new_target_minion()
+
+  if not is_valid_minion(pathing_node):
+    pathing_node = null
+    pathing_dir = 0
+    check_for_new_pathing_node()
 
 
 func movement_and_attack(delta):
-  if target_minions.is_empty() and target_castle:
+  if not target_minion and target_castle:
     if movement(delta, target_castle, 3):
       is_game_over = true
-  elif not target_minions.is_empty():
-    # TODO: units get stuck, use path finding, or sort target_minions by distance etc
-    if movement(delta, target_minions[0], 1):
+  elif target_minion:
+    if movement(delta, target_minion, 1):
       if not attack_node:
-        start_attacking(target_minions[0])
+        start_attacking(target_minion)
 
 
 func movement(delta, target: Node3D, reached_distance: int) -> bool:
@@ -64,17 +77,24 @@ func movement(delta, target: Node3D, reached_distance: int) -> bool:
   target_position.y = global_transform.origin.y
 
   var direction = global_transform.origin.direction_to(target_position)
-  var displacement = target_position - global_transform.origin
+  var displacement = target_position - global_position
+
+  look_at(target_position)
 
   if displacement.length() <= reached_distance:
     return true
   else:
     velocity = direction * SPEED * delta
+
+    if pathing_node and pathing_dir != 0:
+      velocity.z += pathing_dir * PATH_X_SPEED * delta
+
     move_and_slide()
     return false
 
 
 func start_attacking(node: Node3D):
+  target_minion = node
   attack_node = node
   $timer_attack.wait_time = randf_range(0.5, 1)
   $timer_attack.start()
@@ -82,22 +102,28 @@ func start_attacking(node: Node3D):
 
 func attack():
   if not attack_node or not "is_dead" in attack_node or attack_node.is_dead:
+    target_minion = null
     attack_node = null
     return
 
   $audio_attack.pitch_scale = randf_range(0.75, 1.25)
   $audio_attack.play()
-  attack_node.damage(attack_damage)
+  attack_node.damage(attack_damage, self)
 
   if attack_node.is_dead:
-    target_minions.erase(attack_node)
+    target_minion = null
     attack_node = null
   else:
     start_attacking(attack_node)
 
 
-func damage(amount: int):
+func damage(amount: int, node):
   health -= amount
+
+  last_attacked_by_node = node
+
+  if attack_node != last_attacked_by_node or not attack_node:
+    target_minion = node
 
   if health <= 0:
     health = 0
@@ -116,18 +142,22 @@ func die():
   queue_free()
 
 
+func is_valid_attack_node(node):
+  return node != self and "is_player" in node and node.is_player != is_player
+
+
 func _on_area_attack_body_entered(body: Node3D):
-  if body == self or not "is_player" in body or body.is_player == is_player or target_minions.has(body):
+  if target_minion or attack_node or not is_valid_attack_node(body) or target_minion == body:
     return
 
-  target_minions.append(body)
+  target_minion = body
 
 
 func _on_area_attack_body_exited(body):
-  if body == self or not body.has_meta("is_player") or body.is_player == is_player or not target_minions.has(body):
+  if not target_minion == body or not is_valid_attack_node(body):
     return
 
-  target_minions.erase(body)
+  target_minion = null
 
 
 func _on_timer_attack_timeout():
@@ -135,3 +165,47 @@ func _on_timer_attack_timeout():
     return
 
   attack()
+
+
+func is_valid_pathing_node(node):
+  return node != self and target_minion != node and target_castle != node
+
+
+func _on_area_pathing_body_entered(body):
+  if pathing_node or not is_valid_pathing_node(body):
+    return
+
+  pathing_node = body
+  pathing_dir = 1 if randi_range(0, 1) > 0 else -1
+
+
+func _on_area_pathing_body_exited(body):
+  if pathing_node != body or not is_valid_pathing_node(body):
+    return
+
+  pathing_node = null
+  pathing_dir = 0
+
+  check_for_new_pathing_node()
+
+
+func sort_by_distance(a, b):
+  var distance_to_a = a.global_position - global_position
+  var distance_to_b = b.global_position - global_position
+  return distance_to_a > distance_to_b
+
+
+func check_for_new_target_minion():
+  var bodies: Array = $area_attack.get_overlapping_bodies().filter(is_valid_attack_node)
+
+  if not bodies.is_empty():
+    bodies.sort_custom(sort_by_distance)
+    target_minion = bodies[0]
+
+
+func check_for_new_pathing_node():
+  var bodies: Array = $area_pathing.get_overlapping_bodies().filter(is_valid_pathing_node)
+
+  if not bodies.is_empty():
+    bodies.sort_custom(sort_by_distance)
+    pathing_node = bodies[0]
