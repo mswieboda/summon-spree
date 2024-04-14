@@ -6,8 +6,6 @@
 [node name="JurySumMain" type="Node2D"]
 script = ExtResource("1_be56k")
 
-[node name="ClipBoard" parent="." instance=ExtResource("2_itdwf")]
-
 [node name="JuryList" type="Node2D" parent="."]
 
 [node name="JSeat1" type="Node2D" parent="JuryList"]
@@ -46,15 +44,91 @@ offset_bottom = 577.0
 text = "YES"
 
 [node name="NoButton" type="Button" parent="."]
-offset_left = 934.0
-offset_top = 520.0
-offset_right = 1010.0
-offset_bottom = 570.0
+offset_left = 930.0
+offset_top = 516.0
+offset_right = 1014.0
+offset_bottom = 575.0
 text = "NO"
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
+
+[node name="ClipBoard" parent="." instance=ExtResource("2_itdwf")]
+position = Vector2(899, 261)
+
+[node name="BiasLabel" type="Label" parent="."]
+offset_left = 807.0
+offset_top = 377.0
+offset_right = 847.0
+offset_bottom = 400.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Bias
+"
+
+[node name="HonestyLabel" type="Label" parent="."]
+offset_left = 928.0
+offset_top = 377.0
+offset_right = 992.0
+offset_bottom = 400.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Honesty"
+
+[node name="BiasValue" type="Label" parent="."]
+offset_left = 804.0
+offset_top = 409.0
+offset_right = 844.0
+offset_bottom = 432.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "0"
+horizontal_alignment = 1
+
+[node name="HonestyValue" type="Label" parent="."]
+offset_left = 941.0
+offset_top = 409.0
+offset_right = 981.0
+offset_bottom = 432.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "0
+"
+horizontal_alignment = 1
+
+[node name="GenderLabel" type="Label" parent="."]
+offset_left = 822.0
+offset_top = 228.0
+offset_right = 862.0
+offset_bottom = 251.0
+
+[node name="HeightLabel" type="Label" parent="."]
+offset_left = 825.0
+offset_top = 258.0
+offset_right = 865.0
+offset_bottom = 281.0
+
+[node name="WeightLabel" type="Label" parent="."]
+offset_left = 820.0
+offset_top = 290.0
+offset_right = 860.0
+offset_bottom = 313.0
+
+[node name="HairColorLabel" type="Label" parent="."]
+offset_left = 818.0
+offset_top = 326.0
+offset_right = 858.0
+offset_bottom = 349.0
+
+[node name="TrialType" type="Label" parent="."]
+offset_left = 599.0
+offset_top = 30.0
+offset_right = 639.0
+offset_bottom = 53.0
+
+[node name="TrialValue" type="Label" parent="."]
+offset_left = 940.0
+offset_top = 23.0
+offset_right = 980.0
+offset_bottom = 46.0
+horizontal_alignment = 2
 
 [connection signal="pressed" from="YesButton" to="." method="_on_yes_button_pressed"]
 [connection signal="pressed" from="NoButton" to="." method="_on_no_button_pressed"]

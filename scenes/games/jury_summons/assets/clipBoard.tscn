@@ -1,8 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://elmf3ex78n08"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_ii1jg"]
+[ext_resource type="Texture2D" uid="uid://cpb4etavjl7xw" path="res://scenes/games/jury_summons/assets/clipboard.png" id="1_i1j7e"]
 
 [node name="ClipBoard" type="Node2D"]
 
-[node name="clipboardmesh" type="MeshInstance2D" parent="."]
-mesh = SubResource("PlaneMesh_ii1jg")
+[node name="boardy" type="Sprite2D" parent="."]
+scale = Vector2(0.0280242, 0.0280242)
+texture = ExtResource("1_i1j7e")
