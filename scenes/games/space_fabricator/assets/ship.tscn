@@ -85,4 +85,6 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 
 depth = 2.0
 polygon = PackedVector2Array(-1.19381, -6.98635, -1.18948, -4.9764, -5.19199, -4.98282, -5.19326, -2.98366, -17.1936, -2.98748, -19.1942, -0.98657, -19.1929, 1.01369, -17.1931, 3.0115, -5.19266, 3.00957, -5.19361, 5.01258, -1.19569, 5.01347, -1.18845, 7.00502, 8, 7, 8, -7)
 
+[node name="enemyList" type="Node3D" parent="."]
+
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
