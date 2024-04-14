@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://briq0dl26n072"]
+
+[ext_resource type="Script" path="res://scenes/main_menu/objs/game_item.gd" id="1_br3hl"]
+
+[node name="game_item" type="Label"]
+text = "game label"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_br3hl")

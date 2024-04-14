@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dooo2c7g3j2pl"]
+[gd_scene load_steps=4 format=3 uid="uid://dooo2c7g3j2pl"]
 
 [ext_resource type="Theme" uid="uid://d18cpgia7nf2j" path="res://assets/themes/default_theme.tres" id="1_xyxts"]
 [ext_resource type="Script" path="res://scenes/main_menu/main_menu.gd" id="2_tylyp"]
+[ext_resource type="PackedScene" uid="uid://briq0dl26n072" path="res://scenes/main_menu/objs/game_item.tscn" id="3_4x26y"]
 
 [node name="main_menu" type="Control"]
 process_mode = 3
@@ -95,7 +96,7 @@ alignment = 1
 
 [node name="header" type="Label" parent="games_page/vbox"]
 layout_mode = 2
-size_flags_vertical = 2
+size_flags_vertical = 0
 theme_override_font_sizes/font_size = 64
 text = "game selector"
 horizontal_alignment = 1
@@ -103,46 +104,65 @@ vertical_alignment = 1
 
 [node name="vbox_buttons" type="VBoxContainer" parent="games_page/vbox"]
 layout_mode = 2
-size_flags_vertical = 2
+size_flags_vertical = 3
 
-[node name="game_list" type="ItemList" parent="games_page/vbox/vbox_buttons"]
+[node name="game_list" type="VBoxContainer" parent="games_page/vbox/vbox_buttons"]
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 6
-focus_neighbor_top = NodePath("../back_button")
-focus_neighbor_bottom = NodePath("../play_button")
-focus_next = NodePath("../play_button")
-focus_previous = NodePath("../back_button")
-theme_override_font_sizes/font_size = 18
-auto_height = true
-item_count = 3
-item_0/text = "Minion Battle"
-item_1/text = "Space Fabricator"
-item_2/text = "Jury Summons"
+alignment = 1
 
-[node name="play_button" type="Button" parent="games_page/vbox/vbox_buttons"]
+[node name="game_item" parent="games_page/vbox/vbox_buttons/game_list" instance=ExtResource("3_4x26y")]
+layout_mode = 2
+text = "Minion Battle"
+selected = true
+
+[node name="game_item2" parent="games_page/vbox/vbox_buttons/game_list" instance=ExtResource("3_4x26y")]
+layout_mode = 2
+text = "Space Fabricator"
+
+[node name="game_item3" parent="games_page/vbox/vbox_buttons/game_list" instance=ExtResource("3_4x26y")]
+layout_mode = 2
+text = "Jury Summons"
+
+[node name="summon_button" type="Button" parent="games_page/vbox/vbox_buttons"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-focus_neighbor_top = NodePath("../game_list")
 focus_neighbor_bottom = NodePath("../back_button")
 focus_next = NodePath("../back_button")
-focus_previous = NodePath("../game_list")
 theme_override_font_sizes/font_size = 32
-text = "play"
+text = "summon game"
 
 [node name="back_button" type="Button" parent="games_page/vbox/vbox_buttons"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-focus_neighbor_top = NodePath("../play_button")
-focus_neighbor_bottom = NodePath("../game_list")
-focus_next = NodePath("../game_list")
-focus_previous = NodePath("../play_button")
+focus_neighbor_top = NodePath("../summon_button")
+focus_previous = NodePath("../summon_button")
 theme_override_font_sizes/font_size = 32
 text = "back"
+
+[node name="summon_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="selection_change_timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="start_game_timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="selection_flash_timer" type="Timer" parent="."]
+wait_time = 0.075
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="title_page/vbox/vbox_buttons/start_button" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="title_page/vbox/vbox_buttons/exit_button" to="." method="_on_exit_button_pressed"]
-[connection signal="pressed" from="games_page/vbox/vbox_buttons/play_button" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="games_page/vbox/vbox_buttons/summon_button" to="." method="_on_summon_button_pressed"]
 [connection signal="pressed" from="games_page/vbox/vbox_buttons/back_button" to="." method="_on_back_button_pressed"]
+[connection signal="timeout" from="summon_timer" to="." method="_on_summon_timer_timeout"]
+[connection signal="timeout" from="selection_change_timer" to="." method="_on_selection_change_timer_timeout"]
+[connection signal="timeout" from="start_game_timer" to="." method="_on_start_game_timer_timeout"]
+[connection signal="timeout" from="selection_flash_timer" to="." method="_on_selection_flash_timer_timeout"]

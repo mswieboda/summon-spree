@@ -2,6 +2,9 @@ extends Control
 
 
 var is_ready = false
+var is_summoning = false
+@onready var game_list = $games_page/vbox/vbox_buttons/game_list
+
 
 func _ready():
   is_ready = true
@@ -34,9 +37,9 @@ func focus_button(page: MarginContainer):
     return
 
   if page == $games_page:
-    vbox_buttons.get_node("game_list").select(0)
+    vbox_buttons.get_node("game_list").get_child(0).toggle_select()
 
-  var control: Control = vbox_buttons.get_child(0)
+  var control: Control = vbox_buttons.get_child(1 if page == $games_page else 0)
 
   if control is Control:
     control.grab_focus()
@@ -48,10 +51,10 @@ func _on_back_button_pressed():
   focus_button($title_page)
 
 
-func _on_play_button_pressed():
-  var game_list: ItemList = $games_page.get_node("vbox/vbox_buttons/game_list")
-  var selected_game_indexes: PackedInt32Array = game_list.get_selected_items()
-  var selected_game = game_list.get_item_text(selected_game_indexes[0])
+func start_game():
+  var games = game_list.get_children()
+  var selected_games = games.filter(func(node): return node.selected)
+  var selected_game = null if selected_games.is_empty() else selected_games[0].text
   var scene = null
 
   if selected_game == "Minion Battle":
@@ -63,3 +66,67 @@ func _on_play_button_pressed():
 
   if scene:
     get_tree().change_scene_to_file(scene)
+
+
+func _on_summon_button_pressed():
+  is_summoning = true
+  toggle_disabled()
+  $summon_timer.start(randf_range(3, 5))
+  $selection_change_timer.start()
+
+
+func toggle_disabled():
+  $games_page/vbox/vbox_buttons/summon_button.disabled = !$games_page/vbox/vbox_buttons/summon_button.disabled
+  $games_page/vbox/vbox_buttons/back_button.disabled = !$games_page/vbox/vbox_buttons/back_button.disabled
+
+
+func get_games_selected_index():
+  var games = game_list.get_children()
+
+  # find first that is selected, toggle it, go to next index toggle it
+  var selected_index = 0
+
+  for i in len(games):
+    var game = games[i]
+
+    if game.selected:
+      selected_index = i
+      break
+
+  return selected_index
+
+
+func _on_selection_change_timer_timeout():
+  var games = game_list.get_children()
+  var selected_index = get_games_selected_index()
+
+  games[selected_index].toggle_select()
+
+  selected_index += 1
+
+  if selected_index > len(games) - 1:
+    selected_index = 0
+
+  games[selected_index].toggle_select()
+
+  $selection_change_timer.wait_time += 0.025
+  $selection_change_timer.start()
+
+
+func _on_summon_timer_timeout():
+  $selection_change_timer.stop()
+  $selection_flash_timer.start()
+  $start_game_timer.start()
+
+
+func _on_start_game_timer_timeout():
+  $selection_flash_timer.stop()
+  toggle_disabled()
+  start_game()
+
+
+func _on_selection_flash_timer_timeout():
+  var games = game_list.get_children()
+  var selected_index = get_games_selected_index()
+
+  games[selected_index].toggle_flash_color()
