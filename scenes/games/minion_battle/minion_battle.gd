@@ -1,5 +1,6 @@
 extends Node3D
 
+const MAX_MINIONS = 10
 
 var minion_scene = preload("res://scenes/games/minion_battle/objs/minion/minion.tscn")
 var is_game_over = false
@@ -32,6 +33,9 @@ func check_for_game_over():
 
 
 func summon_minion(player_node : Node3D):
+  if player_node.get_node("minions").get_child_count() >= MAX_MINIONS:
+    return
+
   var minion = minion_scene.instantiate()
   minion.is_player = player_node == $player
   player_node.get_node("minions").add_child(minion)
