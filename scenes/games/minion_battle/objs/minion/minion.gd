@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-const SPEED = 500
+const SPEED = 250
 const COLOR_PLAYER = "#ff0000"
 const COLOR_CPU = "#0000ff"
 
@@ -33,7 +33,16 @@ func _physics_process(delta):
   if is_dead or is_game_over:
     return
 
+  check_for_freed_minions()
   movement_and_attack(delta)
+
+
+func is_valid_minion(node: Node3D):
+  return node and "is_dead" in node and not node.is_dead and not node.is_queued_for_deletion()
+
+
+func check_for_freed_minions():
+  target_minions = target_minions.filter(is_valid_minion)
 
 
 func movement_and_attack(delta):
@@ -41,6 +50,7 @@ func movement_and_attack(delta):
     if movement(delta, target_castle, 3):
       is_game_over = true
   elif not target_minions.is_empty():
+    # TODO: units get stuck, use path finding, or sort target_minions by distance etc
     if movement(delta, target_minions[0], 1):
       if not attack_node:
         start_attacking(target_minions[0])

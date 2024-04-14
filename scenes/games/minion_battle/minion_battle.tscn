@@ -48,7 +48,6 @@ transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -18.2953
 [node name="dead_minions" type="Node3D" parent="player"]
 
 [node name="timer" type="Timer" parent="player"]
-one_shot = true
 autostart = true
 
 [node name="cpu" type="Node3D" parent="."]
@@ -62,7 +61,6 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 17.771
 [node name="dead_minions" type="Node3D" parent="cpu"]
 
 [node name="timer" type="Timer" parent="cpu"]
-one_shot = true
 autostart = true
 
 [node name="hud" type="Control" parent="."]
