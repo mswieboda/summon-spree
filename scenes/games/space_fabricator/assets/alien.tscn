@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8bk4fm4y31uv"]
+
+[ext_resource type="Script" path="res://alien.gd" id="1_4rjtl"]
+[ext_resource type="PackedScene" uid="uid://bc2r1jmxe5nmi" path="res://scenes/games/space_fabricator/assets/blend_files/aliens.blend" id="2_wn7pu"]
+[ext_resource type="PackedScene" uid="uid://bv78runcu465n" path="res://scenes/games/space_fabricator/assets/blend_files/black_hole.blend" id="3_5kico"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bdgku"]
+size = Vector3(0.406311, 0.997803, 0.60144)
+
+[node name="alien" type="CharacterBody3D"]
+script = ExtResource("1_4rjtl")
+
+[node name="aliens" parent="." instance=ExtResource("2_wn7pu")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0997322, 0.500348, 0.00238037)
+shape = SubResource("BoxShape3D_bdgku")
+
+[node name="black_hole" parent="." instance=ExtResource("3_5kico")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -0.25, 0.5, 0)
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

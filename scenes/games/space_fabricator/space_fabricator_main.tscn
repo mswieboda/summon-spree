@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://dxtsurc6d1ywl"]
 
-[ext_resource type="PackedScene" path="res://scenes/games/space_fabricator/assets/ship.tscn" id="1_a7e6m"]
-[ext_resource type="PackedScene" path="res://scenes/games/space_fabricator/assets/player.tscn" id="2_dhlxs"]
+[ext_resource type="PackedScene" uid="uid://dvgybi3qjnyb7" path="res://scenes/games/space_fabricator/assets/ship.tscn" id="1_a7e6m"]
+[ext_resource type="PackedScene" uid="uid://cihoflsc34mdj" path="res://scenes/games/space_fabricator/assets/player.tscn" id="2_dhlxs"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xa1k1"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
