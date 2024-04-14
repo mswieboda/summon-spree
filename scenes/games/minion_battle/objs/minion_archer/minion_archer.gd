@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
-const SPEED = 250
-const PATH_X_SPEED = 250
+const SPEED = 150
+const PATH_X_SPEED = 150
 const COLOR_PLAYER = "#ff0000"
 const COLOR_CPU = "#0000ff"
 

@@ -53,7 +53,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, 0, 
 
 [node name="area" type="Area3D" parent="player/castle/spawn"]
 collision_layer = 2
-collision_mask = 0
+collision_mask = 2
 monitorable = false
 
 [node name="collision" type="CollisionShape3D" parent="player/castle/spawn/area"]
@@ -75,8 +75,8 @@ transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 20, 0,
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 
 [node name="area" type="Area3D" parent="cpu/castle/spawn"]
-collision_layer = 3
-collision_mask = 0
+collision_layer = 2
+collision_mask = 2
 monitorable = false
 
 [node name="collision" type="CollisionShape3D" parent="cpu/castle/spawn/area"]
@@ -124,12 +124,14 @@ layout_mode = 2
 
 [node name="arms_button" type="Button" parent="hud/margin/vbox/hbox/buttons"]
 layout_mode = 2
+focus_mode = 0
 toggle_mode = true
 button_pressed = true
 text = "arms"
 
 [node name="archer_button" type="Button" parent="hud/margin/vbox/hbox/buttons"]
 layout_mode = 2
+focus_mode = 0
 toggle_mode = true
 text = "archer"
 

@@ -68,6 +68,7 @@ func _on_arms_button_toggled(toggled_on):
   if toggled_on:
     $hud/margin/vbox/hbox/buttons/archer_button.button_pressed = false
     player_spawn_type = "arms"
+    $player/timer.wait_time = 1
   else:
     $hud/margin/vbox/hbox/buttons/archer_button.button_pressed = true
 
@@ -75,5 +76,6 @@ func _on_archer_button_toggled(toggled_on):
   if toggled_on:
     $hud/margin/vbox/hbox/buttons/arms_button.button_pressed = false
     player_spawn_type = "archer"
+    $player/timer.wait_time = 2
   else:
     $hud/margin/vbox/hbox/buttons/arms_button.button_pressed = true
