@@ -12,6 +12,14 @@ script = ExtResource("1_y83eo")
 
 [node name="player_model" parent="." instance=ExtResource("2_aegl7")]
 
+[node name="pew_spawn" type="Node3D" parent="player_model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.298673, 0.850357, -0.804783)
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.600304, 0)
 shape = SubResource("CapsuleShape3D_by5gk")
+
+[node name="bullet_timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="bullet_timer" to="." method="_on_bullet_timer_timeout"]

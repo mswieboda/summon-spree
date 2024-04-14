@@ -2,6 +2,7 @@ extends StaticBody3D
 
 var spawnPoint
 var enemyRes = preload("res://scenes/games/space_fabricator/assets/alien.tscn")
+var bulletRes = preload("res://scenes/games/space_fabricator/assets/pew_beam.tscn")
 var enemyTarget
 
 # Called when the node enters the scene tree for the first time.
@@ -15,9 +16,17 @@ func _ready():
 func _process(_delta):
   pass
 
+func bullet_spawn(position, direction):
+  print(position)
+  print(direction)
+  var newBul = bulletRes.instantiate()
+  $bullet_manager.add_child(newBul)
+  newBul.global_transform.origin = position
+  newBul.look_at(position + direction)
+
+  pass
 
 func _on_area_3d_area_entered(area):
-  print("making enemy")
   var enemy = enemyRes.instantiate()
   $enemyList.add_child(enemy)
   enemy.global_transform.origin = spawnPoint.global_transform.origin

@@ -22,5 +22,4 @@ func _on_timer_timeout():
   spawnZ = randi_range(-7,7)
   spawnY = 0.5
   spawnPoint.transform.origin = Vector3(spawnX,spawnY,spawnZ)
-  print(Vector3(spawnX,spawnY,spawnZ))
   pass # Replace with function body.

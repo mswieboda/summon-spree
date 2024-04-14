@@ -70,3 +70,8 @@ func point_character(direction:Vector3):
     playerDir.global_transform = playerDir.global_transform.looking_at(planar_point)
   elif (direction.length() != 0):
     playerDir.transform.basis = basis.looking_at(direction)
+
+func _on_bullet_timer_timeout():
+  var bul_spawn_point = $player_model/pew_spawn.global_transform
+  get_parent().get_node("ship").bullet_spawn(bul_spawn_point.origin, $player_model.global_transform.basis.z)
+  pass # Replace with function body.

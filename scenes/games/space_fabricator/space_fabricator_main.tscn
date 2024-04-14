@@ -33,8 +33,7 @@ environment = SubResource("Environment_ehxj6")
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
 
-[node name="Node3D" parent="." instance=ExtResource("1_a7e6m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.194618, 0, 0.0119019)
+[node name="ship" parent="." instance=ExtResource("1_a7e6m")]
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 3.22161, -48.8441)

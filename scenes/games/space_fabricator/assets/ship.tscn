@@ -89,4 +89,6 @@ polygon = PackedVector2Array(-1.19381, -6.98635, -1.18948, -4.9764, -5.19199, -4
 
 [node name="enemyList" type="Node3D" parent="."]
 
+[node name="bullet_manager" type="Node3D" parent="."]
+
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
