@@ -2,8 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/games/minion_battle/objs/minion_archer/minion_archer.gd" id="1_s1uma"]
 [ext_resource type="PackedScene" uid="uid://c6r6oytmentx1" path="res://scenes/games/minion_battle/assets/3d/minion.blend" id="2_22k77"]
-[ext_resource type="AudioStream" uid="uid://5kl18jvihuif" path="res://scenes/games/minion_battle/assets/audio/swords.mp3" id="3_danu0"]
-[ext_resource type="AudioStream" uid="uid://bapgxv31wyunc" path="res://scenes/games/minion_battle/assets/audio/die.mp3" id="4_14abm"]
+[ext_resource type="AudioStream" uid="uid://co0g117bc2ffw" path="res://scenes/games/minion_battle/assets/audio/arrow-whoosh.mp3" id="3_ucpft"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_5uaxx"]
 radius = 0.025
@@ -40,6 +39,12 @@ height = 1.5
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_u48xn"]
 height = 1.0
 radius = 15.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_dpn8g"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("3_ucpft")
+stream_0/weight = 1.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_2pvxu"]
 height = 1.0
@@ -92,10 +97,8 @@ shape = SubResource("CylinderShape3D_u48xn")
 wait_time = 2.0
 
 [node name="audio_attack" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("3_danu0")
-
-[node name="audio_die" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("4_14abm")
+stream = SubResource("AudioStreamRandomizer_dpn8g")
+volume_db = -17.0
 
 [node name="area_pathing" type="Area3D" parent="."]
 collision_layer = 0

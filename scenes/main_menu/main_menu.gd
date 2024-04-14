@@ -12,12 +12,14 @@ func _ready():
 
 
 func _on_start_button_pressed():
+  $audio_snap.play()
   $title_page.hide()
   $games_page.show()
   focus_button($games_page)
 
 
 func _on_exit_button_pressed():
+  $audio_snap.play()
   get_tree().quit()
 
 
@@ -46,6 +48,7 @@ func focus_button(page: MarginContainer):
 
 
 func _on_back_button_pressed():
+  $audio_snap.play()
   $games_page.hide()
   $title_page.show()
   focus_button($title_page)
@@ -70,6 +73,7 @@ func start_game():
 
 func _on_summon_button_pressed():
   is_summoning = true
+  $audio_snap.play()
   toggle_disabled()
   $summon_timer.start(randf_range(3, 5))
   $selection_change_timer.start()
@@ -109,6 +113,7 @@ func _on_selection_change_timer_timeout():
 
   games[selected_index].toggle_select()
 
+  $audio_snap.play()
   $selection_change_timer.wait_time += 0.025
   $selection_change_timer.start()
 

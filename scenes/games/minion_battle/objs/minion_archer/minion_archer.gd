@@ -106,7 +106,6 @@ func attack():
     attack_node = null
     return
 
-  $audio_attack.pitch_scale = randf_range(0.75, 1.25)
   $audio_attack.play()
   attack_node.damage(attack_damage, self)
 
@@ -131,8 +130,6 @@ func damage(amount: int, node):
 
 
 func die():
-  $audio_attack.pitch_scale = randf_range(0.75, 1.25)
-  $audio_die.play()
   is_dead = true
 
   var minion_dead = minion_dead_scene.instantiate()

@@ -12,6 +12,7 @@ func _ready():
   change_color(COLOR_PLAYER if is_player else COLOR_CPU)
   rotate(Vector3.UP, randi_range(0, 360))
   translate(Vector3.UP * randf_range(-0.03, 0.015))
+  $audio_die.play()
 
 
 func change_color(colorHex: String):

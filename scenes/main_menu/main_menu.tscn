@@ -1,8 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://dooo2c7g3j2pl"]
+[gd_scene load_steps=6 format=3 uid="uid://dooo2c7g3j2pl"]
 
 [ext_resource type="Theme" uid="uid://d18cpgia7nf2j" path="res://assets/themes/default_theme.tres" id="1_xyxts"]
 [ext_resource type="Script" path="res://scenes/main_menu/main_menu.gd" id="2_tylyp"]
 [ext_resource type="PackedScene" uid="uid://briq0dl26n072" path="res://scenes/main_menu/objs/game_item.tscn" id="3_4x26y"]
+[ext_resource type="AudioStream" uid="uid://d4a27kgn8g1b1" path="res://assets/audio/snap.mp3" id="4_j71kf"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_pepms"]
+random_pitch = 1.05
+streams_count = 1
+stream_0/stream = ExtResource("4_j71kf")
+stream_0/weight = 1.0
 
 [node name="main_menu" type="Control"]
 process_mode = 3
@@ -156,6 +163,9 @@ one_shot = true
 
 [node name="selection_flash_timer" type="Timer" parent="."]
 wait_time = 0.075
+
+[node name="audio_snap" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_pepms")
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="title_page/vbox/vbox_buttons/start_button" to="." method="_on_start_button_pressed"]
