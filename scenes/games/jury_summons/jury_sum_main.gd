@@ -17,16 +17,16 @@ var jurClass = preload("res://scenes/games/jury_summons/assets/juror.tscn")
 func _ready():
 
   jurorRemain = 6
-
-  if playerTurn == true:
-    createJurorsList()
-    pass
+  createJurorsList()
 
   pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+  if playerTurn == true:
+    indJuror()
+    moveJuror()
   pass
 
 func newJuror():
@@ -39,6 +39,8 @@ func newJuror():
   pass
 
 func aiSelection():
+  #simple AI to select Yes or No
+
   pass
 
 func createJurorsList():
@@ -46,8 +48,18 @@ func createJurorsList():
   candidate = $Candidate
 
 func indJuror():
-  if jurIndex >= 0:
-    jurors[jurIndex].add_child(newJuror())
-    candidate.add_child()
-    jurorRemain-=1
-    jurIndex+=1
+  if jurIndex >= 0 and jurIndex < 6:
+    #jurors[jurIndex].add_child(newJuror())
+    candidate.add_child(newJuror())
+    print_debug(candidate.get_child(0))
+    playerTurn = false
+
+
+
+func moveJuror():
+  print_debug(candidate.get_child(0))
+  candidate.get_child(0).reparent(jurors[jurIndex],false)
+   #jurIndex+=1
+  #jurorRemain-=1
+
+
