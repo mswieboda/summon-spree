@@ -37,3 +37,20 @@ scale = Vector2(0.75, 0.75)
 [node name="Candidate" type="Node2D" parent="."]
 position = Vector2(137, 481)
 scale = Vector2(1.5, 1.5)
+
+[node name="YesButton" type="Button" parent="."]
+offset_left = 819.0
+offset_top = 517.0
+offset_right = 904.0
+offset_bottom = 577.0
+text = "YES"
+
+[node name="NoButton" type="Button" parent="."]
+offset_left = 934.0
+offset_top = 520.0
+offset_right = 1010.0
+offset_bottom = 570.0
+text = "NO"
+
+[connection signal="pressed" from="YesButton" to="." method="_on_yes_button_pressed"]
+[connection signal="pressed" from="NoButton" to="." method="_on_no_button_pressed"]

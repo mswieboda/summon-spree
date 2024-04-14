@@ -5,11 +5,13 @@ var jurorRemain
 var jurors = []
 var candidate
 var playerTurn = true
+var aiTurn = false
 var clipStat1
 var clipStat2
 var clipStat3
 var clipStat4
 var jurIndex = 0
+var buttonAction = true
 var jurClass = preload("res://scenes/games/jury_summons/assets/juror.tscn")
 
 
@@ -25,9 +27,10 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
   if playerTurn == true:
-    indJuror()
-    moveJuror()
-  pass
+    playerAction()
+    #moveJuror()
+
+
 
 func newJuror():
   var j1 = jurClass.instantiate()
@@ -52,14 +55,40 @@ func indJuror():
     #jurors[jurIndex].add_child(newJuror())
     candidate.add_child(newJuror())
     print_debug(candidate.get_child(0))
-    playerTurn = false
 
 
 
 func moveJuror():
   print_debug(candidate.get_child(0))
   candidate.get_child(0).reparent(jurors[jurIndex],false)
-   #jurIndex+=1
-  #jurorRemain-=1
+  jurIndex+=1
+  jurorRemain-=1
+
+func playerAction():
+  indJuror()
+  playerTurn = false
+  buttonAction = true
 
 
+func aiAction():
+
+  indJuror()
+  playerTurn = true
+  aiTurn = false
+
+func _on_yes_button_pressed():
+  if buttonAction == false:
+    return
+  moveJuror()
+  buttonAction = false
+  aiTurn = true
+  pass # Replace with function body.
+
+
+func _on_no_button_pressed():
+  if buttonAction == false:
+    return
+  indJuror()
+  candidate.get_child(0).queue_free()
+
+ # Replace with function body.
