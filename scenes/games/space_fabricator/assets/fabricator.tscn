@@ -1,15 +1,42 @@
-[gd_scene load_steps=3 format=3 uid="uid://j5q16owaknmj"]
+[gd_scene load_steps=7 format=3 uid="uid://j5q16owaknmj"]
 
 [ext_resource type="PackedScene" uid="uid://orxa8aq3b0ii" path="res://scenes/games/space_fabricator/assets/blend_files/fabricator.blend" id="1_d6xgr"]
+[ext_resource type="Script" path="res://scenes/games/space_fabricator/assets/fabricator.gd" id="1_p233y"]
+[ext_resource type="PackedScene" uid="uid://bv78runcu465n" path="res://scenes/games/space_fabricator/assets/blend_files/black_hole.blend" id="2_5an65"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_er5u0"]
 height = 1.2
 radius = 1.0
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_tw1tw"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_2vvt8"]
+
 [node name="fabricator" type="StaticBody3D"]
+script = ExtResource("1_p233y")
 
 [node name="fabricator" parent="." instance=ExtResource("1_d6xgr")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.401425, 0)
 shape = SubResource("CylinderShape3D_er5u0")
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="black_hole" parent="Node3D" instance=ExtResource("2_5an65")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.688597, 0)
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="spawnPoint" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="spawnPoint"]
+shape = SubResource("SphereShape3D_tw1tw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="spawnPoint"]
+mesh = SubResource("SphereMesh_2vvt8")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
