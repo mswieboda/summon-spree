@@ -25,14 +25,14 @@ func check_for_game_over():
 
   if is_player_game_over:
     is_game_over = true
-    $menu.game_over(true)
+    $game_menu.game_over(true)
     return
 
   var is_cpu_game_over = $cpu/minions.get_children().any(minion_is_game_over)
 
   if is_cpu_game_over:
     is_game_over = true
-    $menu.game_over(false)
+    $game_menu.game_over(false)
 
 
 func summon_minion(player_node : Node3D):

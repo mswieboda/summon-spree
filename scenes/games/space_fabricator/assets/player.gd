@@ -10,16 +10,19 @@ var camera
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+
 func _ready():
   playerDir = get_node("player_model")
   camera = get_node("Camera3D")
 
-func _process(delta):
-  if(Input.is_action_pressed("LMB")):
+
+func _process(_delta):
+  if Input.is_action_pressed("LMB"):
     isFiring = true
     fire_gun()
   else:
     isFiring = false
+
 
 func _physics_process(delta):
   # Add the gravity.
@@ -46,9 +49,9 @@ func _physics_process(delta):
 
   move_and_slide()
 
-func point_character(direction:Vector3):
-  #try to get the mouse collision position
 
+func point_character(direction:Vector3):
+  # try to get the mouse collision position
   var isMousePoint
   var space_state = get_world_3d().direct_space_state
   var from = camera.project_ray_origin(get_viewport().get_mouse_position())
@@ -58,28 +61,25 @@ func point_character(direction:Vector3):
 
   var result = space_state.intersect_ray(query)
 
-
-  #if it doesn't collide, point via WASD otherwise look at mouse
-  if (result.is_empty() or !isFiring):
+  # if it doesn't collide, point via WASD otherwise look at mouse
+  if result.is_empty() or !isFiring:
     isMousePoint = false
   else:
     isMousePoint = true
 
-  if (isMousePoint):
+  if isMousePoint:
     #get_parent().get_node("MeshInstance3D").global_transform.origin = result.position
     var planar_point = Vector3(result.position.x,0,result.position.z)
     playerDir.global_transform = playerDir.global_transform.looking_at(planar_point)
-  elif (direction.length() != 0):
-    playerDir.transform.basis = basis.looking_at(direction)
+  elif direction.length() != 0:
+    playerDir.transform.basis = Basis.looking_at(direction)
+
 
 func _on_bullet_timer_timeout():
   var bul_spawn_point = $player_model/pew_spawn.global_transform
   get_parent().get_node("ship").bullet_spawn(bul_spawn_point.origin, $player_model.global_transform.basis.z)
 
-  pass # Replace with function body.
 
 func fire_gun():
   if $bullet_timer.is_stopped():
     $bullet_timer.start()
-
-    pass

@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dxtsurc6d1ywl"]
+[gd_scene load_steps=8 format=3 uid="uid://dxtsurc6d1ywl"]
 
 [ext_resource type="PackedScene" uid="uid://dvgybi3qjnyb7" path="res://scenes/games/space_fabricator/assets/ship.tscn" id="1_a7e6m"]
 [ext_resource type="PackedScene" uid="uid://cihoflsc34mdj" path="res://scenes/games/space_fabricator/assets/player.tscn" id="2_dhlxs"]
+[ext_resource type="PackedScene" uid="uid://bgfucy8qr1a5a" path="res://scenes/game_menu/game_menu.tscn" id="3_1wf28"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_878lx"]
 sky_top_color = Color(0.646029, 0.646029, 0.646029, 1)
@@ -40,3 +41,5 @@ fov = 40.0
 visible = false
 mesh = SubResource("SphereMesh_2mk8c")
 skeleton = NodePath("")
+
+[node name="game_menu" parent="." instance=ExtResource("3_1wf28")]

@@ -1,0 +1,80 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgfucy8qr1a5a"]
+
+[ext_resource type="Theme" uid="uid://d18cpgia7nf2j" path="res://assets/themes/default_theme.tres" id="1_1x11m"]
+[ext_resource type="Script" path="res://scenes/game_menu/game_menu.gd" id="2_kkp5v"]
+
+[node name="game_menu" type="Control"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_1x11m")
+script = ExtResource("2_kkp5v")
+
+[node name="bg" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -169.0
+offset_top = -157.0
+offset_right = 169.0
+offset_bottom = 157.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="color" type="ColorRect" parent="bg"]
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="margin" type="MarginContainer" parent="bg"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="vbox" type="VBoxContainer" parent="bg/margin"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="title" type="Label" parent="bg/margin/vbox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="description" type="Label" parent="bg/margin/vbox"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="vbox_buttons" type="VBoxContainer" parent="bg/margin/vbox"]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="continue" type="Button" parent="bg/margin/vbox/vbox_buttons"]
+layout_mode = 2
+text = "continue"
+
+[node name="exit" type="Button" parent="bg/margin/vbox/vbox_buttons"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "exit"
+
+[node name="timer_game_over" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[connection signal="pressed" from="bg/margin/vbox/vbox_buttons/continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="bg/margin/vbox/vbox_buttons/exit" to="." method="_on_exit_pressed"]
+[connection signal="timeout" from="timer_game_over" to="." method="_on_timer_game_over_timeout"]

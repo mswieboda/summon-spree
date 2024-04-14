@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cwaeu50psqsf3" path="res://scenes/games/minion_battle/objs/castle/castle.tscn" id="1_mldg5"]
 [ext_resource type="Script" path="res://scenes/games/minion_battle/camera.gd" id="2_4b5nw"]
 [ext_resource type="Theme" uid="uid://d18cpgia7nf2j" path="res://assets/themes/default_theme.tres" id="4_d3cm0"]
-[ext_resource type="Script" path="res://scenes/games/minion_battle/hud.gd" id="5_hfi4d"]
+[ext_resource type="PackedScene" uid="uid://bgfucy8qr1a5a" path="res://scenes/game_menu/game_menu.tscn" id="5_8jmm5"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rboq8"]
 sky_top_color = Color(0.784314, 0.905882, 1, 1)
@@ -186,82 +186,9 @@ alignment = 2
 layout_mode = 2
 text = "WASD for camera, SHIFT for speed boost"
 
-[node name="menu" type="Control" parent="."]
-process_mode = 3
-visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("4_d3cm0")
-script = ExtResource("5_hfi4d")
-
-[node name="bg" type="MarginContainer" parent="menu"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -169.0
-offset_top = -157.0
-offset_right = 169.0
-offset_bottom = 157.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="color" type="ColorRect" parent="menu/bg"]
-layout_mode = 2
-color = Color(0, 0, 0, 1)
-
-[node name="margin" type="MarginContainer" parent="menu/bg"]
-layout_mode = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
-
-[node name="vbox" type="VBoxContainer" parent="menu/bg/margin"]
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="title" type="Label" parent="menu/bg/margin/vbox"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 32
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="description" type="Label" parent="menu/bg/margin/vbox"]
-custom_minimum_size = Vector2(256, 0)
-layout_mode = 2
-size_flags_vertical = 3
-horizontal_alignment = 1
-autowrap_mode = 1
-
-[node name="vbox_buttons" type="VBoxContainer" parent="menu/bg/margin/vbox"]
-layout_mode = 2
-size_flags_vertical = 10
-
-[node name="continue" type="Button" parent="menu/bg/margin/vbox/vbox_buttons"]
-layout_mode = 2
-text = "continue"
-
-[node name="exit" type="Button" parent="menu/bg/margin/vbox/vbox_buttons"]
-layout_mode = 2
-size_flags_vertical = 4
-text = "exit"
-
-[node name="timer_game_over" type="Timer" parent="menu"]
-wait_time = 1.5
-one_shot = true
+[node name="game_menu" parent="." instance=ExtResource("5_8jmm5")]
 
 [connection signal="timeout" from="player/timer" to="." method="_on_player_timer_timeout"]
 [connection signal="timeout" from="cpu/timer" to="." method="_on_cpu_timer_timeout"]
 [connection signal="toggled" from="hud/margin/vbox/hbox/buttons/arms_button" to="." method="_on_arms_button_toggled"]
 [connection signal="toggled" from="hud/margin/vbox/hbox/buttons/archer_button" to="." method="_on_archer_button_toggled"]
-[connection signal="pressed" from="menu/bg/margin/vbox/vbox_buttons/continue" to="menu" method="_on_continue_pressed"]
-[connection signal="pressed" from="menu/bg/margin/vbox/vbox_buttons/exit" to="menu" method="_on_exit_pressed"]
-[connection signal="timeout" from="menu/timer_game_over" to="menu" method="_on_timer_game_over_timeout"]
