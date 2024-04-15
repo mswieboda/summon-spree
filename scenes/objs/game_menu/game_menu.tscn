@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bgfucy8qr1a5a"]
 
 [ext_resource type="Theme" uid="uid://d18cpgia7nf2j" path="res://assets/themes/default_theme.tres" id="1_1x11m"]
-[ext_resource type="Script" path="res://scenes/game_menu/game_menu.gd" id="2_kkp5v"]
+[ext_resource type="Script" path="res://scenes/objs/game_menu/game_menu.gd" id="2_kkp5v"]
 
 [node name="game_menu" type="Control"]
 process_mode = 3

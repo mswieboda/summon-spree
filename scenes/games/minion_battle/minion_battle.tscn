@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://bdb4c5tld3yn7"]
+[gd_scene load_steps=18 format=3 uid="uid://bdb4c5tld3yn7"]
 
 [ext_resource type="Script" path="res://scenes/games/minion_battle/minion_battle.gd" id="1_6di21"]
 [ext_resource type="PackedScene" uid="uid://cwaeu50psqsf3" path="res://scenes/games/minion_battle/objs/castle/castle.tscn" id="1_mldg5"]
 [ext_resource type="Script" path="res://scenes/games/minion_battle/camera.gd" id="2_4b5nw"]
 [ext_resource type="Theme" uid="uid://d18cpgia7nf2j" path="res://assets/themes/default_theme.tres" id="4_d3cm0"]
-[ext_resource type="PackedScene" uid="uid://bgfucy8qr1a5a" path="res://scenes/game_menu/game_menu.tscn" id="5_8jmm5"]
+[ext_resource type="PackedScene" uid="uid://bgfucy8qr1a5a" path="res://scenes/objs/game_menu/game_menu.tscn" id="5_8jmm5"]
+[ext_resource type="PackedScene" uid="uid://nghk2flj2raq" path="res://scenes/objs/fade_in/fade_in.tscn" id="6_que4b"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rboq8"]
 sky_top_color = Color(0.784314, 0.905882, 1, 1)
@@ -221,6 +222,8 @@ alignment = 2
 [node name="camera_instructions" type="Label" parent="hud/margin/vbox/hbox_instructions/hbox_fill"]
 layout_mode = 2
 text = "WASD for camera, SHIFT for speed boost"
+
+[node name="fade_in" parent="." instance=ExtResource("6_que4b")]
 
 [node name="game_menu" parent="." instance=ExtResource("5_8jmm5")]
 

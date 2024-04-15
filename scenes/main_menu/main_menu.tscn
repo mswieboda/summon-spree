@@ -33,7 +33,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="title_page" type="MarginContainer" parent="."]
+[node name="margin" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -45,110 +45,58 @@ theme_override_constants/margin_top = 64
 theme_override_constants/margin_right = 64
 theme_override_constants/margin_bottom = 64
 
-[node name="vbox" type="VBoxContainer" parent="title_page"]
+[node name="vbox" type="VBoxContainer" parent="margin"]
 layout_mode = 2
 alignment = 1
 
-[node name="title" type="Label" parent="title_page/vbox"]
+[node name="header" type="Label" parent="margin/vbox"]
 layout_mode = 2
-size_flags_vertical = 2
+size_flags_vertical = 0
 theme_override_font_sizes/font_size = 64
 text = "summon spree"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="vbox_buttons" type="VBoxContainer" parent="title_page/vbox"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 6
-
-[node name="start_button" type="Button" parent="title_page/vbox/vbox_buttons"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-focus_neighbor_top = NodePath("../exit_button")
-focus_neighbor_bottom = NodePath("../exit_button")
-focus_next = NodePath("../exit_button")
-focus_previous = NodePath("../exit_button")
-theme_override_font_sizes/font_size = 32
-text = "start"
-
-[node name="exit_button" type="Button" parent="title_page/vbox/vbox_buttons"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-focus_neighbor_top = NodePath("../start_button")
-focus_neighbor_bottom = NodePath("../start_button")
-focus_next = NodePath("../start_button")
-focus_previous = NodePath("../start_button")
-theme_override_font_sizes/font_size = 32
-text = "exit"
-
-[node name="games_page" type="MarginContainer" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 64
-theme_override_constants/margin_top = 64
-theme_override_constants/margin_right = 64
-theme_override_constants/margin_bottom = 64
-
-[node name="vbox" type="VBoxContainer" parent="games_page"]
-layout_mode = 2
-alignment = 1
-
-[node name="header" type="Label" parent="games_page/vbox"]
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 64
-text = "game selector"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="vbox_buttons" type="VBoxContainer" parent="games_page/vbox"]
+[node name="vbox_buttons" type="VBoxContainer" parent="margin/vbox"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="game_list" type="VBoxContainer" parent="games_page/vbox/vbox_buttons"]
+[node name="game_list" type="VBoxContainer" parent="margin/vbox/vbox_buttons"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 alignment = 1
 
-[node name="game_item" parent="games_page/vbox/vbox_buttons/game_list" instance=ExtResource("3_4x26y")]
+[node name="game_item" parent="margin/vbox/vbox_buttons/game_list" instance=ExtResource("3_4x26y")]
 layout_mode = 2
 text = "Minion Battle"
 selected = true
 
-[node name="game_item2" parent="games_page/vbox/vbox_buttons/game_list" instance=ExtResource("3_4x26y")]
+[node name="game_item2" parent="margin/vbox/vbox_buttons/game_list" instance=ExtResource("3_4x26y")]
 layout_mode = 2
 text = "Space Fabricator"
 
-[node name="game_item3" parent="games_page/vbox/vbox_buttons/game_list" instance=ExtResource("3_4x26y")]
+[node name="game_item3" parent="margin/vbox/vbox_buttons/game_list" instance=ExtResource("3_4x26y")]
 layout_mode = 2
 text = "Jury Summons"
 
-[node name="summon_button" type="Button" parent="games_page/vbox/vbox_buttons"]
+[node name="summon_button" type="Button" parent="margin/vbox/vbox_buttons"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-focus_neighbor_bottom = NodePath("../back_button")
-focus_next = NodePath("../back_button")
+focus_neighbor_bottom = NodePath("../exit_button")
+focus_next = NodePath("../exit_button")
 theme_override_font_sizes/font_size = 32
 text = "summon game"
 
-[node name="back_button" type="Button" parent="games_page/vbox/vbox_buttons"]
+[node name="exit_button" type="Button" parent="margin/vbox/vbox_buttons"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 focus_neighbor_top = NodePath("../summon_button")
 focus_previous = NodePath("../summon_button")
 theme_override_font_sizes/font_size = 32
-text = "back"
+text = "exit"
 
 [node name="summon_timer" type="Timer" parent="."]
 one_shot = true
@@ -168,10 +116,8 @@ wait_time = 0.075
 stream = SubResource("AudioStreamRandomizer_pepms")
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
-[connection signal="pressed" from="title_page/vbox/vbox_buttons/start_button" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="title_page/vbox/vbox_buttons/exit_button" to="." method="_on_exit_button_pressed"]
-[connection signal="pressed" from="games_page/vbox/vbox_buttons/summon_button" to="." method="_on_summon_button_pressed"]
-[connection signal="pressed" from="games_page/vbox/vbox_buttons/back_button" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="margin/vbox/vbox_buttons/summon_button" to="." method="_on_summon_button_pressed"]
+[connection signal="pressed" from="margin/vbox/vbox_buttons/exit_button" to="." method="_on_exit_button_pressed"]
 [connection signal="timeout" from="summon_timer" to="." method="_on_summon_timer_timeout"]
 [connection signal="timeout" from="selection_change_timer" to="." method="_on_selection_change_timer_timeout"]
 [connection signal="timeout" from="start_game_timer" to="." method="_on_start_game_timer_timeout"]

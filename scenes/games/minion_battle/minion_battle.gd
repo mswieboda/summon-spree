@@ -26,7 +26,7 @@ func lower_spawn_fog(playerNode, delta):
   var fog = playerNode.get_node("castle/spawn/fog")
 
   if fog.material.density > 0:
-    fog.material.density = lerp(fog.material.density, 0.0, delta)
+    fog.material.density = lerpf(fog.material.density, 0.0, delta)
 
 
 func minion_is_game_over(node: Node3D):

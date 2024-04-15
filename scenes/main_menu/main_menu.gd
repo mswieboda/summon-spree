@@ -3,27 +3,20 @@ extends Control
 @export var DEBUG = true
 
 var is_ready = false
-@onready var game_list = $games_page/vbox/vbox_buttons/game_list
+@onready var game_list = $margin/vbox/vbox_buttons/game_list
 
 
 func _ready():
   is_ready = true
-  focus_button($title_page)
+  focus_button()
 
 
 func _process(_delta):
   if not DEBUG:
     return
 
-  if $games_page.visible and Input.is_action_just_pressed("menu_debug_next"):
+  if Input.is_action_just_pressed("menu_debug_next"):
     select_next_game()
-
-
-func _on_start_button_pressed():
-  $audio_snap.play()
-  $title_page.hide()
-  $games_page.show()
-  focus_button($games_page)
 
 
 func _on_exit_button_pressed():
@@ -32,34 +25,25 @@ func _on_exit_button_pressed():
 
 
 func _on_visibility_changed():
-  if not $title_page or not $games_page or not is_ready:
+  if not is_ready:
     return
 
   if visible:
-    var page: MarginContainer = $title_page if $title_page.visible else $games_page
-    focus_button(page)
+    focus_button()
 
 
-func focus_button(page: MarginContainer):
-  var vbox_buttons = page.get_node("vbox/vbox_buttons")
+func focus_button():
+  var vbox_buttons = $margin/vbox/vbox_buttons
 
   if not vbox_buttons:
     return
 
-  if page == $games_page:
-    vbox_buttons.get_node("game_list").get_child(0).toggle_select()
+  vbox_buttons.get_node("game_list").get_child(0).toggle_select()
 
-  var control: Control = vbox_buttons.get_child(1 if page == $games_page else 0)
+  var control: Control = vbox_buttons.get_child(1)
 
   if control is Control:
     control.grab_focus()
-
-
-func _on_back_button_pressed():
-  $audio_snap.play()
-  $games_page.hide()
-  $title_page.show()
-  focus_button($title_page)
 
 
 func start_game():
@@ -91,8 +75,8 @@ func _on_summon_button_pressed():
 
 
 func toggle_disabled():
-  $games_page/vbox/vbox_buttons/summon_button.disabled = !$games_page/vbox/vbox_buttons/summon_button.disabled
-  $games_page/vbox/vbox_buttons/back_button.disabled = !$games_page/vbox/vbox_buttons/back_button.disabled
+  $margin/vbox/vbox_buttons/summon_button.disabled = !$margin/vbox/vbox_buttons/summon_button.disabled
+  $margin/vbox/vbox_buttons/exit_button.disabled = !$margin/vbox/vbox_buttons/exit_button.disabled
 
 
 func get_games_selected_index():

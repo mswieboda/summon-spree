@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dxtsurc6d1ywl"]
+[gd_scene load_steps=10 format=3 uid="uid://dxtsurc6d1ywl"]
 
 [ext_resource type="Script" path="res://scenes/games/space_fabricator/space_fabricator_main.gd" id="1_6p8vn"]
 [ext_resource type="PackedScene" uid="uid://dvgybi3qjnyb7" path="res://scenes/games/space_fabricator/assets/ship.tscn" id="1_a7e6m"]
 [ext_resource type="PackedScene" uid="uid://cihoflsc34mdj" path="res://scenes/games/space_fabricator/assets/player.tscn" id="2_dhlxs"]
-[ext_resource type="PackedScene" uid="uid://bgfucy8qr1a5a" path="res://scenes/game_menu/game_menu.tscn" id="3_1wf28"]
+[ext_resource type="PackedScene" uid="uid://bgfucy8qr1a5a" path="res://scenes/objs/game_menu/game_menu.tscn" id="3_1wf28"]
+[ext_resource type="PackedScene" uid="uid://nghk2flj2raq" path="res://scenes/objs/fade_in/fade_in.tscn" id="5_bv8si"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_878lx"]
 sky_top_color = Color(0.646029, 0.646029, 0.646029, 1)
@@ -43,5 +44,7 @@ fov = 40.0
 visible = false
 mesh = SubResource("SphereMesh_2mk8c")
 skeleton = NodePath("")
+
+[node name="fade_in" parent="." instance=ExtResource("5_bv8si")]
 
 [node name="game_menu" parent="." instance=ExtResource("3_1wf28")]
