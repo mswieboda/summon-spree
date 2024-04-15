@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://dowl7wos5wjuu"]
+
+[node name="InstructionMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InstructionText" type="TextEdit" parent="."]
+layout_mode = 0
+offset_left = 299.0
+offset_top = 304.0
+offset_right = 432.0
+offset_bottom = 408.0
+text = "Instructions:
+The goal is to obtain Bias/Honesty value greater th"
+
+[node name="Close" type="Button" parent="."]
+layout_mode = 0
+offset_left = 688.0
+offset_top = 156.0
+offset_right = 748.0
+offset_bottom = 216.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "X"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 431.0
+offset_top = 153.0
+offset_right = 751.0
+offset_bottom = 473.0
+color = Color(0, 0, 0, 1)

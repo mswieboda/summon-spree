@@ -172,6 +172,7 @@ visible = false
 layout_mode = 1
 
 [node name="game_menu" parent="." instance=ExtResource("3_0hld0")]
+visible = true
 layout_mode = 1
 
 [node name="NextEffect" type="AudioStreamPlayer2D" parent="."]
@@ -203,6 +204,11 @@ z_index = -1
 position = Vector2(575.528, 322)
 scale = Vector2(0.191824, 0.190741)
 texture = ExtResource("7_kvg13")
+
+[node name="Instructions" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [connection signal="pressed" from="YesButton" to="." method="_on_yes_button_pressed"]
 [connection signal="pressed" from="NoButton" to="." method="_on_no_button_pressed"]

@@ -26,7 +26,7 @@ func _ready():
   noCountRemain = 5
   determineTrial()
   biasVsHonesty()
-  winValue = randi_range(3,8)
+  winValue = randi_range(3,5)
   $TrialValue.set_text("Expected " + decisionType + ": " + str(winValue))
   createJurorsList()
 
@@ -130,12 +130,12 @@ func winCondition():
   #print(str(BvsH) + " " + str(hTotal) + " " + str(winValue))
   $GavelEffect.play()
   if BvsH == 1:
-    if bTotal > winValue:
+    if bTotal >= winValue:
       $game_menu.game_over(true, "Congratulations, you won the trial!")
     else:
        $game_menu.game_over(false, "Unfortunate...You lost the trial...")
   else:
-    if hTotal > winValue:
+    if hTotal >= winValue:
        $game_menu.game_over(true, "Congratulations, you won the trial!")
     else:
        $game_menu.game_over(false, "Unfortunate...You lost the trial...")
