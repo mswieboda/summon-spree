@@ -74,7 +74,7 @@ selected = true
 
 [node name="game_item2" parent="margin/vbox/vbox_buttons/game_list" instance=ExtResource("3_4x26y")]
 layout_mode = 2
-text = "Space Fabricator"
+text = "Space Horde"
 
 [node name="game_item3" parent="margin/vbox/vbox_buttons/game_list" instance=ExtResource("3_4x26y")]
 layout_mode = 2

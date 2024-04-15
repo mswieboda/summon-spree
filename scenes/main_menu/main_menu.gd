@@ -70,7 +70,7 @@ func start_game():
 
   if selected_game == "Minion Battle":
     scene = "res://scenes/games/minion_battle/minion_battle.tscn"
-  elif selected_game == "Space Fabricator":
+  elif selected_game == "Space Horde":
     scene = "res://scenes/games/space_fabricator/space_fabricator_main.tscn"
   elif selected_game == "Jury Summons":
     scene = "res://scenes/games/jury_summons/jury_sum_main.tscn"
