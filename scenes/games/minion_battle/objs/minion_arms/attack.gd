@@ -24,5 +24,5 @@ func _physics_process(delta):
     has_attacked = false
 
 
-func attack():
+func attack(_color: String):
   is_attacking = true

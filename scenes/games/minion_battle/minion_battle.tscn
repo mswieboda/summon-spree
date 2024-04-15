@@ -153,6 +153,8 @@ material = SubResource("FogMaterial_yu3i0")
 [node name="timer" type="Timer" parent="cpu"]
 autostart = true
 
+[node name="arrows" type="Node3D" parent="."]
+
 [node name="hud" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15

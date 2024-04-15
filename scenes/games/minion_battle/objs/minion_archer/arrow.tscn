@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://dcwofppofyc71"]
+
+[ext_resource type="Script" path="res://scenes/games/minion_battle/objs/minion_archer/arrow.gd" id="1_ttoqa"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_62p5v"]
+size = Vector3(0.05, 0.07, 0.02)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xv0o5"]
+albedo_color = Color(0.4, 0.4, 0.4, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_1h1qq"]
+top_radius = 0.01
+bottom_radius = 0.01
+height = 0.25
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jcek0"]
+albedo_color = Color(0.3, 0.1495, 0.042, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_abnq1"]
+size = Vector3(0.05, 0.06, 0.03)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wxik5"]
+
+[node name="arrow" type="Node3D"]
+script = ExtResource("1_ttoqa")
+
+[node name="mesh" type="Node3D" parent="."]
+transform = Transform3D(5.15885e-15, -1.18021e-07, 2.7, -2.7, -1.18021e-07, 0, 1.18021e-07, -2.7, -1.18021e-07, 0, 0, 0)
+
+[node name="tip" type="MeshInstance3D" parent="mesh"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.94612e-09, 0.158909, 0)
+mesh = SubResource("PrismMesh_62p5v")
+surface_material_override/0 = SubResource("StandardMaterial3D_xv0o5")
+
+[node name="base" type="MeshInstance3D" parent="mesh"]
+mesh = SubResource("CylinderMesh_1h1qq")
+surface_material_override/0 = SubResource("StandardMaterial3D_jcek0")
+
+[node name="tail" type="MeshInstance3D" parent="mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0851e-09, -0.139211, 0)
+mesh = SubResource("PrismMesh_abnq1")
+surface_material_override/0 = SubResource("StandardMaterial3D_wxik5")
+
+[node name="remove_timer" type="Timer" parent="."]
+wait_time = 0.69
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="remove_timer" to="." method="_on_remove_timer_timeout"]

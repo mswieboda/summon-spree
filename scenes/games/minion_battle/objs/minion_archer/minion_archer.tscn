@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dmfqme6y1bo0p"]
+[gd_scene load_steps=6 format=3 uid="uid://dmfqme6y1bo0p"]
 
 [ext_resource type="PackedScene" uid="uid://dcg0q3u5ytohx" path="res://scenes/games/minion_battle/objs/minion/minion.tscn" id="1_3e6pw"]
+[ext_resource type="Script" path="res://scenes/games/minion_battle/objs/minion_archer/attack.gd" id="3_0jsk1"]
 [ext_resource type="PackedScene" uid="uid://cfnnldmmjhy6x" path="res://scenes/games/minion_battle/objs/minion_archer/bow.tscn" id="3_4xvbl"]
 [ext_resource type="AudioStream" uid="uid://co0g117bc2ffw" path="res://scenes/games/minion_battle/assets/audio/arrow-whoosh.mp3" id="3_ucpft"]
 
@@ -18,4 +19,10 @@ speed = 2
 audio_attack_stream = SubResource("AudioStreamRandomizer_78vvm")
 audio_attack_volume = -13.0
 
+[node name="mesh" parent="." index="0"]
+script = ExtResource("3_0jsk1")
+
 [node name="bow" parent="mesh" index="0" instance=ExtResource("3_4xvbl")]
+
+[node name="arrow_spawn" type="Node3D" parent="mesh/bow" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0224807, -0.256956)

@@ -44,8 +44,12 @@ func _ready():
 
   var root = get_parent().get_parent().get_parent()
   var other_player_node = root.get_node("cpu" if is_player else "player")
-  change_color(COLOR_PLAYER if is_player else COLOR_CPU)
+  change_color(get_minion_color_hex())
   target_castle = other_player_node.get_node("castle")
+
+
+func get_minion_color_hex() -> String:
+  return COLOR_PLAYER if is_player else COLOR_CPU
 
 
 func change_color(color: String):
@@ -135,7 +139,7 @@ func attack():
   $audio_attack.play()
 
   if $mesh.has_method("attack"):
-    $mesh.attack()
+    $mesh.attack(get_minion_color_hex())
 
   attack_node.damage(attack_damage, self)
 
