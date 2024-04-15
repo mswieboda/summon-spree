@@ -26,7 +26,7 @@ func _ready():
   noCountRemain = 5
   determineTrial()
   biasVsHonesty()
-  winValue = randi_range(5,10)
+  winValue = randi_range(3,8)
   $TrialValue.set_text("Expected " + decisionType + ": " + str(winValue))
   createJurorsList()
 
@@ -73,6 +73,10 @@ func moveJuror():
   else:
     bTotal = bTotal - candidate.get_child(0).bias
     hTotal = hTotal - candidate.get_child(0).honesty
+    print(candidate.get_child(0).get_child(3))
+    candidate.get_child(0).get_child(2).set_text("B: -" + str(candidate.get_child(0).bias))
+    candidate.get_child(0).get_child(3).set_text("H: -" + str(candidate.get_child(0).honesty))
+
 
   #var temp = candidate.get_child(0).get_child(3).color
   #print_debug(temp)
@@ -91,10 +95,10 @@ func aiAction():
     moveJuror()
     playerTurn = true
     aiTurn = false
-    print(jurorRemain)
+    #print(jurorRemain)
     if jurorRemain == 0:
       playComplete = true
-    print(playComplete)
+    #print(playComplete)
   else:
     candidate.get_child(0).queue_free()
     $Timer.start(1)
