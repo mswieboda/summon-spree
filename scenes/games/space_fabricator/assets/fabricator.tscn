@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://j5q16owaknmj"]
+[gd_scene load_steps=8 format=3 uid="uid://j5q16owaknmj"]
 
 [ext_resource type="PackedScene" uid="uid://orxa8aq3b0ii" path="res://scenes/games/space_fabricator/assets/blend_files/fabricator.blend" id="1_d6xgr"]
 [ext_resource type="Script" path="res://scenes/games/space_fabricator/assets/fabricator.gd" id="1_p233y"]
 [ext_resource type="PackedScene" uid="uid://bv78runcu465n" path="res://scenes/games/space_fabricator/assets/blend_files/black_hole.blend" id="2_5an65"]
+[ext_resource type="AudioStream" uid="uid://txjsds3jwj5p" path="res://scenes/games/space_fabricator/assets/audio/explosion.wav" id="4_bncs7"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_er5u0"]
 height = 1.2
@@ -43,5 +44,8 @@ shape = SubResource("SphereShape3D_tw1tw")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="spawnPoint"]
 visible = false
 mesh = SubResource("SphereMesh_2vvt8")
+
+[node name="damage_sound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_bncs7")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

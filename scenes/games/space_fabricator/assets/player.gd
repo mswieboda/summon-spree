@@ -83,6 +83,7 @@ func _on_bullet_timer_timeout():
 
 func fire_gun():
   if $bullet_timer.is_stopped():
+    $pew_audio.play()
     var bul_spawn_point = $player_model/pew_spawn.global_transform
     get_parent().get_node("ship").bullet_spawn(bul_spawn_point.origin, $player_model.global_transform.basis.z)
     $bullet_timer.start()

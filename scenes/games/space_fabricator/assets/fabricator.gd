@@ -19,6 +19,7 @@ func _on_timer_timeout():
 
 
 func take_damage():
+  $damage_sound.play()
   health -= 3
   print(health)
   if (health <= 0 ):

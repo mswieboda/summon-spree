@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cihoflsc34mdj"]
+[gd_scene load_steps=5 format=3 uid="uid://cihoflsc34mdj"]
 
 [ext_resource type="Script" path="res://scenes/games/space_fabricator/assets/player.gd" id="1_y83eo"]
 [ext_resource type="PackedScene" uid="uid://dynxbouhs30hw" path="res://scenes/games/space_fabricator/assets/blend_files/player.blend" id="2_aegl7"]
+[ext_resource type="AudioStream" uid="uid://dsqsnru1u7g00" path="res://scenes/games/space_fabricator/assets/audio/laserShoot.wav" id="3_pcw4l"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_by5gk"]
 radius = 0.48485
@@ -22,5 +23,9 @@ shape = SubResource("CapsuleShape3D_by5gk")
 [node name="bullet_timer" type="Timer" parent="."]
 wait_time = 0.125
 one_shot = true
+
+[node name="pew_audio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_pcw4l")
+volume_db = -10.267
 
 [connection signal="timeout" from="bullet_timer" to="." method="_on_bullet_timer_timeout"]
