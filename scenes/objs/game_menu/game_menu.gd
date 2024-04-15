@@ -35,6 +35,7 @@ func toggle_pause():
 
 func _on_exit_pressed():
   get_tree().paused = false
+  Global.can_play_game = true
   get_tree().change_scene_to_file("res://scenes/main_menu/main_menu.tscn")
 
 

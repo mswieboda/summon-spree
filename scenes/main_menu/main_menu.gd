@@ -3,20 +3,32 @@ extends Control
 @export var DEBUG = false
 
 var is_ready = false
+var can_play_game = false
 @onready var game_list = $margin/vbox/vbox_buttons/game_list
 
 
 func _ready():
   is_ready = true
+
+  if Global.can_play_game:
+    enable_play_game()
+
   focus_button()
 
 
 func _process(_delta):
-  if not DEBUG:
-    return
-
-  if Input.is_action_just_pressed("menu_debug_next"):
+  if (DEBUG or can_play_game) and Input.is_action_just_pressed("menu_debug_next"):
     select_next_game()
+
+
+func enable_play_game():
+  can_play_game = true
+  $margin/vbox/vbox_buttons/play_button.show()
+  $margin/vbox/vbox_buttons/play_label.show()
+  $margin/vbox/vbox_buttons/summon_button.focus_neighbor_bottom = $margin/vbox/vbox_buttons/play_button.get_path()
+  $margin/vbox/vbox_buttons/summon_button.focus_next = $margin/vbox/vbox_buttons/play_button.get_path()
+  $margin/vbox/vbox_buttons/exit_button.focus_neighbor_top = $margin/vbox/vbox_buttons/play_button.get_path()
+  $margin/vbox/vbox_buttons/exit_button.focus_previous = $margin/vbox/vbox_buttons/play_button.get_path()
 
 
 func _on_exit_button_pressed():
@@ -80,6 +92,11 @@ func _on_summon_button_pressed():
 
 func toggle_disabled():
   $margin/vbox/vbox_buttons/summon_button.disabled = !$margin/vbox/vbox_buttons/summon_button.disabled
+
+  if can_play_game:
+    $margin/vbox/vbox_buttons/play_button.disabled = !$margin/vbox/vbox_buttons/play_button.disabled
+    $margin/vbox/vbox_buttons/play_label.visible = !$margin/vbox/vbox_buttons/play_label.visible
+
   $margin/vbox/vbox_buttons/exit_button.disabled = !$margin/vbox/vbox_buttons/exit_button.disabled
 
 
@@ -138,3 +155,7 @@ func _on_selection_flash_timer_timeout():
   var selected_index = get_games_selected_index()
 
   games[selected_index].toggle_flash_color()
+
+
+func _on_play_button_pressed():
+  start_game()

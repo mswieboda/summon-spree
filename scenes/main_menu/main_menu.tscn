@@ -84,10 +84,28 @@ text = "Jury Summons"
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+focus_neighbor_top = NodePath("../exit_button")
 focus_neighbor_bottom = NodePath("../exit_button")
 focus_next = NodePath("../exit_button")
+focus_previous = NodePath("../exit_button")
 theme_override_font_sizes/font_size = 32
 text = "summon game"
+
+[node name="play_button" type="Button" parent="margin/vbox/vbox_buttons"]
+visible = false
+layout_mode = 2
+focus_neighbor_top = NodePath("../summon_button")
+focus_neighbor_bottom = NodePath("../exit_button")
+focus_next = NodePath("../exit_button")
+focus_previous = NodePath("../summon_button")
+theme_override_font_sizes/font_size = 32
+text = "play game"
+
+[node name="play_label" type="Label" parent="margin/vbox/vbox_buttons"]
+visible = false
+layout_mode = 2
+text = "(cycle with PAGE DOWN)"
+horizontal_alignment = 1
 
 [node name="exit_button" type="Button" parent="margin/vbox/vbox_buttons"]
 layout_mode = 2
@@ -106,7 +124,6 @@ wait_time = 0.1
 one_shot = true
 
 [node name="start_game_timer" type="Timer" parent="."]
-wait_time = 3.0
 one_shot = true
 
 [node name="selection_flash_timer" type="Timer" parent="."]
@@ -121,6 +138,7 @@ one_shot = true
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="margin/vbox/vbox_buttons/summon_button" to="." method="_on_summon_button_pressed"]
+[connection signal="pressed" from="margin/vbox/vbox_buttons/play_button" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="margin/vbox/vbox_buttons/exit_button" to="." method="_on_exit_button_pressed"]
 [connection signal="timeout" from="summon_timer" to="." method="_on_summon_timer_timeout"]
 [connection signal="timeout" from="selection_change_timer" to="." method="_on_selection_change_timer_timeout"]
