@@ -69,7 +69,6 @@ func _on_player_timer_timeout():
   summon_minion($player)
 
 
-
 func _on_cpu_timer_timeout():
   summon_minion($cpu)
 
