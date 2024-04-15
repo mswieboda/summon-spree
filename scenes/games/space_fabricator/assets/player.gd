@@ -54,7 +54,7 @@ func point_character(direction:Vector3):
   var space_state = get_world_3d().direct_space_state
   var from = camera.project_ray_origin(get_viewport().get_mouse_position())
   var to = from + camera.project_ray_normal(get_viewport().get_mouse_position()) * RAY_LENGTH
-  var query = PhysicsRayQueryParameters3D.create(from, to,1)
+  var query = PhysicsRayQueryParameters3D.create(from, to, 8)
   query.collide_with_areas = true
 
   var result = space_state.intersect_ray(query)

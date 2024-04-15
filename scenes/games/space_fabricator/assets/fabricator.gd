@@ -24,6 +24,7 @@ func _on_timer_timeout():
 
 
 func take_damage():
+  return
   $damage_sound.play()
   health -= 2
   if (health <= 0 ):
