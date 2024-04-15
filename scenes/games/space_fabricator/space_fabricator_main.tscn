@@ -113,8 +113,8 @@ grow_horizontal = 0
 grow_vertical = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="HBoxContainer2"]
-position = Vector2(-27.75, 25)
-scale = Vector2(1.45313, 1.96875)
+position = Vector2(-25.25, 25)
+scale = Vector2(1.29688, 1.96875)
 texture = ExtResource("9_y0o0v")
 
 [node name="Label" type="Label" parent="HBoxContainer2"]
