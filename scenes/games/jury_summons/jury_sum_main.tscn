@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cxor8pm68ukjr"]
+[gd_scene load_steps=6 format=3 uid="uid://cxor8pm68ukjr"]
 
 [ext_resource type="Script" path="res://scenes/games/jury_summons/jury_sum_main.gd" id="1_be56k"]
 [ext_resource type="PackedScene" uid="uid://elmf3ex78n08" path="res://scenes/games/jury_summons/assets/clipBoard.tscn" id="2_itdwf"]
 [ext_resource type="PackedScene" uid="uid://bgfucy8qr1a5a" path="res://scenes/objs/game_menu/game_menu.tscn" id="3_0hld0"]
 [ext_resource type="PackedScene" uid="uid://nghk2flj2raq" path="res://scenes/objs/fade_in/fade_in.tscn" id="4_a2ex6"]
+[ext_resource type="AudioStream" uid="uid://jjgxdkxluuce" path="res://scenes/games/jury_summons/assets/gavel-of-justice-124029.mp3" id="5_hktp6"]
 
 [node name="JurySumMain" type="Control"]
 layout_mode = 3
@@ -46,17 +47,17 @@ scale = Vector2(1.5, 1.5)
 
 [node name="YesButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 819.0
-offset_top = 517.0
-offset_right = 904.0
-offset_bottom = 577.0
+offset_left = 752.0
+offset_top = 515.0
+offset_right = 892.0
+offset_bottom = 575.0
 text = "YES"
 
 [node name="NoButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 930.0
-offset_top = 516.0
-offset_right = 1014.0
+offset_left = 909.0
+offset_top = 515.0
+offset_right = 1049.0
 offset_bottom = 575.0
 text = "NO"
 
@@ -162,10 +163,32 @@ horizontal_alignment = 2
 one_shot = true
 
 [node name="fade_in" parent="." instance=ExtResource("4_a2ex6")]
+visible = false
 layout_mode = 1
 
 [node name="game_menu" parent="." instance=ExtResource("3_0hld0")]
 layout_mode = 1
+
+[node name="NextEffect" type="AudioStreamPlayer2D" parent="."]
+
+[node name="GavelEffect" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_hktp6")
+
+[node name="RemainingRejections" type="Label" parent="."]
+layout_mode = 0
+offset_left = 847.0
+offset_top = 600.0
+offset_right = 1018.0
+offset_bottom = 623.0
+text = "Rejections Remaining:"
+horizontal_alignment = 2
+
+[node name="RRValue" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1021.0
+offset_top = 600.0
+offset_right = 1061.0
+offset_bottom = 623.0
 
 [connection signal="pressed" from="YesButton" to="." method="_on_yes_button_pressed"]
 [connection signal="pressed" from="NoButton" to="." method="_on_no_button_pressed"]

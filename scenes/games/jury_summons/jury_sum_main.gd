@@ -15,17 +15,21 @@ var hTotal = 0  #total value of Honesty across jurors[]
 var playComplete = false
 var winValue
 var BvsH
+var noCountRemain
+var outOfNos = false
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 
   jurorRemain = 6 #set remaining juror's to 6
+  noCountRemain = 5
   determineTrial()
   biasVsHonesty()
   winValue = randi_range(5,10)
   $TrialValue.set_text("Expected " + decisionType + ": " + str(winValue))
   createJurorsList()
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -36,6 +40,8 @@ func _process(delta):
     winCondition()
     playComplete = false
     pass
+
+  $RRValue.set_text(str(noCountRemain))
 
 func newJuror():
   var j1 = jurClass.instantiate()
@@ -113,6 +119,7 @@ func determineTrial():
 
 func winCondition():
   #print(str(BvsH) + " " + str(hTotal) + " " + str(winValue))
+  $GavelEffect.play()
   if BvsH == 1:
     if bTotal > winValue:
       $game_menu.game_over(true, "Congratulations, you won the trial!")
@@ -136,9 +143,18 @@ func _on_yes_button_pressed():
 func _on_no_button_pressed():
   if buttonAction == false:
     return
+  if outOfNos == true:
+    return
+  if noCountRemain == 1:
+    outOfNos = true
+
+  if aiTurn == false:
+    noCountRemain -= 1
+
   candidate.get_child(0).queue_free()
   $BiasValue.set_text("")
   $HonestyValue.set_text("")
+  #next
   $NextTimer.start(1)
 
 func _on_timer_timeout():
