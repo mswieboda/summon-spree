@@ -1,6 +1,6 @@
 extends Control
 
-@export var DEBUG = false
+@export var DEBUG = true
 
 var is_ready = false
 var can_play_game = false

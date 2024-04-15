@@ -30,7 +30,6 @@ func _on_area_3d_area_entered(_area):
 func despawn(body):
   if body.name.contains("enemy"):
     $alien_die_sound.transform.origin = body.transform.origin
-    print("play dead")
     $alien_die_sound.play()
 
   body.queue_free()

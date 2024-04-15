@@ -32,7 +32,6 @@ func _process(delta):
       $game_menu.game_over(isWon, "Help has arrived! Great job.")
       isDone = true
     else:
-      print("game over called")
       $game_menu.game_over(isWon, "You have been destroyed! Game Over")
       isDone = true
   pass
@@ -49,8 +48,6 @@ func updateTime(delta):
 func change_game_state(isWin):
   if isDone:
     return
-
-  print("calling game over")
   isGameOver = true
   isWon = isWin
 

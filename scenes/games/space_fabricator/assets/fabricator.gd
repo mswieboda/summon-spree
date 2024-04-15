@@ -14,15 +14,16 @@ func _ready():
 func _on_timer_timeout():
   spawnX = randi_range(-18,14)
   spawnZ = randi_range(-7,7)
-  spawnY = 0.5
-  var myOrigin = transform.origin
-  if transform.origin.distance_to(Vector3(spawnX,spawnZ,spawnY)) < 2.0:
+  spawnY = 0.1
+  var myOrigin = global_transform.origin
+  print(myOrigin.distance_to(Vector3(spawnX,spawnZ,spawnY)))
+  if myOrigin.distance_to(Vector3(spawnX,spawnZ,spawnY)) < 3.0:
+
     return
-  spawnPoint.transform.origin = Vector3(spawnX,spawnY,spawnZ)
+  spawnPoint.global_transform.origin = Vector3(spawnX,spawnY,spawnZ)
 
 
 func take_damage():
-  return
   $damage_sound.play()
   health -= 2
   if (health <= 0 ):
