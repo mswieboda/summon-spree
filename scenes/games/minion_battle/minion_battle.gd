@@ -38,14 +38,14 @@ func check_for_game_over():
 
   if is_player_game_over:
     is_game_over = true
-    $game_menu.game_over(true, "You got to the enemy castle, you won!")
+    $game_menu.game_over(true, "You got to the enemy castle!")
     return
 
   var is_cpu_game_over = $cpu/minions.get_children().any(minion_is_game_over)
 
   if is_cpu_game_over:
     is_game_over = true
-    $game_menu.game_over(false, "The enemy got to your castle, you lost!")
+    $game_menu.game_over(false, "The enemy got to your castle!")
 
 
 func get_new_minion(is_player: bool = true):
