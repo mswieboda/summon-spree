@@ -6,11 +6,11 @@ var minion_arms_scene = preload("res://scenes/games/minion_battle/objs/minion_ar
 var minion_archer_scene = preload("res://scenes/games/minion_battle/objs/minion_archer/minion_archer.tscn")
 var is_game_over = false
 var is_win = false
-var player_spawn_type = "arms"
+var player_summon_type = "arms"
 
 
 func _ready():
-  set_player_spawn_type("arms")
+  set_player_summon_type("arms")
 
 
 func _process(delta):
@@ -19,6 +19,7 @@ func _process(delta):
 
   lower_spawn_fog($player, delta)
   lower_spawn_fog($cpu, delta)
+  check_for_player_summon_type()
   check_for_game_over()
 
 
@@ -31,6 +32,18 @@ func lower_spawn_fog(playerNode, delta):
 
 func minion_is_game_over(node: Node3D):
   return "is_game_over" in node and node.is_game_over
+
+
+func check_for_player_summon_type():
+  if Input.is_action_just_pressed("switch_summon"):
+    if $hud/margin/vbox/hbox/buttons/arms_button.button_pressed:
+      $hud/margin/vbox/hbox/buttons/arms_button.button_pressed = false
+      $hud/margin/vbox/hbox/buttons/archer_button.button_pressed = true
+      set_player_summon_type("archer")
+    elif $hud/margin/vbox/hbox/buttons/archer_button.button_pressed:
+      $hud/margin/vbox/hbox/buttons/archer_button.button_pressed = false
+      $hud/margin/vbox/hbox/buttons/arms_button.button_pressed = true
+      set_player_summon_type("arms")
 
 
 func check_for_game_over():
@@ -51,7 +64,7 @@ func check_for_game_over():
 func get_new_minion(is_player: bool = true):
   var minion_scene = minion_arms_scene
 
-  if is_player and player_spawn_type == "archer":
+  if is_player and player_summon_type == "archer":
     minion_scene = minion_archer_scene
 
   return minion_scene.instantiate()
@@ -87,7 +100,7 @@ func _on_cpu_timer_timeout():
 func _on_arms_button_toggled(toggled_on):
   if toggled_on:
     $hud/margin/vbox/hbox/buttons/archer_button.button_pressed = false
-    set_player_spawn_type("arms")
+    set_player_summon_type("arms")
   else:
     $hud/margin/vbox/hbox/buttons/archer_button.button_pressed = true
 
@@ -95,13 +108,14 @@ func _on_arms_button_toggled(toggled_on):
 func _on_archer_button_toggled(toggled_on):
   if toggled_on:
     $hud/margin/vbox/hbox/buttons/arms_button.button_pressed = false
-    set_player_spawn_type("archer")
+    set_player_summon_type("archer")
   else:
     $hud/margin/vbox/hbox/buttons/arms_button.button_pressed = true
 
 
-func set_player_spawn_type(spawn_type: String):
-  player_spawn_type = spawn_type
+func set_player_summon_type(spawn_type: String):
+  $hud/audio_snap.play()
+  player_summon_type = spawn_type
 
   var label = $hud/margin/vbox/hbox_instructions/summon_instructions
   var minion = get_new_minion()
