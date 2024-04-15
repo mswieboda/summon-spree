@@ -82,8 +82,12 @@ func check_for_freed_minions():
     check_for_new_pathing_node()
 
 
+func is_in_summon_area():
+  var area = get_parent().get_parent().get_node("castle/spawn/area")
+  return area.get_overlapping_bodies().filter(func(node): return node == self).size() > 0
+
 func movement_and_attack(delta):
-  if not target_minion and target_castle:
+  if is_in_summon_area() or (not target_minion and target_castle):
     if movement(delta, target_castle, 3):
       is_game_over = true
   elif target_minion:

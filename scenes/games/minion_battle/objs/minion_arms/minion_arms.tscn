@@ -13,7 +13,7 @@ stream_0/weight = 1.0
 
 [node name="minion_arms" instance=ExtResource("1_bmdw7")]
 attack_damage = 35
-speed = 5
+speed = 6
 model = ExtResource("2_dcqjc")
 audio_attack_stream = SubResource("AudioStreamRandomizer_1sl6f")
 
