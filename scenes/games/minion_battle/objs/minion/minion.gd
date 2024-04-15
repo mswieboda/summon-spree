@@ -133,6 +133,10 @@ func attack():
     return
 
   $audio_attack.play()
+
+  if $mesh.has_method("attack"):
+    $mesh.attack()
+
   attack_node.damage(attack_damage, self)
 
   if attack_node.is_dead:

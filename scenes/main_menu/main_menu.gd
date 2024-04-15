@@ -10,14 +10,14 @@ var can_play_game = false
 func _ready():
   is_ready = true
 
-  if Global.can_play_game:
+  if DEBUG or Global.can_play_game:
     enable_play_game()
 
   focus_button()
 
 
 func _process(_delta):
-  if (DEBUG or can_play_game) and Input.is_action_just_pressed("menu_debug_next"):
+  if can_play_game and Input.is_action_just_pressed("menu_play_next"):
     select_next_game()
 
 
@@ -83,11 +83,8 @@ func _on_summon_button_pressed():
   $audio_snap.play()
   toggle_disabled()
 
-  if DEBUG:
-    start_game()
-  else:
-    $summon_timer.start(randf_range(3, 5))
-    $selection_change_timer.start()
+  $summon_timer.start(randf_range(3, 5))
+  $selection_change_timer.start()
 
 
 func toggle_disabled():
