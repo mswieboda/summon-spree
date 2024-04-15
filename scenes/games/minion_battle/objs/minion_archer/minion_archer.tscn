@@ -12,10 +12,10 @@ stream_0/stream = ExtResource("3_ucpft")
 stream_0/weight = 1.0
 
 [node name="minion_archer" instance=ExtResource("1_3e6pw")]
-summon_time = 3
-attack_target_radius = 15
-attack_distance = 10
-speed = 2
+summon_time = 2.5
+attack_target_radius = 15.0
+attack_distance = 10.0
+speed = 2.0
 audio_attack_stream = SubResource("AudioStreamRandomizer_78vvm")
 audio_attack_volume = -13.0
 
