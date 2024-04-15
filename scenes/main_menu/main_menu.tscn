@@ -115,6 +115,10 @@ wait_time = 0.075
 [node name="audio_snap" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_pepms")
 
+[node name="exit_timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="margin/vbox/vbox_buttons/summon_button" to="." method="_on_summon_button_pressed"]
 [connection signal="pressed" from="margin/vbox/vbox_buttons/exit_button" to="." method="_on_exit_button_pressed"]
@@ -122,3 +126,4 @@ stream = SubResource("AudioStreamRandomizer_pepms")
 [connection signal="timeout" from="selection_change_timer" to="." method="_on_selection_change_timer_timeout"]
 [connection signal="timeout" from="start_game_timer" to="." method="_on_start_game_timer_timeout"]
 [connection signal="timeout" from="selection_flash_timer" to="." method="_on_selection_flash_timer_timeout"]
+[connection signal="timeout" from="exit_timer" to="." method="_on_exit_timer_timeout"]

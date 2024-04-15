@@ -1,6 +1,6 @@
 extends Control
 
-@export var DEBUG = true
+@export var DEBUG = false
 
 var is_ready = false
 @onready var game_list = $margin/vbox/vbox_buttons/game_list
@@ -21,6 +21,10 @@ func _process(_delta):
 
 func _on_exit_button_pressed():
   $audio_snap.play()
+  $exit_timer.start()
+
+
+func _on_exit_timer_timeout():
   get_tree().quit()
 
 
