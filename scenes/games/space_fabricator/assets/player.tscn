@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://dsqsnru1u7g00" path="res://scenes/games/space_fabricator/assets/audio/laserShoot.wav" id="3_pcw4l"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_by5gk"]
-radius = 0.48485
+radius = 0.413625
 height = 1.2324
 
 [node name="player" type="CharacterBody3D"]
@@ -26,6 +26,6 @@ one_shot = true
 
 [node name="pew_audio" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("3_pcw4l")
-volume_db = -10.267
+volume_db = -22.0
 
 [connection signal="timeout" from="bullet_timer" to="." method="_on_bullet_timer_timeout"]

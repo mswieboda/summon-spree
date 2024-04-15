@@ -4,8 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://bc2r1jmxe5nmi" path="res://scenes/games/space_fabricator/assets/blend_files/aliens.blend" id="2_wn7pu"]
 [ext_resource type="PackedScene" uid="uid://bv78runcu465n" path="res://scenes/games/space_fabricator/assets/blend_files/black_hole.blend" id="3_5kico"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_bdgku"]
-size = Vector3(0.602692, 0.997803, 0.406677)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_usuvl"]
+radius = 0.250776
+height = 1.00128
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ejlff"]
 radius = 0.184822
@@ -17,11 +18,12 @@ script = ExtResource("1_4rjtl")
 [node name="aliens" parent="." instance=ExtResource("2_wn7pu")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00154188, 0.500348, 0.0997619)
-shape = SubResource("BoxShape3D_bdgku")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00154188, 0.500348, 0.123084)
+shape = SubResource("CapsuleShape3D_usuvl")
 
 [node name="black_hole" parent="." instance=ExtResource("3_5kico")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -0.25, 0.5, 0)
+visible = false
 
 [node name="Timer" type="Timer" parent="."]
 

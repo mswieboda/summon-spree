@@ -47,8 +47,6 @@ func updateTime(delta):
     isGameOver = true
     isWon = true
 
-
-
 func change_game_state(isWin):
   if isDone:
     return

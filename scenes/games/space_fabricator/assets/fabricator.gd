@@ -20,7 +20,7 @@ func _on_timer_timeout():
 
 func take_damage():
   $damage_sound.play()
-  health -= 3
+  health -= 2
   print(health)
   if (health <= 0 ):
     get_parent().get_parent().change_game_state(false)
