@@ -1,20 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dyh4xd02y5p8e"]
+[gd_scene load_steps=4 format=3 uid="uid://dyh4xd02y5p8e"]
 
 [ext_resource type="PackedScene" uid="uid://dcg0q3u5ytohx" path="res://scenes/games/minion_battle/objs/minion/minion.tscn" id="1_bmdw7"]
 [ext_resource type="PackedScene" uid="uid://mrl823siduvy" path="res://scenes/games/minion_battle/assets/3d/minion_shield.blend" id="2_dcqjc"]
 [ext_resource type="PackedScene" uid="uid://c2nqluy4504hs" path="res://scenes/games/minion_battle/objs/minion_arms/sword.tscn" id="3_utgok"]
-[ext_resource type="AudioStream" uid="uid://5kl18jvihuif" path="res://scenes/games/minion_battle/assets/audio/swords.mp3" id="3_y5ede"]
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1sl6f"]
-random_pitch = 1.1
-streams_count = 1
-stream_0/stream = ExtResource("3_y5ede")
-stream_0/weight = 1.0
 
 [node name="minion_arms" instance=ExtResource("1_bmdw7")]
-attack_damage = 35
-speed = 5
 model = ExtResource("2_dcqjc")
-audio_attack_stream = SubResource("AudioStreamRandomizer_1sl6f")
 
 [node name="sword" parent="mesh" index="0" instance=ExtResource("3_utgok")]

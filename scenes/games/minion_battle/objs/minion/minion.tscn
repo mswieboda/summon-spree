@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=3 uid="uid://dcg0q3u5ytohx"]
+
+[ext_resource type="Script" path="res://scenes/games/minion_battle/objs/minion/minion.gd" id="1_0c8fv"]
+[ext_resource type="PackedScene" uid="uid://dif5x1i5axia0" path="res://scenes/games/minion_battle/objs/health_bar/health_bar.tscn" id="4_0n28n"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_asbly"]
+radius = 0.35
+height = 1.5
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_rdfgh"]
+height = 1.0
+radius = 3.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_2pvxu"]
+height = 1.0
+radius = 1.5
+
+[node name="minion" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_0c8fv")
+
+[node name="mesh" type="Node3D" parent="."]
+
+[node name="collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+shape = SubResource("CapsuleShape3D_asbly")
+
+[node name="area_attack" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+monitorable = false
+
+[node name="collision" type="CollisionShape3D" parent="area_attack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CylinderShape3D_rdfgh")
+
+[node name="timer_attack" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="audio_attack" type="AudioStreamPlayer3D" parent="."]
+
+[node name="area_pathing" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="collision" type="CollisionShape3D" parent="area_pathing"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CylinderShape3D_2pvxu")
+
+[node name="health_bar" parent="." instance=ExtResource("4_0n28n")]
+
+[connection signal="body_entered" from="area_attack" to="." method="_on_area_attack_body_entered"]
+[connection signal="body_exited" from="area_attack" to="." method="_on_area_attack_body_exited"]
+[connection signal="timeout" from="timer_attack" to="." method="_on_timer_attack_timeout"]
+[connection signal="body_entered" from="area_pathing" to="." method="_on_area_pathing_body_entered"]
+[connection signal="body_exited" from="area_pathing" to="." method="_on_area_pathing_body_exited"]

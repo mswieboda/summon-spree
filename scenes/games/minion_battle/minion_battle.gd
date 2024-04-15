@@ -108,9 +108,10 @@ func set_player_spawn_type(spawn_type: String):
 
   $player/timer.wait_time = minion.summon_time
 
-  var text = "summon: {summon} sec\ndamage: {damage}\nspeed: {speed}"
+  var text = "summon: {summon} sec\nrange: {range} m\ndamage: {damage}\nspeed: {speed}"
   label.text = text.format({
     "summon": minion.summon_time,
+    "range": minion.attack_target_radius,
     "damage": minion.attack_damage,
-    "speed": minion.SPEED
+    "speed": minion.speed,
   })

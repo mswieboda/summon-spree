@@ -1,119 +1,22 @@
-[gd_scene load_steps=17 format=3 uid="uid://cvq2wv4evfqvv"]
+[gd_scene load_steps=5 format=3 uid="uid://dmfqme6y1bo0p"]
 
-[ext_resource type="Script" path="res://scenes/games/minion_battle/objs/minion_archer/minion_archer.gd" id="1_s1uma"]
-[ext_resource type="PackedScene" uid="uid://c6r6oytmentx1" path="res://scenes/games/minion_battle/assets/3d/minion.blend" id="2_22k77"]
+[ext_resource type="PackedScene" uid="uid://dcg0q3u5ytohx" path="res://scenes/games/minion_battle/objs/minion/minion.tscn" id="1_3e6pw"]
+[ext_resource type="PackedScene" uid="uid://cfnnldmmjhy6x" path="res://scenes/games/minion_battle/objs/minion_archer/bow.tscn" id="3_4xvbl"]
 [ext_resource type="AudioStream" uid="uid://co0g117bc2ffw" path="res://scenes/games/minion_battle/assets/audio/arrow-whoosh.mp3" id="3_ucpft"]
-[ext_resource type="PackedScene" uid="uid://dif5x1i5axia0" path="res://scenes/games/minion_battle/objs/health_bar/health_bar.tscn" id="4_xj8hx"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_5uaxx"]
-radius = 0.025
-height = 0.5
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3cbf2"]
-albedo_color = Color(0, 0, 0, 1)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_vmvbb"]
-radius = 0.025
-height = 0.35
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_odppk"]
-albedo_color = Color(0, 0, 0, 1)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_hqeds"]
-radius = 0.025
-height = 0.35
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_elucp"]
-albedo_color = Color(0, 0, 0, 1)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_msehb"]
-radius = 0.005
-height = 1.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3bcrs"]
-albedo_color = Color(0, 0, 0, 1)
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_asbly"]
-radius = 0.35
-height = 1.5
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_u48xn"]
-height = 1.0
-radius = 15.0
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_dpn8g"]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_78vvm"]
 random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("3_ucpft")
 stream_0/weight = 1.0
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_2pvxu"]
-height = 1.0
-radius = 1.5
+[node name="minion_archer" instance=ExtResource("1_3e6pw")]
+summon_time = 2
+attack_target_radius = 15
+attack_distance = 10
+attack_damage = 35
+speed = 2
+audio_attack_stream = SubResource("AudioStreamRandomizer_78vvm")
+audio_attack_volume = -13.0
 
-[node name="minon_archer" type="CharacterBody3D"]
-collision_layer = 2
-collision_mask = 3
-script = ExtResource("1_s1uma")
-
-[node name="model" parent="." instance=ExtResource("2_22k77")]
-
-[node name="bow" type="Node3D" parent="model"]
-transform = Transform3D(1, 0, 0, 0, 0.996195, -0.0871557, 0, 0.0871557, 0.996195, 0.333691, 0.796979, -0.263379)
-
-[node name="handle" type="MeshInstance3D" parent="model/bow"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0407126)
-mesh = SubResource("CapsuleMesh_5uaxx")
-surface_material_override/0 = SubResource("StandardMaterial3D_3cbf2")
-
-[node name="top" type="MeshInstance3D" parent="model/bow"]
-transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0.375, 0.0392874)
-mesh = SubResource("CapsuleMesh_vmvbb")
-surface_material_override/0 = SubResource("StandardMaterial3D_odppk")
-
-[node name="bottom" type="MeshInstance3D" parent="model/bow"]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, -0.375, 0.0392874)
-mesh = SubResource("CapsuleMesh_hqeds")
-surface_material_override/0 = SubResource("StandardMaterial3D_elucp")
-
-[node name="draw_string" type="MeshInstance3D" parent="model/bow"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.119658)
-mesh = SubResource("CapsuleMesh_msehb")
-surface_material_override/0 = SubResource("StandardMaterial3D_3bcrs")
-
-[node name="collision" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
-shape = SubResource("CapsuleShape3D_asbly")
-
-[node name="area_attack" type="Area3D" parent="."]
-collision_layer = 2
-collision_mask = 2
-monitorable = false
-
-[node name="collision" type="CollisionShape3D" parent="area_attack"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("CylinderShape3D_u48xn")
-
-[node name="timer_attack" type="Timer" parent="."]
-wait_time = 2.0
-
-[node name="audio_attack" type="AudioStreamPlayer3D" parent="."]
-stream = SubResource("AudioStreamRandomizer_dpn8g")
-volume_db = -17.0
-
-[node name="area_pathing" type="Area3D" parent="."]
-collision_layer = 0
-collision_mask = 2
-monitorable = false
-
-[node name="collision" type="CollisionShape3D" parent="area_pathing"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("CylinderShape3D_2pvxu")
-
-[node name="health_bar" parent="." instance=ExtResource("4_xj8hx")]
-
-[connection signal="body_entered" from="area_attack" to="." method="_on_area_attack_body_entered"]
-[connection signal="body_exited" from="area_attack" to="." method="_on_area_attack_body_exited"]
-[connection signal="timeout" from="timer_attack" to="." method="_on_timer_attack_timeout"]
-[connection signal="body_entered" from="area_pathing" to="." method="_on_area_pathing_body_entered"]
-[connection signal="body_exited" from="area_pathing" to="." method="_on_area_pathing_body_exited"]
+[node name="bow" parent="mesh" index="0" instance=ExtResource("3_4xvbl")]

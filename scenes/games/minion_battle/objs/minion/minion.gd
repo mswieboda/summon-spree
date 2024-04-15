@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-const SPEED = 150
+const SPEED = 50
 const COLOR_PLAYER = "#ff0000"
 const COLOR_CPU = "#0000ff"
 
@@ -11,17 +11,37 @@ var target_castle: Node3D = null
 var target_minion: Node3D = null
 var attack_node: Node3D = null
 var last_attacked_by_node: Node3D = null
-var attack_damage = 35
+@export var summon_time = 1 # sec
+@export var attack_target_radius = 3
+@export var attack_distance = 1
+@export var attack_damage = 30
+@export var speed = 1
 var health_max = 100
 var health = health_max
-var summon_time = 2 # sec
 var pathing_node: Node3D = null
 var pathing_dir = 0
 var minion_dead_scene = preload("res://scenes/games/minion_battle/objs/minion_dead/minion_dead.tscn")
-
+@onready var battle = get_parent().get_parent().get_parent()
+@export var model = preload("res://scenes/games/minion_battle/assets/3d/minion.blend")
+@export var audio_attack_stream: AudioStream = null # preload("res://scenes/games/minion_battle/assets/audio/swords.mp3")
+@export var audio_attack_volume: float = 0.0
 
 func _ready():
+  # model
+  var model_node = model.instantiate()
+  model_node.name = "model"
+  $mesh.add_child(model_node)
+
+  var shape = CylinderShape3D.new()
+  shape.height = 1
+  shape.radius = attack_target_radius
+  $area_attack/collision.shape =  shape
+  $audio_attack.stream = audio_attack_stream
+  $audio_attack.volume_db = audio_attack_volume
+
+  # timer attack
   $timer_attack.wait_time = randf_range(0.5, 1)
+
   var root = get_parent().get_parent().get_parent()
   var other_player_node = root.get_node("cpu" if is_player else "player")
   change_color(COLOR_PLAYER if is_player else COLOR_CPU)
@@ -31,11 +51,11 @@ func _ready():
 func change_color(color: String):
   var material = StandardMaterial3D.new()
   material.albedo_color = Color(color)
-  $model/Cube.set_surface_override_material(0, material)
+  $mesh/model/Cube.set_surface_override_material(0, material)
 
 
 func _physics_process(delta):
-  if is_dead or is_game_over:
+  if is_dead or is_game_over or battle.is_game_over:
     return
 
   check_for_freed_minions()
@@ -43,7 +63,8 @@ func _physics_process(delta):
 
 
 func is_valid_minion(node):
-  return node and is_instance_valid(node) and not node.is_queued_for_deletion() \
+  return node and is_instance_valid(node) \
+    and not node.is_queued_for_deletion() and node.is_inside_tree() \
     and "is_dead" in node and not node.is_dead
 
 
@@ -66,7 +87,7 @@ func movement_and_attack(delta):
     if movement(delta, target_castle, 3):
       is_game_over = true
   elif target_minion:
-    if movement(delta, target_minion, 10):
+    if movement(delta, target_minion, attack_distance):
       if not attack_node:
         start_attacking(target_minion)
 
@@ -85,10 +106,10 @@ func movement(delta, target: Node3D, reached_distance: int) -> bool:
   if displacement.length() <= reached_distance:
     return true
   else:
-    velocity = direction * SPEED * delta
+    velocity = direction * speed * SPEED * delta
 
     if pathing_node and pathing_dir != 0:
-      velocity.z += pathing_dir * SPEED * delta
+      velocity.z += pathing_dir * speed * SPEED * delta
 
     move_and_slide()
     return false
@@ -144,7 +165,7 @@ func die():
 
 
 func is_valid_attack_node(node):
-  return node != self and "is_player" in node and node.is_player != is_player
+  return is_valid_minion(node) and node != self and "is_player" in node and node.is_player != is_player
 
 
 func _on_area_attack_body_entered(body: Node3D):
@@ -162,14 +183,14 @@ func _on_area_attack_body_exited(body):
 
 
 func _on_timer_attack_timeout():
-  if is_dead or is_game_over:
+  if is_dead or is_game_over or battle.is_game_over:
     return
 
   attack()
 
 
 func is_valid_pathing_node(node):
-  return node != self and target_minion != node and target_castle != node
+  return is_valid_minion(node) and node != self and target_minion != node and target_castle != node
 
 
 func _on_area_pathing_body_entered(body):
