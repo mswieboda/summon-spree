@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dif5x1i5axia0"]
+
+[ext_resource type="Texture2D" uid="uid://dbwkj4b61cdvu" path="res://scenes/games/minion_battle/assets/2d/bar_green.png" id="1_4n8me"]
+[ext_resource type="Script" path="res://scenes/games/minion_battle/objs/health_bar/health_bar.gd" id="2_h7u8f"]
+
+[node name="health_bar" type="Sprite3D"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 1.56797, 0)
+billboard = 1
+texture = ExtResource("1_4n8me")
+script = ExtResource("2_h7u8f")
+
+[node name="sub_viewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(200, 26)
+
+[node name="progress_bar" type="TextureProgressBar" parent="sub_viewport"]
+offset_right = 40.0
+offset_bottom = 40.0

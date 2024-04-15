@@ -12,7 +12,8 @@ var target_minion: Node3D = null
 var attack_node: Node3D = null
 var last_attacked_by_node: Node3D = null
 var attack_damage = 30
-var health = 100
+var health_max = 100
+var health = health_max
 var summon_time = 1 # sec
 var pathing_node: Node3D = null
 var pathing_dir = 0
@@ -119,6 +120,8 @@ func attack():
 
 func damage(amount: int, node):
   health -= amount
+
+  $health_bar.update_health(health, health_max)
 
   last_attacked_by_node = node
 

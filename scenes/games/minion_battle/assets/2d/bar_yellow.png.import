@@ -2,27 +2,26 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ow3ahxq2y7an"
-path.s3tc="res://.godot/imported/health.png-cc6d43737ae6ab5564be765b99cc6cf5.s3tc.ctex"
+uid="uid://ddu5oygikgdi6"
+path="res://.godot/imported/bar_yellow.png-54c2e9c1f06efa410fb8946354fb351f.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/games/space_fabricator/assets/2d/health.png"
-dest_files=["res://.godot/imported/health.png-cc6d43737ae6ab5564be765b99cc6cf5.s3tc.ctex"]
+source_file="res://scenes/games/minion_battle/assets/2d/bar_yellow.png"
+dest_files=["res://.godot/imported/bar_yellow.png-54c2e9c1f06efa410fb8946354fb351f.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -32,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

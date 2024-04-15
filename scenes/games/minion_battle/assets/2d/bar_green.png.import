@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ow3ahxq2y7an"
-path.s3tc="res://.godot/imported/health.png-cc6d43737ae6ab5564be765b99cc6cf5.s3tc.ctex"
+uid="uid://dbwkj4b61cdvu"
+path.s3tc="res://.godot/imported/bar_green.png-9d823f4377926634994e7e7a56a068df.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://scenes/games/space_fabricator/assets/2d/health.png"
-dest_files=["res://.godot/imported/health.png-cc6d43737ae6ab5564be765b99cc6cf5.s3tc.ctex"]
+source_file="res://scenes/games/minion_battle/assets/2d/bar_green.png"
+dest_files=["res://.godot/imported/bar_green.png-9d823f4377926634994e7e7a56a068df.s3tc.ctex"]
 
 [params]
 
