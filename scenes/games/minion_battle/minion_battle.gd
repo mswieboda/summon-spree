@@ -20,6 +20,7 @@ func _process(delta):
   lower_spawn_fog($player, delta)
   lower_spawn_fog($cpu, delta)
   check_for_player_summon_type()
+  update_player_summoned_count()
   check_for_game_over()
 
 
@@ -44,6 +45,12 @@ func check_for_player_summon_type():
       $hud/margin/vbox/hbox/buttons/archer_button.button_pressed = false
       $hud/margin/vbox/hbox/buttons/arms_button.button_pressed = true
       set_player_summon_type("arms")
+
+
+func update_player_summoned_count():
+  var minions_count = $player/minions.get_child_count()
+
+  $hud/margin/vbox/hbox_instructions/vbox/summoned_count.text = "summoned: %d / %d" % [minions_count, MAX_MINIONS]
 
 
 func check_for_game_over():
@@ -88,6 +95,9 @@ func summon_minion(player_node : Node3D):
   player_node.get_node("minions").add_child(minion)
   minion.global_position = player_node.get_node("castle/spawn").global_position
 
+  if is_player:
+    update_player_summoned_count()
+
 
 func _on_player_timer_timeout():
   summon_minion($player)
@@ -117,7 +127,7 @@ func set_player_summon_type(spawn_type: String):
   $hud/audio_snap.play()
   player_summon_type = spawn_type
 
-  var label = $hud/margin/vbox/hbox_instructions/summon_instructions
+  var label = $hud/margin/vbox/hbox_instructions/vbox/summon_instructions
   var minion = get_new_minion()
 
   $player/timer.wait_time = minion.summon_time
