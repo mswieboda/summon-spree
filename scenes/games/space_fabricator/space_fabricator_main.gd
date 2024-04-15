@@ -13,6 +13,7 @@ var hudTimer
 # Called when the node enters the scene tree for the first time.
 func _ready():
   hudTimer = get_node("HUD/Time_display")
+  #$HUD/Label.add_color_override("font_color",Color(1,0,0,1))
   pass # Replace with function body.
 
 
@@ -22,8 +23,6 @@ func _process(delta):
     updateTime(delta)
     updateHP()
     pass
-
-
 
   if isDone:
     return;

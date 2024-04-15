@@ -48,7 +48,7 @@ func _on_timer_timeout():
   $black_hole.visible = false
   pass # Replace with function body.
 
-func do_damage():
+func take_damage():
   health -= 1
   if (health == 0 ):
     get_parent().get_parent().despawn(self)

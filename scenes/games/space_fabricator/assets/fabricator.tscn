@@ -15,6 +15,7 @@ radius = 0.05
 [sub_resource type="SphereMesh" id="SphereMesh_2vvt8"]
 
 [node name="fabricator" type="StaticBody3D"]
+collision_layer = 3
 script = ExtResource("1_p233y")
 
 [node name="fabricator" parent="." instance=ExtResource("1_d6xgr")]

@@ -14,7 +14,7 @@ func _physics_process(delta):
 
 func _on_body_entered(body):
   if body.name.contains("enemy"):
-    body.do_damage()
+    body.take_damage()
     pass
   get_parent().get_parent().despawn(self)
   pass # Replace with function body.

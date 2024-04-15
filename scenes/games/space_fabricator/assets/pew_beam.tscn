@@ -1,8 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://tbvl3k52mqx5"]
+[gd_scene load_steps=5 format=3 uid="uid://tbvl3k52mqx5"]
 
 [ext_resource type="Script" path="res://scenes/games/space_fabricator/assets/pew_beam.gd" id="1_kfspk"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wmgl5"]
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 20.0
+
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_12itu"]
+material = SubResource("StandardMaterial3D_wmgl5")
 radius = 0.1
 height = 0.4
 

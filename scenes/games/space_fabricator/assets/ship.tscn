@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://dvgybi3qjnyb7"]
+[gd_scene load_steps=12 format=3 uid="uid://dvgybi3qjnyb7"]
 
 [ext_resource type="PackedScene" uid="uid://dplphwelv7lnw" path="res://scenes/games/space_fabricator/assets/blend_files/ship.blend" id="1_7a0qm"]
 [ext_resource type="Script" path="res://scenes/games/space_fabricator/assets/ship.gd" id="1_lm1kh"]
 [ext_resource type="PackedScene" uid="uid://j5q16owaknmj" path="res://scenes/games/space_fabricator/assets/fabricator.tscn" id="2_b3yed"]
+[ext_resource type="AudioStream" uid="uid://c7uiwh5ouhr5b" path="res://scenes/games/space_fabricator/assets/audio/alien_die.wav" id="4_g577l"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gkujv"]
 size = Vector3(100, 1, 100)
@@ -26,6 +27,7 @@ size = Vector3(12.0005, 2.01704, 1.98535)
 size = Vector3(4.33423, 2.11563, 3.02588)
 
 [node name="ship" type="StaticBody3D"]
+collision_layer = 3
 script = ExtResource("1_lm1kh")
 
 [node name="ship" parent="." instance=ExtResource("1_7a0qm")]
@@ -90,5 +92,8 @@ polygon = PackedVector2Array(-1.19381, -6.98635, -1.18948, -4.9764, -5.19199, -4
 [node name="enemyList" type="Node3D" parent="."]
 
 [node name="bullet_manager" type="Node3D" parent="."]
+
+[node name="alien_die_sound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_g577l")
 
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
