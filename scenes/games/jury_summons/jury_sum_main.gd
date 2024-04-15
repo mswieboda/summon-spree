@@ -70,13 +70,16 @@ func moveJuror():
   if buttonAction == true:
     bTotal = bTotal + candidate.get_child(0).bias
     hTotal = hTotal + candidate.get_child(0).honesty
+    candidate.get_child(0).get_child(2).set("theme_override_colors/font_color", Color(0.1, 0.8, 0.4))
+    candidate.get_child(0).get_child(3).set("theme_override_colors/font_color", Color(0.1, 0.8, 0.4))
   else:
     bTotal = bTotal - candidate.get_child(0).bias
     hTotal = hTotal - candidate.get_child(0).honesty
-    print(candidate.get_child(0).get_child(3))
+    #print(candidate.get_child(0).get_child(3))
     candidate.get_child(0).get_child(2).set_text("B: -" + str(candidate.get_child(0).bias))
     candidate.get_child(0).get_child(3).set_text("H: -" + str(candidate.get_child(0).honesty))
-
+    candidate.get_child(0).get_child(2).set("theme_override_colors/font_color", Color(1, 0, 0))
+    candidate.get_child(0).get_child(3).set("theme_override_colors/font_color", Color(1, 0, 0))
 
   #var temp = candidate.get_child(0).get_child(3).color
   #print_debug(temp)
