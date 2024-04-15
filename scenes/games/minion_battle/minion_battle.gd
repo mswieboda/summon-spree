@@ -29,14 +29,14 @@ func check_for_game_over():
 
   if is_player_game_over:
     is_game_over = true
-    $game_menu.game_over(true)
+    $game_menu.game_over(true, "You got to the enemy castle, you won!")
     return
 
   var is_cpu_game_over = $cpu/minions.get_children().any(minion_is_game_over)
 
   if is_cpu_game_over:
     is_game_over = true
-    $game_menu.game_over(false)
+    $game_menu.game_over(false, "The enemy got to your castle, you lost!")
 
 
 func get_new_minion(is_player: bool = true):
@@ -67,6 +67,7 @@ func summon_minion(player_node : Node3D):
 
 func _on_player_timer_timeout():
   summon_minion($player)
+
 
 
 func _on_cpu_timer_timeout():

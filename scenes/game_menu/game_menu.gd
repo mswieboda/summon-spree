@@ -10,16 +10,11 @@ func _process(_delta):
     toggle_pause()
 
 
-func game_over(is_win: bool):
+func game_over(is_win: bool, description: String = ""):
   is_game_over = true
-  $bg/margin/vbox/title.text = "Game Over!"
+  $bg/margin/vbox/title.text = "Game Over - " + ("Won!" if is_win else "Lost!")
   $bg/margin/vbox/vbox_buttons/continue.hide()
-
-  if is_win:
-    $bg/margin/vbox/description.text = "You got to the enemy castle, you won!"
-  else:
-    $bg/margin/vbox/description.text = "The enemy got to your castle, you lost!"
-
+  $bg/margin/vbox/description.text = description
   $timer_game_over.start()
 
 
