@@ -151,6 +151,7 @@ func _on_no_button_pressed():
   if aiTurn == false:
     noCountRemain -= 1
 
+  $NextEffect.play()
   candidate.get_child(0).queue_free()
   $BiasValue.set_text("")
   $HonestyValue.set_text("")

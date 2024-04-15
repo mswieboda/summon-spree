@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cxor8pm68ukjr"]
+[gd_scene load_steps=7 format=3 uid="uid://cxor8pm68ukjr"]
 
 [ext_resource type="Script" path="res://scenes/games/jury_summons/jury_sum_main.gd" id="1_be56k"]
 [ext_resource type="PackedScene" uid="uid://elmf3ex78n08" path="res://scenes/games/jury_summons/assets/clipBoard.tscn" id="2_itdwf"]
 [ext_resource type="PackedScene" uid="uid://bgfucy8qr1a5a" path="res://scenes/objs/game_menu/game_menu.tscn" id="3_0hld0"]
 [ext_resource type="PackedScene" uid="uid://nghk2flj2raq" path="res://scenes/objs/fade_in/fade_in.tscn" id="4_a2ex6"]
 [ext_resource type="AudioStream" uid="uid://jjgxdkxluuce" path="res://scenes/games/jury_summons/assets/gavel-of-justice-124029.mp3" id="5_hktp6"]
+[ext_resource type="AudioStream" uid="uid://b200few1litka" path="res://scenes/games/jury_summons/assets/NextAudioClip.wav" id="5_pomhi"]
 
 [node name="JurySumMain" type="Control"]
 layout_mode = 3
@@ -170,6 +171,7 @@ layout_mode = 1
 layout_mode = 1
 
 [node name="NextEffect" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_pomhi")
 
 [node name="GavelEffect" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_hktp6")
