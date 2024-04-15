@@ -1,10 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://dxtsurc6d1ywl"]
+[gd_scene load_steps=14 format=3 uid="uid://dxtsurc6d1ywl"]
 
 [ext_resource type="Script" path="res://scenes/games/space_fabricator/space_fabricator_main.gd" id="1_6p8vn"]
 [ext_resource type="PackedScene" uid="uid://dvgybi3qjnyb7" path="res://scenes/games/space_fabricator/assets/ship.tscn" id="1_a7e6m"]
 [ext_resource type="PackedScene" uid="uid://cihoflsc34mdj" path="res://scenes/games/space_fabricator/assets/player.tscn" id="2_dhlxs"]
 [ext_resource type="PackedScene" uid="uid://bgfucy8qr1a5a" path="res://scenes/objs/game_menu/game_menu.tscn" id="3_1wf28"]
 [ext_resource type="PackedScene" uid="uid://nghk2flj2raq" path="res://scenes/objs/fade_in/fade_in.tscn" id="5_bv8si"]
+[ext_resource type="Theme" uid="uid://d18cpgia7nf2j" path="res://assets/themes/default_theme.tres" id="5_n85yd"]
+[ext_resource type="Texture2D" uid="uid://cnc1jjjpeewsc" path="res://scenes/games/space_fabricator/assets/2d/roundedSquare.png" id="6_iy1rp"]
+[ext_resource type="Texture2D" uid="uid://ow3ahxq2y7an" path="res://scenes/games/space_fabricator/assets/2d/health.png" id="7_6n6j7"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_878lx"]
 sky_top_color = Color(0.646029, 0.646029, 0.646029, 1)
@@ -20,6 +23,9 @@ background_mode = 2
 sky = SubResource("Sky_mrgry")
 
 [sub_resource type="SphereMesh" id="SphereMesh_2mk8c"]
+
+[sub_resource type="Theme" id="Theme_xgc5f"]
+default_font_size = 26
 
 [node name="SpaceFabricatorMain" type="Node3D"]
 script = ExtResource("1_6p8vn")
@@ -48,3 +54,31 @@ skeleton = NodePath("")
 [node name="fade_in" parent="." instance=ExtResource("5_bv8si")]
 
 [node name="game_menu" parent="." instance=ExtResource("3_1wf28")]
+
+[node name="HUD" type="HBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 19.0
+offset_top = 21.0
+offset_right = 356.0
+offset_bottom = -562.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.75, 0.75)
+theme = ExtResource("5_n85yd")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="HUD"]
+layout_mode = 2
+value = 100.0
+texture_under = ExtResource("6_iy1rp")
+texture_progress = ExtResource("7_6n6j7")
+
+[node name="Label" type="Label" parent="HUD"]
+layout_mode = 2
+theme = SubResource("Theme_xgc5f")
+text = "Time Until Help Arives:"
+
+[node name="Time_display" type="Label" parent="HUD"]
+layout_mode = 2
+theme = ExtResource("5_n85yd")
