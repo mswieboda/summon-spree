@@ -7,7 +7,6 @@ var spawnY
 var health = 100
 var spawnPoint
 
-
 func _ready():
   spawnPoint = get_node("spawnPoint")
 
@@ -19,5 +18,8 @@ func _on_timer_timeout():
   spawnPoint.transform.origin = Vector3(spawnX,spawnY,spawnZ)
 
 
-func take_damate():
+func take_damage():
   health -= 3
+  print(health)
+  if (health <= 0 ):
+    get_parent().get_parent().change_game_state(false)

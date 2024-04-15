@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://dxtsurc6d1ywl"]
+[gd_scene load_steps=9 format=3 uid="uid://dxtsurc6d1ywl"]
 
+[ext_resource type="Script" path="res://scenes/games/space_fabricator/space_fabricator_main.gd" id="1_6p8vn"]
 [ext_resource type="PackedScene" uid="uid://dvgybi3qjnyb7" path="res://scenes/games/space_fabricator/assets/ship.tscn" id="1_a7e6m"]
 [ext_resource type="PackedScene" uid="uid://cihoflsc34mdj" path="res://scenes/games/space_fabricator/assets/player.tscn" id="2_dhlxs"]
 [ext_resource type="PackedScene" uid="uid://bgfucy8qr1a5a" path="res://scenes/game_menu/game_menu.tscn" id="3_1wf28"]
@@ -20,6 +21,7 @@ sky = SubResource("Sky_mrgry")
 [sub_resource type="SphereMesh" id="SphereMesh_2mk8c"]
 
 [node name="SpaceFabricatorMain" type="Node3D"]
+script = ExtResource("1_6p8vn")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_31wgs")

@@ -5,6 +5,7 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 var target
 var health = 3
+var damage_target
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -51,3 +52,16 @@ func do_damage():
   health -= 1
   if (health == 0 ):
     get_parent().get_parent().despawn(self)
+
+
+func _on_damage_timer_timeout():
+  damage_target.take_damage()
+
+  pass # Replace with function body.
+
+
+func _on_area_3d_body_entered(body):
+  if (body.name.contains("fabricator")):
+    damage_target = body
+    $damage_timer.start()
+  pass # Replace with function body.
