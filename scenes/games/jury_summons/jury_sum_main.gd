@@ -10,8 +10,11 @@ var decisionType #used to determine Bias vs Honesty for victory
 var jurIndex = 0 #index through jurors[]
 var buttonAction = true #used to enable/disable buttons
 var jurClass = preload("res://scenes/games/jury_summons/assets/juror.tscn")
-var bTotal #total value of Bias across jurors[]
-var hTotal #total value of Honesty across jurors[]
+var bTotal = 0  #total value of Bias across jurors[]
+var hTotal = 0  #total value of Honesty across jurors[]
+var playComplete = false
+var winValue
+var BvsH
 
 
 # Called when the node enters the scene tree for the first time.
@@ -20,13 +23,19 @@ func _ready():
   jurorRemain = 6 #set remaining juror's to 6
   determineTrial()
   biasVsHonesty()
-  $TrialValue.set_text("Expected " + decisionType + ": " + str(randi_range(5,10)))
+  winValue = randi_range(5,10)
+  $TrialValue.set_text("Expected " + decisionType + ": " + str(winValue))
   createJurorsList()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
   if playerTurn == true:
     playerAction()
+
+  if playComplete == true and jurorRemain == 0:
+    winCondition()
+    playComplete = false
+    pass
 
 func newJuror():
   var j1 = jurClass.instantiate()
@@ -51,18 +60,17 @@ func indJuror():
 
 
 func moveJuror():
-  #print_debug(candidate.get_child(0))
-  candidate.get_child(0).reparent(jurors[jurIndex],false)
+
   if buttonAction == true:
-    pass
-    #bTotal += candidate.get_child(0).bias
-    #hTotal += candidate.get_child(0).honesty)
+    bTotal = bTotal + candidate.get_child(0).bias
+    hTotal = hTotal + candidate.get_child(0).honesty
   else:
-    #bTotal -= jurors[jurIndex].bias
-    #hTotal -= jurors[jurIndex].honesty
-    pass
-  jurIndex+=1
-  jurorRemain-=1
+    bTotal = bTotal - candidate.get_child(0).bias
+    hTotal = hTotal - candidate.get_child(0).honesty
+
+  candidate.get_child(0).reparent(jurors[jurIndex],false)
+  jurIndex +=1
+  jurorRemain -=1
 
 func playerAction():
   indJuror()
@@ -75,14 +83,17 @@ func aiAction():
     moveJuror()
     playerTurn = true
     aiTurn = false
-    #print("AI Selected Yes")
+    print(jurorRemain)
+    if jurorRemain == 0:
+      playComplete = true
+    print(playComplete)
   else:
     candidate.get_child(0).queue_free()
     $Timer.start(1)
     #print("AI Selected N0")
 
 func biasVsHonesty():
-  var BvsH = randi_range(1,2)
+  BvsH = randi_range(1,2)
 
   if BvsH == 1:
     decisionType = "Bias"
@@ -100,8 +111,18 @@ func determineTrial():
     3:
       $TrialType.set_text("Trial: Assault Charge")
 
-
-  pass
+func winCondition():
+  #print(str(BvsH) + " " + str(hTotal) + " " + str(winValue))
+  if BvsH == 1:
+    if bTotal > winValue:
+      $game_menu.game_over(true, "Congratulations, you won the trial!")
+    else:
+       $game_menu.game_over(false, "Unfortunate...You lost the trial...")
+  else:
+    if hTotal > winValue:
+       $game_menu.game_over(true, "Congratulations, you won the trial!")
+    else:
+       $game_menu.game_over(false, "Unfortunate...You lost the trial...")
 
 func _on_yes_button_pressed():
   if buttonAction == false:
@@ -112,7 +133,6 @@ func _on_yes_button_pressed():
   $Timer.start(1)
   pass # Replace with function body.
 
-
 func _on_no_button_pressed():
   if buttonAction == false:
     return
@@ -121,16 +141,9 @@ func _on_no_button_pressed():
   $HonestyValue.set_text("")
   $NextTimer.start(1)
 
-
-
-
- # Replace with function body.
-
-
 func _on_timer_timeout():
   aiAction()
   pass # Replace with function body.
-
 
 func _on_next_timer_timeout():
   #play sound clip
