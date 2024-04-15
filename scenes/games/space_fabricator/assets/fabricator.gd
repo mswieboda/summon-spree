@@ -16,7 +16,6 @@ func _on_timer_timeout():
   spawnZ = randi_range(-7,7)
   spawnY = 0.1
   var myOrigin = global_transform.origin
-  print(myOrigin.distance_to(Vector3(spawnX,spawnZ,spawnY)))
   if myOrigin.distance_to(Vector3(spawnX,spawnZ,spawnY)) < 3.0:
 
     return
@@ -24,7 +23,6 @@ func _on_timer_timeout():
 
 
 func take_damage():
-  return
   $damage_sound.play()
   health -= 2
   if (health <= 0 ):
