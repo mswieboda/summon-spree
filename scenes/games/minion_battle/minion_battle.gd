@@ -13,11 +13,20 @@ func _ready():
   set_player_spawn_type("arms")
 
 
-func _process(_delta):
+func _process(delta):
   if is_game_over:
     return
 
+  lower_spawn_fog($player, delta)
+  lower_spawn_fog($cpu, delta)
   check_for_game_over()
+
+
+func lower_spawn_fog(playerNode, delta):
+  var fog = playerNode.get_node("castle/spawn/fog")
+
+  if fog.material.density > 0:
+    fog.material.density = lerp(fog.material.density, 0.0, delta)
 
 
 func minion_is_game_over(node: Node3D):
@@ -57,6 +66,8 @@ func summon_minion(player_node : Node3D):
 
   if player_node.get_node("castle/spawn/area").get_overlapping_bodies().size() > 0:
     return
+
+  player_node.get_node("castle/spawn/fog").material.density = 1.3
 
   var is_player = player_node == $player
   var minion = get_new_minion(is_player)
