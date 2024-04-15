@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bdb4c5tld3yn7"]
+[gd_scene load_steps=15 format=3 uid="uid://bdb4c5tld3yn7"]
 
 [ext_resource type="Script" path="res://scenes/games/minion_battle/minion_battle.gd" id="1_6di21"]
 [ext_resource type="PackedScene" uid="uid://cwaeu50psqsf3" path="res://scenes/games/minion_battle/objs/castle/castle.tscn" id="1_mldg5"]
@@ -46,6 +46,10 @@ radius = 1.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_uxcef"]
 radius = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_ph53w"]
+line_spacing = 0.0
+font_size = 10
 
 [node name="minion_battle" type="Node3D"]
 script = ExtResource("1_6di21")
@@ -178,11 +182,23 @@ alignment = 2
 layout_mode = 2
 text = "protect your castle, get a minion to enemy castle to win"
 
-[node name="hbox2" type="HBoxContainer" parent="hud/margin/vbox"]
+[node name="hbox_instructions" type="HBoxContainer" parent="hud/margin/vbox"]
 layout_mode = 2
+
+[node name="summon_instructions" type="Label" parent="hud/margin/vbox/hbox_instructions"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "summon:
+damage:
+speed:"
+label_settings = SubResource("LabelSettings_ph53w")
+
+[node name="hbox_fill" type="HBoxContainer" parent="hud/margin/vbox/hbox_instructions"]
+layout_mode = 2
+size_flags_horizontal = 3
 alignment = 2
 
-[node name="camera_instructions" type="Label" parent="hud/margin/vbox/hbox2"]
+[node name="camera_instructions" type="Label" parent="hud/margin/vbox/hbox_instructions/hbox_fill"]
 layout_mode = 2
 text = "WASD for camera, SHIFT for speed boost"
 

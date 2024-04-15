@@ -1,7 +1,6 @@
 extends CharacterBody3D
 
 const SPEED = 300
-const PATH_X_SPEED = 300
 const COLOR_PLAYER = "#ff0000"
 const COLOR_CPU = "#0000ff"
 
@@ -14,6 +13,7 @@ var attack_node: Node3D = null
 var last_attacked_by_node: Node3D = null
 var attack_damage = 30
 var health = 100
+var summon_time = 1 # sec
 var pathing_node: Node3D = null
 var pathing_dir = 0
 var minion_dead_scene = preload("res://scenes/games/minion_battle/objs/minion_dead/minion_dead.tscn")
@@ -88,7 +88,7 @@ func movement(delta, target: Node3D, reached_distance: int) -> bool:
     velocity = direction * SPEED * delta
 
     if pathing_node and pathing_dir != 0:
-      velocity.z += pathing_dir * PATH_X_SPEED * delta
+      velocity.z += pathing_dir * SPEED * delta
 
     move_and_slide()
     return false

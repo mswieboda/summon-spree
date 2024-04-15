@@ -9,6 +9,10 @@ var is_win = false
 var player_spawn_type = "arms"
 
 
+func _ready():
+  set_player_spawn_type("arms")
+
+
 func _process(_delta):
   if is_game_over:
     return
@@ -35,6 +39,15 @@ func check_for_game_over():
     $game_menu.game_over(false)
 
 
+func get_new_minion(is_player: bool = true):
+  var minion_scene = minion_arms_scene
+
+  if is_player and player_spawn_type == "archer":
+    minion_scene = minion_archer_scene
+
+  return minion_scene.instantiate()
+
+
 func summon_minion(player_node : Node3D):
   if is_game_over:
     return
@@ -45,13 +58,9 @@ func summon_minion(player_node : Node3D):
   if player_node.get_node("castle/spawn/area").get_overlapping_bodies().size() > 0:
     return
 
-  var minion_scene = minion_arms_scene
-
-  if player_node == $player and player_spawn_type == "archer":
-    minion_scene = minion_archer_scene
-
-  var minion = minion_scene.instantiate()
-  minion.is_player = player_node == $player
+  var is_player = player_node == $player
+  var minion = get_new_minion(is_player)
+  minion.is_player = is_player
   player_node.get_node("minions").add_child(minion)
   minion.global_position = player_node.get_node("castle/spawn").global_position
 
@@ -67,8 +76,7 @@ func _on_cpu_timer_timeout():
 func _on_arms_button_toggled(toggled_on):
   if toggled_on:
     $hud/margin/vbox/hbox/buttons/archer_button.button_pressed = false
-    player_spawn_type = "arms"
-    $player/timer.wait_time = 1
+    set_player_spawn_type("arms")
   else:
     $hud/margin/vbox/hbox/buttons/archer_button.button_pressed = true
 
@@ -76,7 +84,22 @@ func _on_arms_button_toggled(toggled_on):
 func _on_archer_button_toggled(toggled_on):
   if toggled_on:
     $hud/margin/vbox/hbox/buttons/arms_button.button_pressed = false
-    player_spawn_type = "archer"
-    $player/timer.wait_time = 2
+    set_player_spawn_type("archer")
   else:
     $hud/margin/vbox/hbox/buttons/arms_button.button_pressed = true
+
+
+func set_player_spawn_type(spawn_type: String):
+  player_spawn_type = spawn_type
+
+  var label = $hud/margin/vbox/hbox_instructions/summon_instructions
+  var minion = get_new_minion()
+
+  $player/timer.wait_time = minion.summon_time
+
+  var text = "summon: {summon} sec\ndamage: {damage}\nspeed: {speed}"
+  label.text = text.format({
+    "summon": minion.summon_time,
+    "damage": minion.attack_damage,
+    "speed": minion.SPEED
+  })
