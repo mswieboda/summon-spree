@@ -22,7 +22,6 @@ shape = SubResource("BoxShape3D_bdgku")
 
 [node name="black_hole" parent="." instance=ExtResource("3_5kico")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -0.25, 0.5, 0)
-visible = false
 
 [node name="Timer" type="Timer" parent="."]
 
