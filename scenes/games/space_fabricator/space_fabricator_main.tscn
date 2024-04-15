@@ -25,7 +25,7 @@ sky = SubResource("Sky_mrgry")
 [sub_resource type="SphereMesh" id="SphereMesh_2mk8c"]
 
 [sub_resource type="Theme" id="Theme_xgc5f"]
-default_font_size = 26
+default_font_size = 16
 
 [node name="SpaceFabricatorMain" type="Node3D"]
 script = ExtResource("1_6p8vn")
@@ -77,8 +77,10 @@ texture_progress = ExtResource("7_6n6j7")
 [node name="Label" type="Label" parent="HUD"]
 layout_mode = 2
 theme = SubResource("Theme_xgc5f")
+theme_override_font_sizes/font_size = 26
 text = "Time Until Help Arives:"
 
 [node name="Time_display" type="Label" parent="HUD"]
 layout_mode = 2
 theme = ExtResource("5_n85yd")
+theme_override_font_sizes/font_size = 26

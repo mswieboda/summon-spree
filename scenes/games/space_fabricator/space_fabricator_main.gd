@@ -6,7 +6,7 @@ var isDone
 
 var fabHP
 
-var time_left = 10
+var time_left = 120
 var isTimeUp = false
 var hudTimer
 
@@ -42,7 +42,7 @@ func updateTime(delta):
   time_left -= delta
   var minutes = int(time_left / 60)
   var seconds = time_left - (minutes * 60)
-  hudTimer.text = str(minutes) +"m" + "%.1f s" % [seconds]
+  hudTimer.text = str(minutes) +" m " + "%.1f s" % [seconds]
   if time_left <= 0:
     isGameOver = true
     isWon = true
