@@ -74,6 +74,8 @@ func moveJuror():
     bTotal = bTotal - candidate.get_child(0).bias
     hTotal = hTotal - candidate.get_child(0).honesty
 
+  #var temp = candidate.get_child(0).get_child(3).color
+  #print_debug(temp)
   candidate.get_child(0).reparent(jurors[jurIndex],false)
   jurIndex +=1
   jurorRemain -=1
