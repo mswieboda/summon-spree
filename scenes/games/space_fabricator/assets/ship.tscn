@@ -9,7 +9,7 @@
 size = Vector3(100, 1, 100)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ybqqq"]
-size = Vector3(16.0471, 1.99939, 1)
+size = Vector3(17.0162, 1.99939, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_eimuj"]
 size = Vector3(1, 1.97687, 16.0466)
@@ -33,7 +33,7 @@ script = ExtResource("1_lm1kh")
 [node name="ship" parent="." instance=ExtResource("1_7a0qm")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.486694, 0)
 shape = SubResource("BoxShape3D_gkujv")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
@@ -41,7 +41,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.02502, 1.02088, -7.51654)
 shape = SubResource("BoxShape3D_ybqqq")
 
 [node name="CollisionShape3D9" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.02502, 1.0019, 7.49647)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.50959, 1.0019, 7.49647)
 shape = SubResource("BoxShape3D_ybqqq")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
@@ -77,17 +77,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.16397, 0.970294, 6.49606)
 shape = SubResource("BoxShape3D_1k0ww")
 
 [node name="fabricator" parent="." instance=ExtResource("2_b3yed")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 13, 0.5, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5.11572, 0.5, 0)
 
 [node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.96391, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.932984, 0)
 collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.18108, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.232504, 0.179496, 0.053225)
 depth = 2.0
-polygon = PackedVector2Array(-1.19381, -6.98635, -1.18948, -4.9764, -5.19199, -4.98282, -5.19326, -2.98366, -17.1936, -2.98748, -19.1942, -0.98657, -19.1929, 1.01369, -17.1931, 3.0115, -5.19266, 3.00957, -5.19361, 5.01258, -1.19569, 5.01347, -1.18845, 7.00502, 8, 7, 8, -7)
+polygon = PackedVector2Array(-1.19381, -6.98635, -1.18948, -4.9764, -5.19199, -4.98282, -5.19326, -2.98366, -17.1936, -2.98748, -19.1942, -0.98657, -19.1929, 1.01369, -17.1931, 3.0115, -5.19266, 3.00957, -5.19361, 5.01258, -1.19569, 5.01347, -1.18845, 7.00502, 14.5249, 6.96594, 14.4467, -6.98674)
 
 [node name="enemyList" type="Node3D" parent="."]
 

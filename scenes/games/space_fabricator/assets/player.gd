@@ -29,10 +29,6 @@ func _physics_process(delta):
   if not is_on_floor():
     velocity.y -= gravity * delta
 
-  # Handle jump.
-  #if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-  #  velocity.y = JUMP_VELOCITY
-
   # Get the input direction and handle the movement/deceleration.
   # As good practice, you should replace UI actions with custom gameplay actions.
   var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -70,7 +66,6 @@ func point_character(direction:Vector3):
     isMousePoint = true
 
   if isMousePoint:
-    #get_parent().get_node("MeshInstance3D").global_transform.origin = result.position
     var planar_point = Vector3(result.position.x,0,result.position.z)
     playerDir.global_transform = playerDir.global_transform.looking_at(planar_point)
   elif direction.length() != 0:

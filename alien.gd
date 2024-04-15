@@ -24,6 +24,8 @@ func _physics_process(delta):
   # Add the gravity.
   if not is_on_floor():
     velocity.y -= gravity * delta
+    move_and_slide()
+    return
 
 
   # Get the input direction and handle the movement/deceleration.
@@ -39,6 +41,10 @@ func _physics_process(delta):
     velocity.z = move_toward(velocity.z, 0, SPEED)
 
   move_and_slide()
+
+func vel_calc():
+
+  pass
 
 func set_target(aimAt:Node3D):
   target = aimAt
