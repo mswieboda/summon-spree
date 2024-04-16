@@ -246,7 +246,6 @@ horizontal_alignment = 2
 stream = SubResource("AudioStreamRandomizer_pwa8g")
 
 [node name="fade_in" parent="." instance=ExtResource("6_que4b")]
-visible = false
 
 [node name="game_menu" parent="." instance=ExtResource("5_8jmm5")]
 

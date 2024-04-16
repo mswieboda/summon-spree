@@ -7,9 +7,11 @@ var minion_archer_scene = preload("res://scenes/games/minion_battle/objs/minion_
 var is_game_over = false
 var is_win = false
 var player_summon_type = "arms"
+var start_time = null
 
 
 func _ready():
+  start_time = Time.get_ticks_msec()
   set_player_summon_type("arms")
 
 
@@ -53,19 +55,28 @@ func update_player_summoned_count():
   $hud/margin/vbox/hbox_instructions/vbox/summoned_count.text = "summoned: %d / %d" % [minions_count, MAX_MINIONS]
 
 
+func get_time_string(end_time):
+  var milliseconds = end_time - start_time
+  var minutes = int(milliseconds / 1000 / 60)
+  var seconds = int(milliseconds / 1000 - minutes * 60)
+
+  return "%dm %ds" % [minutes, seconds]
+
 func check_for_game_over():
   var is_player_game_over = $player/minions.get_children().any(minion_is_game_over)
 
   if is_player_game_over:
+    var end_time = Time.get_ticks_msec()
     is_game_over = true
-    $game_menu.game_over(true, "You got to the enemy castle!")
+    $game_menu.game_over(true, "You got to the enemy castle!\ntime: %s" % [get_time_string(end_time)])
     return
 
   var is_cpu_game_over = $cpu/minions.get_children().any(minion_is_game_over)
 
   if is_cpu_game_over:
+    var end_time = Time.get_ticks_msec()
     is_game_over = true
-    $game_menu.game_over(false, "The enemy got to your castle!")
+    $game_menu.game_over(false, "The enemy got to your castle!\ntime: %s" % [get_time_string(end_time)])
 
 
 func get_new_minion(is_player: bool = true):
