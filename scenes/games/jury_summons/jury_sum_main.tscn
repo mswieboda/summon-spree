@@ -17,6 +17,17 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_be56k")
 
+[node name="bg" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1814.0
+offset_bottom = 1235.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.94902, 0.854902, 1)
+
 [node name="JuryList" type="Node2D" parent="."]
 
 [node name="JSeat1" type="Node2D" parent="JuryList"]
@@ -42,6 +53,11 @@ scale = Vector2(0.75, 0.75)
 [node name="JSeat6" type="Node2D" parent="JuryList"]
 position = Vector2(480, 100)
 scale = Vector2(0.75, 0.75)
+
+[node name="Courtroom" type="Sprite2D" parent="."]
+position = Vector2(372, 311)
+scale = Vector2(0.191824, 0.190741)
+texture = ExtResource("7_kvg13")
 
 [node name="Candidate" type="Node2D" parent="."]
 position = Vector2(137, 481)
@@ -196,12 +212,6 @@ offset_top = 600.0
 offset_right = 1061.0
 offset_bottom = 623.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-
-[node name="Courtroom" type="Sprite2D" parent="."]
-z_index = -1
-position = Vector2(575.528, 322)
-scale = Vector2(0.191824, 0.190741)
-texture = ExtResource("7_kvg13")
 
 [connection signal="pressed" from="YesButton" to="." method="_on_yes_button_pressed"]
 [connection signal="pressed" from="NoButton" to="." method="_on_no_button_pressed"]

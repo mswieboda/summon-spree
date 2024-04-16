@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scenes/objs/fade_in/fade_in.gd" id="1_nj2sk"]
 
 [node name="fade_in" type="Control"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

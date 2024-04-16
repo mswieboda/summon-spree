@@ -5,6 +5,10 @@ extends Control
 var is_done = false
 
 
+func _ready():
+  visible = true
+
+
 func _process(delta):
   if is_done:
     return
